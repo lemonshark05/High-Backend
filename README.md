@@ -2,8 +2,9 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
+2. [Product Spec](#Product-Spec)
 3. [PostgreSQL](#PostgreSQL)
+4. [Postman](#Postman)
 
 ## Overview
 ### Description
@@ -181,13 +182,24 @@ Certainly, here's the database schema:
 ###  Interactive Prototype
 
 
+## Postman
+Here's a table with http status codes and descriptions:
 
-### This is not due until the following week: 
-## Schema 
-
-
-### Models
-[Add table of models]
-### Networking
+| Status Code | Description |
+|-------------|-------------|
+| 200 | OK: The request was successful. |
+| 201 | Created: The request was successful, and a resource was created as a result. |
+| 204 | No Content: The server successfully processed the request, but is not returning any content. |
+| 301 | Moved Permanently: The URL of the requested resource has been changed permanently. |
+| 302 | Found: The server has found a temporary redirection. |
+| 400 | Bad Request: The server could not understand the request due to invalid syntax. |
+| 401 | Unauthorized: The request requires user authentication. |
+| 403 | Forbidden: The server understood the request, but is refusing to fulfill it. |
+| 404 | Not Found: The server can't find the requested resource. |
+| 405 | Method Not Allowed: The method specified in the request is not allowed. |
+| 500 | Internal Server Error: The server encountered an unexpected condition. |
+| 502 | Bad Gateway: The server received an invalid response from the upstream server. |
+| 503 | Service Unavailable: The server is currently unavailable (because it is overloaded or down for maintenance). |
+| 504 | Gateway Timeout: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server. |
 
 
