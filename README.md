@@ -3,7 +3,7 @@
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
+3. [PostgreSQL](#PostgreSQL)
 
 ## Overview
 ### Description
@@ -62,9 +62,116 @@
 * Posting
     * Discover Feed
 
-## Wireframes
-Completed with figma. Visit: [Figma](https://www.figma.com/file/eJfL7WNLPKEzBeorTCIG7I/Prototyping-in-Figma?node-id=0%3A1&t=85HIRKXqrNsZTlsW-1)
-<img src="Assets/wireframe.png" width=600>
+## PostgreSQL
+Certainly, here's the database schema:
+
+**Table: UserRoles**
+
+| Column Name | Type         | Description             |
+|-------------|--------------|-------------------------|
+| id          | INT PRIMARY KEY | Unique ID for the role |
+| role        | VARCHAR(255)   | Role name ("Athlete", "Coach", "Administrator") | 
+
+**Table: Users**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the user |
+| username    | VARCHAR(255)   | User's username |
+| email       | VARCHAR(255)   | User's email |
+| phone       | VARCHAR(255)   | User's phone number |
+| role_id     | INT REFERENCES UserRoles(id) | Role ID |
+| profile_image | VARCHAR(255) | URL of profile image |
+| community_page_url | VARCHAR(255) | URL of community page |
+| profile_visibility | BOOLEAN | Visibility status of profile |
+| time_zone   | VARCHAR(255)   | User's time zone |
+| display_name | VARCHAR(255)  | User's display name |
+| title       | VARCHAR(255)   | User's title |
+| personal_info | TEXT | User's personal info |
+| is_visible_to_all_members | BOOLEAN | Visibility to all members |
+
+**Table: Followers**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the follower relationship |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| follower_id | INT REFERENCES Users(id) | Follower's user ID |
+
+**Table: BlockedMembers**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the blocked member |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| blocked_user_id | INT REFERENCES Users(id) | Blocked user's ID |
+
+**Table: Subscriptions**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the subscription |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| subscription_details | TEXT | Subscription details |
+
+**Table: Orders**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the order |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| order_details | TEXT | Order details |
+
+**Table: Addresses**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the address |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| address     | TEXT | Address details |
+
+**Table: Wallet**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the wallet |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| balance     | DECIMAL(10,2) | Wallet balance |
+
+**Table: Bookings**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the booking |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| booking_details | TEXT | Booking details |
+
+**Table: Resources**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the resource |
+| resource_type | VARCHAR(255) | Resource type ("basketball", "football", etc.) |
+| resource_details |
+
+ TEXT | Resource details |
+
+**Table: Universities**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the university |
+| name        | VARCHAR(255)   | University name |
+| details     | TEXT | University details |
+
+**Table: UserUniversity**
+
+| Column Name | Type         | Description |
+|-------------|--------------|-------------|
+| id          | INT PRIMARY KEY | Unique ID for the user-university relationship |
+| user_id     | INT REFERENCES Users(id) | User ID |
+| university_id | INT REFERENCES Universities(id) | University ID |
+
 
 ###  Digital Wireframes & Mockups
 
