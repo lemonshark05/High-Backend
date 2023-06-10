@@ -152,9 +152,7 @@ Certainly, here's the database schema:
 |-------------|--------------|-------------|
 | id          | INT PRIMARY KEY | Unique ID for the resource |
 | resource_type | VARCHAR(255) | Resource type ("basketball", "football", etc.) |
-| resource_details |
-
- TEXT | Resource details |
+| resource_details | TEXT | Resource details |
 
 **Table: Universities**
 
