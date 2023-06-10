@@ -78,7 +78,7 @@ Certainly, here's the database schema:
 |-------------|--------------|-------------|
 | id          | INT PRIMARY KEY | Unique ID for the user |
 | username    | VARCHAR(255)   | User's username |
-| email       | VARCHAR(255)   | User's email |
+| email       | VARCHAR(255)   | Unique user's email |
 | phone       | VARCHAR(255)   | User's phone number |
 | role_id     | INT REFERENCES UserRoles(id) | Role ID |
 | profile_image | VARCHAR(255) | URL of profile image |
