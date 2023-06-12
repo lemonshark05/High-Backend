@@ -21,51 +21,87 @@
 - **Habit:**  
 - **Scope:** 
 
-
 ## Product Spec
 
-### 1. User Stories (Required and Optional)
+### 1. User Profile
 
-**Required Must-have Stories**
-
-* User can see people other user's images and ratings around the area
-* User can build a profile
-
-**Optional Nice-to-have Stories**
-
-* Users can create 
+* `UserRoles`: Defines the various roles within the application such as "Athlete", "Coach", and "Administrator".
+* `Users`: Contains the user's basic profile data, including username, email, phone number, role, profile image, community page URL, profile visibility, timezone, display name, title, personal info, and visibility to all members. It also contains a user's LinkedIn-style bio, past experiences, and other relevant information.
+* `Followers`: Allows for tracking follower relationships between users, similar to LinkedIn's connection system.
+* `BlockedMembers`: Tracks any blocked members for a particular user.
+* `Subscriptions`: Contains any subscription details related to the user.
+* `Orders`: Tracks any orders placed by the user.
+* `Addresses`: Stores user's address details.
+* `Wallet`: Holds information about the user's virtual wallet balance.
+* `Bookings`: Contains any bookings made by the user.
+* `UserUniversity`: Stores the association between users and their universities.
 
 ### 2. Screen Archetypes
 
-* Login/Resgister
-   * User can create account
+* Login/Register
+   * User can create an account
    * User can log in
 * User Profile
-    * User can see their own profile with all the existing reviews and images they have posted
+    * User can view and edit their own profile with all existing posts, images, and reviews
         * Detailed Posts Page
         * Images Only Page
+        * Endorsements and Recommendations
 * Coach Profile
-    * Users can see the restaurant's page with all the posts created by other users and the average star rating
-* 
+    * Users can view coach profiles, including posts by other users and average star rating
+    * Users can endorse or recommend a coach
+* Community Page
+    * Users can interact with the community by viewing shared content, commenting, and liking posts
+* Messaging 
+    * Users can send and receive messages, allowing communication between coaches and athletes
+* Connections
+    * Users can send, accept, or decline connection requests
+* Scholarship Opportunities
+    * Users can view and apply for scholarship opportunities
+    * Coaches can post scholarship opportunities
+
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* Homepage
-* Search (NTH)
+* Home
+* My Network (Connections and Followers)
+* Scholarships
+* Messaging
+* Notifications
+* Me (User Profile)
 
 **Flow Navigation** (Screen to Screen)
 
 * Login/Register
-   * Discover Feed
-* Discover Feed
-   * Restaurant Profile
+   * Home Feed
+* Home Feed
+   * Coach Profile or User Profile
 * User Profile
-    * Posts
-    * Feed
-    * Bookmarks
-* Posting
-    * Discover Feed
+    * Settings
+    * Profile Edit
+    * My Network (Followers and Following)
+    * Wallet
+    * Addresses
+    * Role (UserRoles)
+    * My Posts
+    * My Bookmarks
+* My Network
+    * Search for connections
+    * View connection's profile
+* Scholarships
+    * Search for scholarships
+    * View scholarship details
+    * Apply for a scholarship
+* Messaging
+    * Compose message
+    * View message thread
+* Notifications
+    * View notification details
+* Me (User Profile)
+    * Edit profile
+    * View My posts
+    * View My bookmarks
+    * View and edit settings
 
 ## PostgreSQL
 Certainly, here's the database schema:
