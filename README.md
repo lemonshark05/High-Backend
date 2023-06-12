@@ -15,7 +15,6 @@
 
 ### App Evaluation
 - **Category:** 
-- **Mobile:**
 - **Story:** 
 - **Market:**  
 - **Habit:**  
