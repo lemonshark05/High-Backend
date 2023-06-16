@@ -2,9 +2,10 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-2. [Product Spec](#Product-Spec)
-3. [PostgreSQL](#PostgreSQL)
-4. [Postman](#Postman)
+2. [Prototype](#Prototype)
+3. [Product Spec](#Product-Spec)
+4. [PostgreSQL](#PostgreSQL)
+5. [Postman](#Postman)
 
 ## Overview
 ### Description
@@ -18,7 +19,20 @@
 - **Story:** 
 - **Market:**  
 - **Habit:**  
-- **Scope:** 
+- **Scope:**
+
+## Prototype
+
+### Draw
+<img width="746" alt="Screenshot 2023-06-16 at 11 17 59" src="https://github.com/lemonshark05/High-Backend/assets/100770743/c18ae7db-a5b0-4426-b8b9-dca6f939ae68">
+<img width="746" alt="Screenshot 2023-06-16 at 11 17 52" src="https://github.com/lemonshark05/High-Backend/assets/100770743/3bf1acbc-f830-4b8b-ad56-cc113a9284f7">
+
+
+### Kap
+
+https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b-bdc7-d0f6663877b3
+
+
 
 ## Product Spec
 
@@ -40,6 +54,7 @@
 * Login/Register
    * User can create an account
    * User can log in
+   * User can sign up
 * User Profile
     * User can view and edit their own profile with all existing posts, images, and reviews
         * Detailed Posts Page
@@ -63,10 +78,9 @@
 **Tab Navigation** (Tab to Screen)
 
 * Home
-* My Network (Connections and Followers)
-* Scholarships
-* Messaging
-* Notifications
+* Explore
+* Resources
+* Book
 * Me (User Profile)
 
 **Flow Navigation** (Screen to Screen)
