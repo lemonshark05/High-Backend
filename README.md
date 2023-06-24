@@ -33,7 +33,6 @@
 https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b-bdc7-d0f6663877b3
 
 
-
 ## Product Spec
 
 ### 1. User Profile
@@ -117,112 +116,97 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
     * View and edit settings
 
 ## PostgreSQL
-Certainly, here's the database schema:
+Absolutely, let's incorporate the additional requirements into the database schema and convert it to markdown format:
 
 **Table: UserRoles**
-
-| Column Name | Type         | Description             |
-|-------------|--------------|-------------------------|
-| id          | INT PRIMARY KEY | Unique ID for the role |
-| role        | VARCHAR(255)   | Role name ("Athlete", "Coach", "Administrator") | 
-
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the role                   |
+| role        | VARCHAR(255)      | Role name ("Athlete", "Coach", "Administrator") |
+```
 **Table: Users**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the user |
-| username    | VARCHAR(255)   | User's username |
-| email       | VARCHAR(255)   | Unique user's email |
-| phone       | VARCHAR(255)   | User's phone number |
-| role_id     | INT REFERENCES UserRoles(id) | Role ID |
-| profile_image | VARCHAR(255) | URL of profile image |
-| community_page_url | VARCHAR(255) | URL of community page |
-| profile_visibility | BOOLEAN | Visibility status of profile |
-| time_zone   | VARCHAR(255)   | User's time zone |
-| display_name | VARCHAR(255)  | User's display name |
-| title       | VARCHAR(255)   | User's title |
-| personal_info | TEXT | User's personal info |
-| is_visible_to_all_members | BOOLEAN | Visibility to all members |
-
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the user                   |
+| username    | VARCHAR(255)      | User's username                           |
+| email       | VARCHAR(255)      | Unique user's email                       |
+| phone       | VARCHAR(255)      | User's phone number                       |
+| role_id     | INT REFERENCES UserRoles(id) | Role ID                       |
+| profile_image | VARCHAR(255) | URL of profile image                       |
+| community_page_url | VARCHAR(255) | URL of community page                   |
+| profile_visibility | BOOLEAN | Visibility status of profile               |
+| time_zone   | VARCHAR(255)   | User's time zone                           |
+| display_name | VARCHAR(255)  | User's display name                        |
+| title       | VARCHAR(255)   | User's title                               |
+| personal_info | TEXT | User's personal info                             |
+| is_visible_to_all_members | BOOLEAN | Visibility to all members            |
+| linkedin_link | VARCHAR(255) | Linkedin profile link                      |
+| other_links | JSONB | JSONB array of other social links (Twitter, Facebook, etc.) |
+```
 **Table: Followers**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the follower relationship |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| follower_id | INT REFERENCES Users(id) | Follower's user ID |
-
-**Table: BlockedMembers**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the blocked member |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| blocked_user_id | INT REFERENCES Users(id) | Blocked user's ID |
-
-**Table: Subscriptions**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the subscription |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| subscription_details | TEXT | Subscription details |
-
-**Table: Orders**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the order |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| order_details | TEXT | Order details |
-
-**Table: Addresses**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the address |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| address     | TEXT | Address details |
-
-**Table: Wallet**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the wallet |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| balance     | DECIMAL(10,2) | Wallet balance |
-
-**Table: Bookings**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the booking |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| booking_details | TEXT | Booking details |
-
-**Table: Resources**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the resource |
-| resource_type | VARCHAR(255) | Resource type ("basketball", "football", etc.) |
-| resource_details | TEXT | Resource details |
-
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the follower relationship |
+| user_id     | INT REFERENCES Users(id) | User ID                           |
+| follower_id | INT REFERENCES Users(id) | Follower's user ID                 |
+```
+**Table: UserImages**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the user image             |
+| user_id     | INT REFERENCES Users(id) | User ID                           |
+| image_url   | VARCHAR(255) | URL of user's image                         |
+```
+**Table: UserVideos**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the user video             |
+| user_id     | INT REFERENCES Users(id) | User ID                           |
+| video_url   | VARCHAR(255) | URL of user's video                         |
+```
 **Table: Universities**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the university             |
+| name        | VARCHAR(255)   | University name                            |
+| details     | TEXT | University details                                  |
+```
+**Table: UniversityImages**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the university image       |
+| university_id | INT REFERENCES Universities(id) | University ID           |
+| image_url   | VARCHAR(255) | URL of university's image                   |
+```
+**Table: UniversityVideos**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the university video       |
+| university_id | INT
 
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the university |
-| name        | VARCHAR(255)   | University name |
-| details     | TEXT | University details |
-
-**Table: UserUniversity**
-
-| Column Name | Type         | Description |
-|-------------|--------------|-------------|
-| id          | INT PRIMARY KEY | Unique ID for the user-university relationship |
-| user_id     | INT REFERENCES Users(id) | User ID |
-| university_id | INT REFERENCES Universities(id) | University ID |
+ REFERENCES Universities(id) | University ID           |
+| video_url   | VARCHAR(255) | URL of university's video                   |
+```
+**Table: Scholarships**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the scholarship            |
+| university_id | INT REFERENCES Universities(id) | University ID           |
+| type        | VARCHAR(255) | Scholarship type                            |
+| amount      | DECIMAL(10,2) | Scholarship amount                          |
+| description | TEXT | Scholarship description                             |
+| application_link | VARCHAR(255) | URL of the application                   |
+| applicants  | INT | Number of friends who applied                        |
+| success_rate | DECIMAL(5,2) | Success rate                                |
 
 
 ###  Digital Wireframes & Mockups
