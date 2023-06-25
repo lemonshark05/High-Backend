@@ -79,7 +79,7 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
 * Home
 * Explore
 * Resources
-* Book
+* Connection
 * Me (User Profile)
 
 **Flow Navigation** (Screen to Screen)
@@ -116,7 +116,6 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
     * View and edit settings
 
 ## PostgreSQL
-Absolutely, let's incorporate the additional requirements into the database schema and convert it to markdown format:
 
 **Table: UserRoles**
 ```
@@ -125,6 +124,39 @@ Absolutely, let's incorporate the additional requirements into the database sche
 | id          | SERIAL PRIMARY KEY | Unique ID for the role                   |
 | role        | VARCHAR(255)      | Role name ("Athlete", "Coach", "Administrator") |
 ```
+
+**Table: Blogs**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the blog                   |
+| title       | VARCHAR(255)   | Title of the blog                          |
+| content     | TEXT           | Content of the blog                        |
+| author_id   | INT REFERENCES Users(id) | Author's User ID                  |
+| type        | VARCHAR(255)   | Type of the blog                           |
+| comments_count | INT        | Number of comments on the blog             |
+| views_count | INT           | Number of views of the blog                 |
+| image_url   | VARCHAR(255)   | URL of the blog image                      |
+| created_at  | TIMESTAMP      | Time when the blog was created             |
+| updated_at  | TIMESTAMP      | Time when the blog was last updated        |
+```
+
+**Table: Scholarships**
+```
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the scholarship            |
+| university_id | INT REFERENCES Universities(id) | University ID           |
+| type        | VARCHAR(255)   | Type of scholarship (What kinds of athletes could apply) |
+| description | TEXT           | Description of the scholarship             |
+| application_link | VARCHAR(255) | URL of the application                   |
+| prize       | DECIMAL(10,2)  | Prize of the scholarship                   |
+| country     | VARCHAR(255)   | Country of the scholarship                 |
+| success_rate | DECIMAL(5,2)   | Success rate of the scholarship           |
+| image_url   | VARCHAR(255)   | URL of the scholarship image               |
+| video_url   | VARCHAR(255)   | URL of the scholarship video               |
+| created_by  | INT REFERENCES UserRoles(id) | Role ID of the creator (Admin or Coach) |
+```
 **Table: Users**
 ```
 | Column Name | Type            | Description                                |
@@ -132,6 +164,7 @@ Absolutely, let's incorporate the additional requirements into the database sche
 | id          | SERIAL PRIMARY KEY | Unique ID for the user                   |
 | username    | VARCHAR(255)      | User's username                           |
 | email       | VARCHAR(255)      | Unique user's email                       |
+| loginemail  | VARCHAR(255)      | Login email created at registration       |
 | phone       | VARCHAR(255)      | User's phone number                       |
 | role_id     | INT REFERENCES UserRoles(id) | Role ID                       |
 | profile_image | VARCHAR(255) | URL of profile image                       |
@@ -144,6 +177,9 @@ Absolutely, let's incorporate the additional requirements into the database sche
 | is_visible_to_all_members | BOOLEAN | Visibility to all members            |
 | linkedin_link | VARCHAR(255) | Linkedin profile link                      |
 | other_links | JSONB | JSONB array of other social links (Twitter, Facebook, etc.) |
+| about_me    | TEXT | About me information                               |
+| interested_in_coaches | JSONB | JSONB array of interested coach IDs      |
+| interested_in_athletes | JSONB | JSONB array of interested athlete IDs    |
 ```
 **Table: Followers**
 ```
@@ -171,43 +207,23 @@ Absolutely, let's incorporate the additional requirements into the database sche
 ```
 **Table: Universities**
 ```
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the university             |
-| name        | VARCHAR(255)   | University name                            |
-| details     | TEXT | University details                                  |
+| Column Name | Type            | Description                                  |
+|-------------|-----------------|----------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the university               |
+| name        | VARCHAR(255)   | University name                              |
+| details     | TEXT | University details                                    |
+| official_link | VARCHAR(255) | Official URL of the university               |
+| intro_image_url | VARCHAR(255) | URL of introduction image of the university |
+| thumbnail_url | VARCHAR(255) | URL of thumbnail image of the university     |
+| scholarships_link | VARCHAR(255) | Link to the scholarships of the university |
 ```
-**Table: UniversityImages**
-```
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the university image       |
-| university_id | INT REFERENCES Universities(id) | University ID           |
-| image_url   | VARCHAR(255) | URL of university's image                   |
-```
-**Table: UniversityVideos**
+**Table: AthleteTypes**
 ```
 | Column Name | Type            | Description                                |
 |-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the university video       |
-| university_id | INT
-
- REFERENCES Universities(id) | University ID           |
-| video_url   | VARCHAR(255) | URL of university's video                   |
+| id          | SERIAL PRIMARY KEY | Unique ID for the athlete type           |
+| type        | VARCHAR(255)   | Athlete type name                          |
 ```
-**Table: Scholarships**
-```
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the scholarship            |
-| university_id | INT REFERENCES Universities(id) | University ID           |
-| type        | VARCHAR(255) | Scholarship type                            |
-| amount      | DECIMAL(10,2) | Scholarship amount                          |
-| description | TEXT | Scholarship description                             |
-| application_link | VARCHAR(255) | URL of the application                   |
-| applicants  | INT | Number of friends who applied                        |
-| success_rate | DECIMAL(5,2) | Success rate                                |
-
 
 ###  Digital Wireframes & Mockups
 
