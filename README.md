@@ -127,18 +127,28 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
 
 **Table: Blogs**
 ```
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the blog                   |
-| title       | VARCHAR(255)   | Title of the blog                          |
-| content     | TEXT           | Content of the blog                        |
-| author_id   | INT REFERENCES Users(id) | Author's User ID                  |
-| type        | VARCHAR(255)   | Type of the blog                           |
-| comments_count | INT        | Number of comments on the blog             |
-| views_count | INT           | Number of views of the blog                 |
-| image_url   | VARCHAR(255)   | URL of the blog image                      |
-| created_at  | TIMESTAMP      | Time when the blog was created             |
-| updated_at  | TIMESTAMP      | Time when the blog was last updated        |
+| Column Name  | Type                   | Description                  |
+|--------------|------------------------|------------------------------|
+| id           | SERIAL PRIMARY KEY     | Unique ID for the blog       |
+| title        | VARCHAR(255)           | Title of the blog            |
+| content      | TEXT                   | Content of the blog          |
+| author_id    | INT REFERENCES Users(id)  | Author's User ID        |
+| type         | VARCHAR(255)           | Type of the blog             |
+| image_url    | VARCHAR(255)           | URL of the blog image        |
+| created_at   | TIMESTAMP              | Time when the blog was created |
+| updated_at   | TIMESTAMP              | Time when the blog was last updated |
+```
+
+**Table: Comments**
+```
+| Column Name | Type                  | Description                                |
+|-------------|-----------------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY    | Unique ID for the comment                  |
+| blog_id     | INT REFERENCES Blogs(id) | ID of the blog the comment belongs to |
+| user_id     | INT REFERENCES Users(id) | User ID of the comment's author      |
+| comment     | TEXT                  | The comment text                          |
+| created_at  | TIMESTAMP             | Time when the comment was created         |
+| updated_at  | TIMESTAMP             | Time when the comment was last updated    |
 ```
 
 **Table: Scholarships**
