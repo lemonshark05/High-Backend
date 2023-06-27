@@ -122,7 +122,7 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
 https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 
 ### Details
-
+---
 **Table: UserRoles**
 ```
 | Column Name | Type            | Description                                |
@@ -130,7 +130,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | id          | SERIAL PRIMARY KEY | Unique ID for the role                   |
 | role        | VARCHAR(255)      | Role name ("Athlete", "Coach", "Administrator") |
 ```
-
+---
 **Table: Blogs**
 ```
 | Column Name  | Type                   | Description                  |
@@ -144,7 +144,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | created_at   | TIMESTAMP              | Time when the blog was created |
 | updated_at   | TIMESTAMP              | Time when the blog was last updated |
 ```
-
+---
 **Table: Comments**
 ```
 | Column Name | Type                  | Description                                |
@@ -156,7 +156,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | created_at  | TIMESTAMP             | Time when the comment was created         |
 | updated_at  | TIMESTAMP             | Time when the comment was last updated    |
 ```
-
+---
 **Table: Scholarships**
 ```
 | Column Name | Type            | Description                                |
@@ -173,6 +173,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | video_url   | VARCHAR(255)   | URL of the scholarship video               |
 | created_by  | INT REFERENCES UserRoles(id) | Role ID of the creator (Admin or Coach) |
 ```
+---
 **Table: Users**
 ```
 | Column Name | Type            | Description                                |
@@ -197,6 +198,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | interested_in_coaches | JSONB | JSONB array of interested coach IDs      |
 | interested_in_athletes | JSONB | JSONB array of interested athlete IDs    |
 ```
+---
 **Table: Followers**
 ```
 | Column Name | Type            | Description                                |
@@ -213,6 +215,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | user_id     | INT REFERENCES Users(id) | User ID                           |
 | image_url   | VARCHAR(255) | URL of user's image                         |
 ```
+---
 **Table: UserVideos**
 ```
 | Column Name | Type            | Description                                |
@@ -221,6 +224,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | user_id     | INT REFERENCES Users(id) | User ID                           |
 | video_url   | VARCHAR(255) | URL of user's video                         |
 ```
+---
 **Table: Universities**
 ```
 | Column Name | Type            | Description                                  |
@@ -233,6 +237,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | thumbnail_url | VARCHAR(255) | URL of thumbnail image of the university     |
 | scholarships_link | VARCHAR(255) | Link to the scholarships of the university |
 ```
+---
 **Table: AthleteTypes**
 ```
 | Column Name | Type            | Description                                |
@@ -240,7 +245,7 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | id          | SERIAL PRIMARY KEY | Unique ID for the athlete type           |
 | type        | VARCHAR(255)   | Athlete type name                          |
 ```
-
+---
 ###  Digital Wireframes & Mockups
 
 
