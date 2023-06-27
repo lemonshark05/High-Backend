@@ -124,12 +124,11 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 ### Details
 ---
 **Table: UserRoles**
-```
 | Column Name | Type            | Description                                |
 |-------------|-----------------|--------------------------------------------|
 | id          | SERIAL PRIMARY KEY | Unique ID for the role                   |
 | role        | VARCHAR(255)      | Role name ("Athlete", "Coach", "Administrator") |
-```
+
 ---
 **Table: Blogs**
 ```
