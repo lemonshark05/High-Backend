@@ -119,6 +119,7 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
 ## PostgreSQL
 
 ![Untitled](https://github.com/lemonshark05/High-Backend/assets/100770743/1baf3fec-e60e-4baf-b590-bf25ce778503)
+https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 
 
 **Table: UserRoles**
