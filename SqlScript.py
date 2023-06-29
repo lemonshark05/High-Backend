@@ -1,11 +1,23 @@
 import psycopg2
 
 class User:
-    def __init__(self, password, username, title, email):
-        self.username = username
-        self.password = password
-        self.title = title
-        self.email = email
+    class User:
+        def __init__(self, id, username, email, phone, role_id, profile_image, community_page_url,
+                     profile_visibility, time_zone, display_name, title, personal_info,
+                     is_visible_to_all_members):
+            self.id = id
+            self.username = username
+            self.email = email
+            self.phone = phone
+            self.role_id = role_id
+            self.profile_image = profile_image
+            self.community_page_url = community_page_url
+            self.profile_visibility = profile_visibility
+            self.time_zone = time_zone
+            self.display_name = display_name
+            self.title = title
+            self.personal_info = personal_info
+            self.is_visible_to_all_members = is_visible_to_all_members
 
 class UserRole:
     def __init__(self, role):

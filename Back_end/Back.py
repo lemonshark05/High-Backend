@@ -5,11 +5,11 @@ import bcrypt
 app = Flask(__name__)
 
 db_config = {
-    'database': 'your_database',
-    'user': 'your_username',
-    'password': 'your_password',
-    'host': 'your_host',
-    'port': 'your_port'
+    'database': 'highlytr',
+    'user': 'test1',
+    'password': '123456',
+    'host': 'localhost',
+    'port': '5432'
 }
 
 def db_query(query, params=()):
@@ -156,6 +156,11 @@ def update_user_role(id):
         return jsonify({"message": "User role updated"}), 200
     else:
         return jsonify({"error": "Error while updating user role"}), 500
+
+
+# @app.route('/')
+# def homepage(name):
+
 
 if __name__ == '__main__':
     app.run(debug=True)
