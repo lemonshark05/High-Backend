@@ -194,6 +194,18 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | interested_in_coaches | JSONB | JSONB array of interested coach IDs      |
 | interested_in_athletes | JSONB | JSONB array of interested athlete IDs    |
 
+**Table: UserExperiences**
+
+| Column Name | Type            | Description                                |
+|-------------|-----------------|--------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the user's experience   |
+| user_id     | INT REFERENCES Users(id) | User ID                            |
+| title       | VARCHAR(255)   | Title of the user's experience             |
+| description | TEXT           | Description of the user's experience       |
+| start_date  | DATE           | Start date of the user's experience        |
+| end_date    | DATE           | End date of the user's experience          |
+| is_current  | BOOLEAN        | If the experience is current               |
+
 **Table: Followers**
 
 | Column Name | Type            | Description                                |
