@@ -1,7 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from flask import jsonify
 
 db = SQLAlchemy()
 
@@ -147,3 +149,93 @@ class AthleteType(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(255), nullable=False)
+
+class Crud:
+    @staticmethod
+    def create(model_instance):
+        try:
+            db.session.add(model_instance)
+            db.session.commit()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def read(model, filters=None, limit=None, order_by=None, page=None, per_page=None):
+        try:
+            query = model.query
+
+            if filters:
+                query = query.filter_by(**filters)
+
+            if limit:
+                query = query.limit(limit)
+
+            if order_by:
+                query = query.order_by(order_by)
+
+            if page and per_page:
+                query = query.paginate(page=page, per_page=per_page).items
+
+            return query.all()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def join(model1, model2, join_condition, filters=None, limit=None, order_by=None):
+        try:
+            query = model1.query.join(model2, join_condition)
+
+            if filters:
+                query = query.filter_by(**filters)
+
+            if limit:
+                query = query.limit(limit)
+
+            if order_by:
+                query = query.order_by(order_by)
+
+            return query.all()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def update(model_instance):
+        try:
+            db.session.commit()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def delete(model_instance):
+        try:
+            db.session.delete(model_instance)
+            db.session.commit()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def create_batch(model, instances):
+        try:
+            db.session.bulk_save_objects(instances)
+            db.session.commit()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def delete_batch(model, filters=None):
+        try:
+            query = model.query
+            if filters:
+                query = query.filter_by(**filters)
+            query.delete()
+            db.session.commit()
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def execute_raw(query, params=None):
+        try:
+            result = db.engine.execute(query, params)
+            return result
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
