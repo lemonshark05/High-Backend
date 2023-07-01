@@ -71,12 +71,12 @@ class User(db.Model):
     role_id = db.Column(db.Integer, ForeignKey('UserRoles.id'))
     profile_image = db.Column(db.String(255))
     community_page_url = db.Column(db.String(255))
-    profile_visibility = db.Column(db.Boolean)
+    profile_visibility = db.Column(db.Boolean, default=False)
     time_zone = db.Column(db.String(255))
     display_name = db.Column(db.String(255))
     title = db.Column(db.String(255))
     personal_info = db.Column(db.Text)
-    is_visible_to_all_members = db.Column(db.Boolean)
+    is_visible_to_all_members = db.Column(db.Boolean, default=False)
     linkedin_link = db.Column(db.String(255))
     other_links = db.Column(JSONB)
     about_me = db.Column(db.Text)
@@ -94,7 +94,7 @@ class UserExperience(db.Model):
     description = db.Column(db.Text)
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
-    is_current = db.Column(db.Boolean)
+    is_current = db.Column(db.Boolean, default=False)
 
     user = relationship('User', backref='user_experiences')
 
