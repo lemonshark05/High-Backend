@@ -80,8 +80,8 @@ class User(db.Model):
     linkedin_link = db.Column(db.String(255))
     other_links = db.Column(JSONB)
     about_me = db.Column(db.Text)
-    interested_in_coaches = db.Column(db.Boolean)
-    interested_in_athletes = db.Column(db.Boolean)
+    interested_in_coaches = db.Column(JSONB)
+    interested_in_athletes = db.Column(JSONB)
 
     role = relationship('UserRole', backref='users')
 
