@@ -70,6 +70,7 @@ class User(db.Model):
     email = db.Column(db.String(255), nullable=False)
     loginemail = db.Column(db.String(255), nullable=False)
     phone = db.Column(db.String(255))
+    avatar_url = db.Column(db.String(255))
     role_id = db.Column(db.Integer, ForeignKey('UserRoles.id'))
     profile_image = db.Column(db.String(255))
     community_page_url = db.Column(db.String(255))
@@ -150,6 +151,16 @@ class AthleteType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(255), nullable=False)
 
+def handle_error(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            return jsonify({'error': str(e)}), 400
+    wrapper.__name__ = func.__name__
+    return wrapper
+
 class Crud:
     @staticmethod
     def create(model_instance):
@@ -165,34 +176,47 @@ class Crud:
             query = model.query
 
             if filters:
-                query = query.filter_by(**filters)
+                for key, value in filters.items():
+                    if isinstance(value, list):
+                        query = query.filter(getattr(model, key).in_(value))
+                    else:
+                        query = query.filter(getattr(model, key) == value)
+
+            if order_by:
+                for order in order_by:
+                    if order.startswith('-'):
+                        query = query.order_by(getattr(model, order[1:]).desc())
+                    else:
+                        query = query.order_by(getattr(model, order).asc())
 
             if limit:
                 query = query.limit(limit)
 
-            if order_by:
-                query = query.order_by(order_by)
-
             if page and per_page:
                 query = query.paginate(page=page, per_page=per_page).items
+            else:
+                query = query.all()
 
-            return query.all()
+            return query
         except SQLAlchemyError as e:
             return jsonify(error=str(e)), 400
 
     @staticmethod
-    def join(model1, model2, join_condition, filters=None, limit=None, order_by=None):
+    def join(model1, model2, join_type='inner', on=None, filters=None):
         try:
-            query = model1.query.join(model2, join_condition)
+            if join_type.lower() == 'inner':
+                query = db.session.query(model1).join(model2, on)
+            elif join_type.lower() == 'left':
+                query = db.session.query(model1).outerjoin(model2, on)
+            else:
+                raise ValueError('Invalid join type')
 
             if filters:
-                query = query.filter_by(**filters)
-
-            if limit:
-                query = query.limit(limit)
-
-            if order_by:
-                query = query.order_by(order_by)
+                for key, value in filters.items():
+                    if isinstance(value, list):
+                        query = query.filter(getattr(model1, key).in_(value))
+                    else:
+                        query = query.filter(getattr(model1, key) == value)
 
             return query.all()
         except SQLAlchemyError as e:
@@ -226,7 +250,11 @@ class Crud:
         try:
             query = model.query
             if filters:
-                query = query.filter_by(**filters)
+                for key, value in filters.items():
+                    if isinstance(value, list):
+                        query = query.filter(getattr(model, key).in_(value))
+                    else:
+                        query = query.filter(getattr(model, key) == value)
             query.delete()
             db.session.commit()
         except SQLAlchemyError as e:

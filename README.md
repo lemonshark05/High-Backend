@@ -172,27 +172,28 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 
 **Table: Users**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the user                   |
-| username    | VARCHAR(255)      | User's username                           |
-| email       | VARCHAR(255)      | Unique user's email                       |
-| loginemail  | VARCHAR(255)      | Login email created at registration       |
-| phone       | VARCHAR(255)      | User's phone number                       |
-| role_id     | INT REFERENCES UserRoles(id) | Role ID                       |
-| profile_image | VARCHAR(255) | URL of profile image                       |
-| community_page_url | VARCHAR(255) | URL of community page                   |
-| profile_visibility | BOOLEAN | Visibility status of profile               |
-| time_zone   | VARCHAR(255)   | User's time zone                           |
-| display_name | VARCHAR(255)  | User's display name                        |
-| title       | VARCHAR(255)   | User's title                               |
-| personal_info | TEXT | User's personal info                             |
-| is_visible_to_all_members | BOOLEAN | Visibility to all members            |
-| linkedin_link | VARCHAR(255) | Linkedin profile link                      |
+| Column Name | Type            | Description                                             |
+|-------------|-----------------|---------------------------------------------------------|
+| id          | SERIAL PRIMARY KEY | Unique ID for the user                                  |
+| username    | VARCHAR(255)      | User's username                                         |
+| email       | VARCHAR(255)      | Unique user's email                                     |
+| loginemail  | VARCHAR(255)      | Login email created at registration                     |
+| phone       | VARCHAR(255)      | User's phone number                                     |
+| avatar_url  | VARCHAR(255)      | User's avater                                           |
+| role_id     | INT REFERENCES UserRoles(id) | Role ID                                                 |
+| profile_image | VARCHAR(255) | URL of profile image                                    |
+| community_page_url | VARCHAR(255) | URL of community page                                   |
+| profile_visibility | BOOLEAN | Visibility status of profile                            |
+| time_zone   | VARCHAR(255)   | User's time zone                                        |
+| display_name | VARCHAR(255)  | User's display name                                     |
+| title       | VARCHAR(255)   | User's title                                            |
+| personal_info | TEXT | User's personal info                                    |
+| is_visible_to_all_members | BOOLEAN | Visibility to all members                               |
+| linkedin_link | VARCHAR(255) | Linkedin profile link                                   |
 | other_links | JSONB | JSONB array of other social links (Twitter, Facebook, etc.) |
-| about_me    | TEXT | About me information                               |
-| interested_in_coaches | JSONB | JSONB array of interested coach IDs      |
-| interested_in_athletes | JSONB | JSONB array of interested athlete IDs    |
+| about_me    | TEXT | About me information                                    |
+| interested_in_coaches | JSONB | JSONB array of interested coach IDs                     |
+| interested_in_athletes | JSONB | JSONB array of interested athlete IDs                   |
 
 **Table: UserExperiences**
 
