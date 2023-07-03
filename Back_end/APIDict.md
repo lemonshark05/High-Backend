@@ -10,6 +10,14 @@
   - [Update a blog](#update-a-blog)
   - [Delete a blog](#delete-a-blog)
 
+- [University API](#university-api)
+  - [Create a new university](#create-a-new-university)
+  - [Get a single university](#get-a-single-university)
+  - [Get all universities](#get-all-universities)
+  - [Get limited universities](#get-limited-universities)
+  - [Update a university](#update-a-university)
+  - [Delete a university](#delete-a-university)
+
 ## Blogs API
 
 ### Create a new blog
@@ -78,6 +86,82 @@ Update the title and content of a specific blog by id.
 Delete a specific blog by id.
 
 **URL** : `http://localhost:8099/blogs/{{blog_id}}`
+
+**Method** : `DELETE`
+
+Please replace `{{...}}` with the actual values.
+
+## University API
+
+### Create a new university
+
+**URL** : `http://localhost:8099/universities`
+
+**Method** : `POST`
+
+**Data constraints**
+
+```json
+{
+    "name": "Harvard",
+    "details": "Harvard University is ...",
+    "official_link": "https://www.harvard.edu",
+    "intro_image_url": "https://path-to-image.com/harvard.jpg",
+    "thumbnail_url": "https://path-to-image.com/harvard-thumbnail.jpg",
+    "scholarships_link": "https://www.harvard.edu/scholarships"
+}
+```
+
+### Get a single university
+
+Retrieve the details of a specific university by id.
+
+**URL** : `http://localhost:8099/universities/{{university_id}}`
+
+**Method** : `GET`
+
+### Get all universities
+
+Retrieve the details of all universities.
+
+**URL** : `http://localhost:8099/universities`
+
+**Method** : `GET`
+
+### Get limited universities
+
+Retrieve a limited number of universities.
+
+**URL** : `http://localhost:8099/universities?limit={{limit}}`
+
+**Method** : `GET`
+
+### Update a university
+
+Update the details of a specific university by id.
+
+**URL** : `http://localhost:8099/universities/{{university_id}}`
+
+**Method** : `PUT`
+
+**Data constraints**
+
+```json
+{
+    "name": "Harvard",
+    "details": "Updated details ...",
+    "official_link": "https://www.harvard.edu",
+    "intro_image_url": "https://path-to-image.com/harvard.jpg",
+    "thumbnail_url": "https://path-to-image.com/harvard-thumbnail.jpg",
+    "scholarships_link": "https://www.harvard.edu/scholarships"
+}
+```
+
+### Delete a university
+
+Delete a specific university by id.
+
+**URL** : `http://localhost:8099/universities/{{university_id}}`
 
 **Method** : `DELETE`
 
