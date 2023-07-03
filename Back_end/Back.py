@@ -41,24 +41,47 @@ def get_all_blogs():
 
 @app.route('/blogs', methods=['GET'])
 def get_limited_blogs():
-    limit = request.args.get('limit', type=int)
-    blogs = Crud.read(Blog).limit(limit)
-    return jsonify([blog.to_dict() for blog in blogs])
+    # Get the page number (default 1 if not supplied)
+    page = request.args.get('page', type=int, default=1)
+
+    # Get the number of results per page (default 3 if not supplied)
+    per_page = request.args.get('per_page', type=int, default=3)
+
+    # Get filters if any
+    filters = {}
+    title = request.args.get('title')
+    if title:
+        filters['title'] = title
+    author_id = request.args.get('author_id', type=int)
+    if author_id:
+        filters['author_id'] = author_id
+
+    # Retrieve the blogs using the Crud.read method
+    blogs = Crud.read(Blog, filters=filters, page=page, per_page=per_page)
+
+    # Convert the blogs to dictionaries
+    blogs_dict = [blog.to_dict() for blog in blogs.items]
+
+    return jsonify(blogs_dict)
 
 @app.route('/blogs/<int:blog_id>', methods=['PUT'])
 def update_blog(blog_id):
     data = request.get_json()
-    blog = Crud.read_by_id(Blog, blog_id)
-    if blog is None:
+    blogs = Crud.read(Blog, filters={"id": blog_id})
+    if blogs is None:
         return jsonify({'error': 'Blog not found'}), 404
+    # Since id is unique, the list should contain only one blog
+    blog = blogs[0]
     Crud.update(blog, **data)
     return jsonify(blog.to_dict())
 
 @app.route('/blogs/<int:blog_id>', methods=['DELETE'])
 def delete_blog(blog_id):
-    blog = Crud.read_by_id(Blog, blog_id)
-    if blog is None:
+    blogs = Crud.read(Blog, filters={"id": blog_id})
+    if blogs is None:
         return jsonify({'error': 'Blog not found'}), 404
+    # Since id is unique, the list should contain only one blog
+    blog = blogs[0]
     Crud.delete(blog)
     # Delete Comments about the Blog
     return jsonify({'message': 'Blog deleted successfully'}), 204
@@ -74,9 +97,10 @@ def create_university():
 
 @app.route('/universities/<int:university_id>', methods=['GET'])
 def get_university(university_id):
-    university = Crud.read(University, filters={"id": university_id})
-    if university is None:
+    universities = Crud.read(University, filters={"id": university_id})
+    if not universities:
         return jsonify({'error': 'University not found'}), 404
+    university = universities[0]
     return jsonify(university.to_dict())
 
 @app.route('/universities', methods=['GET'])
@@ -93,20 +117,21 @@ def get_limited_universities():
 @app.route('/universities/<int:university_id>', methods=['PUT'])
 def update_university(university_id):
     data = request.get_json()
-    university = Crud.read_by_id(University, university_id)
-    if university is None:
+    universities = Crud.read(University, filters={"id": university_id})
+    if not universities:
         return jsonify({'error': 'University not found'}), 404
+    university = universities[0]
     Crud.update(university, **data)
     return jsonify(university.to_dict())
 
 @app.route('/universities/<int:university_id>', methods=['DELETE'])
 def delete_university(university_id):
-    university = Crud.read_by_id(University, university_id)
-    if university is None:
+    universities = Crud.read(University, filters={"id": university_id})
+    if not universities:
         return jsonify({'error': 'University not found'}), 404
+    university = universities[0]
     Crud.delete(university)
     return jsonify({'message': 'University deleted successfully'}), 204
-
 
 if __name__ == '__main__':
     app.run(debug=True)

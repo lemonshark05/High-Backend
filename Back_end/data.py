@@ -178,7 +178,7 @@ class Crud:
             return jsonify(error=str(e)), 400
 
     @staticmethod
-    def read(model, filters=None, limit=None, order_by=None, page=None, per_page=None):
+    def read(model, filters=None, order_by=None, page=None, per_page=None):
         try:
             query = model.query
 
@@ -196,15 +196,13 @@ class Crud:
                     else:
                         query = query.order_by(getattr(model, order).asc())
 
-            if limit:
-                query = query.limit(limit)
-
             if page and per_page:
-                query = query.paginate(page=page, per_page=per_page).items
+                pagination = query.paginate(page=page, per_page=per_page, error_out=False)
+                items = pagination.items
             else:
-                query = query.all()
+                items = query.all()
 
-            return query
+            return items
         except SQLAlchemyError as e:
             return jsonify(error=str(e)), 400
 
@@ -230,8 +228,11 @@ class Crud:
             return jsonify(error=str(e)), 400
 
     @staticmethod
-    def update(model_instance):
+    def update(model_instance, **kwargs):
         try:
+            for attr, value in kwargs.items():
+                if hasattr(model_instance, attr):
+                    setattr(model_instance, attr, value)
             db.session.commit()
         except SQLAlchemyError as e:
             return jsonify(error=str(e)), 400
