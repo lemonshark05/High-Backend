@@ -4,17 +4,24 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask import jsonify
+from sqlalchemy import inspect
 
 db = SQLAlchemy()
 
-class UserRole(db.Model):
+class Base(db.Model):
+    __abstract__ = True
+
+    def to_dict(self):
+        return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
+
+class UserRole(Base):
     __tablename__ = 'UserRoles'
 
     id = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.String(255), nullable=False)
 
 
-class Blog(db.Model):
+class Blog(Base):
     __tablename__ = 'Blogs'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -29,7 +36,7 @@ class Blog(db.Model):
     author = relationship('User', backref='blogs')
 
 
-class Comment(db.Model):
+class Comment(Base):
     __tablename__ = 'Comments'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -43,7 +50,7 @@ class Comment(db.Model):
     user = relationship('User', backref='comments')
 
 
-class Scholarship(db.Model):
+class Scholarship(Base):
     __tablename__ = 'Scholarships'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -62,7 +69,7 @@ class Scholarship(db.Model):
     creator = relationship('UserRole', backref='scholarships')
 
 
-class User(db.Model):
+class User(Base):
     __tablename__ = 'Users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -88,7 +95,7 @@ class User(db.Model):
 
     role = relationship('UserRole', backref='users')
 
-class UserExperience(db.Model):
+class UserExperience(Base):
     __tablename__ = 'UserExperiences'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -102,7 +109,7 @@ class UserExperience(db.Model):
     user = relationship('User', backref='user_experiences')
 
 
-class Follower(db.Model):
+class Follower(Base):
     __tablename__ = 'Followers'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -113,7 +120,7 @@ class Follower(db.Model):
     follower = relationship('User', backref='following', foreign_keys=[follower_id])
 
 
-class UserImage(db.Model):
+class UserImage(Base):
     __tablename__ = 'UserImages'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -123,7 +130,7 @@ class UserImage(db.Model):
     user = relationship('User', backref='user_images')
 
 
-class UserVideo(db.Model):
+class UserVideo(Base):
     __tablename__ = 'UserVideos'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -133,7 +140,7 @@ class UserVideo(db.Model):
     user = relationship('User', backref='user_videos')
 
 
-class University(db.Model):
+class University(Base):
     __tablename__ = 'Universities'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -145,7 +152,7 @@ class University(db.Model):
     scholarships_link = db.Column(db.String(255))
 
 
-class AthleteType(db.Model):
+class AthleteType(Base):
     __tablename__ = 'AthleteTypes'
 
     id = db.Column(db.Integer, primary_key=True)
