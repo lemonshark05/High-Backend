@@ -259,6 +259,8 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 
 
 ## Postman
+https://grey-sunset-457798.postman.co/workspace/Team-Workspace~9f18450a-889f-46e8-8c86-4725b41b6a4d/overview
+<img width="749" alt="Screenshot 2023-07-05 at 15 49 59" src="https://github.com/lemonshark05/High-Backend/assets/100770743/6700df95-36ea-427b-a001-0df6b23b64aa">
 Here's a table with http status codes and descriptions:
 
 | Status Code | Description |
