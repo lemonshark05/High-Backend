@@ -1,10 +1,34 @@
-from flask import Flask, request, jsonify
+from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
 from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud
+from werkzeug.utils import secure_filename
+import os
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from flask_dance.contrib.google import make_google_blueprint, google
 
-app = Flask(__name__)
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
+app = Flask(__name__, template_folder='template')
 app.config.from_object('config.Config')
+app.secret_key = "mysecretkey"  # Replace with your secret key
+
+# Configure the Google OAuth2.0
+google_blueprint = make_google_blueprint(
+    client_id=app.config.get("GOOGLE_OAUTH_CLIENT_ID"),  # Get Client ID from Config
+    client_secret=app.config.get("GOOGLE_OAUTH_CLIENT_SECRET"),  # Get Client Secret from Config
+    scope=["profile", "email"]
+)
+app.register_blueprint(google_blueprint, url_prefix="/google_login")
 # initialize
 db.init_app(app)
+
+# Google mail login API
+@app.route("/google_login")
+def google_login():
+    if not google.authorized:
+        return redirect(url_for("google.login"))
+    resp = google.get("/oauth2/v2/userinfo")
+    assert resp.ok, resp.text
+    return "You are {email} on Google".format(email=resp.json()["email"])
 
 # Blog
 @app.route('/blogs', methods=['POST'])
