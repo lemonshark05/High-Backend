@@ -5,6 +5,7 @@ import os
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from flask_dance.contrib.google import make_google_blueprint, google
+from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
 app = Flask(__name__, template_folder='template')
@@ -26,9 +27,12 @@ db.init_app(app)
 def google_login():
     if not google.authorized:
         return redirect(url_for("google.login"))
-    resp = google.get("/oauth2/v2/userinfo")
-    assert resp.ok, resp.text
-    return "You are {email} on Google".format(email=resp.json()["email"])
+    try:
+        resp = google.get("/oauth2/v2/userinfo")
+        assert resp.ok, resp.text
+        return "You are {email} on Google".format(email=resp.json()["email"])
+    except TokenExpiredError:
+        return redirect(url_for("google.login"))
 
 # Blog
 @app.route('/blogs', methods=['POST'])
