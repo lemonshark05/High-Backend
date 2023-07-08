@@ -30,6 +30,7 @@ class Blog(Base):
     author_id = db.Column(db.Integer, ForeignKey('Users.id'))
     type = db.Column(db.String(255))
     image_url = db.Column(db.String(255))
+    views_count = db.Column(db.Integer)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
