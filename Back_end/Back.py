@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, request, jsonify, render_template, s
 from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud
 from werkzeug.utils import secure_filename
 import os
+import pdfkit
 from sqlalchemy import or_
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
@@ -192,6 +193,36 @@ def delete_university(university_id):
     university = universities[0]
     Crud.delete(university)
     return jsonify({'message': 'University deleted successfully'}), 204
+
+# Export user profile
+@app.route('/profile/<int:id>', methods=['GET'])
+def generate_pdf(id):
+    users = Crud.read(User, filters={"id": id})
+
+    if not users:
+        return jsonify({'error': 'User not found'}), 404
+
+    user = users[0]
+    user_role = Crud.read(UserRole, filters={"id": user.role_id})[0]
+    user_experiences = Crud.read(UserExperience, filters={"user_id": id})
+
+    # Render template and generate pdf
+    html = render_template('profile.html', user=user, role=user_role, experiences=user_experiences)
+
+    # Save pdf to a file
+    pdf_path = f"profile_{id}.pdf"
+    pdfkit.from_string(html, pdf_path)
+
+    # Send the pdf file with Flask send_file
+    response = send_file(pdf_path, mimetype='application/pdf', as_attachment=True)
+
+    # Set the file name for the downloaded file
+    response.headers["Content-Disposition"] = f"attachment; filename=profile_{id}.pdf"
+
+    # Remove the pdf file after sending it
+    os.remove(pdf_path)
+
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
