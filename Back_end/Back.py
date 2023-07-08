@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, request, jsonify, render_template, s
 from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud
 from werkzeug.utils import secure_filename
 import os
+from sqlalchemy import or_
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from flask_dance.contrib.google import make_google_blueprint, google
@@ -16,7 +17,7 @@ app.secret_key = "mysecretkey"  # Replace with your secret key
 google_blueprint = make_google_blueprint(
     client_id=app.config.get("GOOGLE_OAUTH_CLIENT_ID"),  # Get Client ID from Config
     client_secret=app.config.get("GOOGLE_OAUTH_CLIENT_SECRET"),  # Get Client Secret from Config
-    scope=["profile", "email"]
+    scope=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"]
 )
 app.register_blueprint(google_blueprint, url_prefix="/google_login")
 # initialize
@@ -62,33 +63,45 @@ def get_blog(blog_id):
     # Return the blog_dict which includes blog data and its comments
     return jsonify(blog_dict)
 
-@app.route('/blogs', methods=['GET'])
+@app.route('/blogs/all', methods=['GET'])
 def get_all_blogs():
-    blogs = Crud.read(Blog)
+    blogs = Crud.read(Blog, order_by=['-id'])
     return jsonify([blog.to_dict() for blog in blogs])
 
 @app.route('/blogs', methods=['GET'])
-def get_limited_blogs():
-    # Get the page number (default 1 if not supplied)
-    page = request.args.get('page', type=int, default=1)
+def get_blogs():
+    # Get the page number (default None if not supplied)
+    page = request.args.get('page', type=int, default=None)
 
-    # Get the number of results per page (default 3 if not supplied)
-    per_page = request.args.get('per_page', type=int, default=3)
+    # Get the number of results per page (default None if not supplied)
+    per_page = request.args.get('per_page', type=int, default=None)
 
     # Get filters if any
     filters = {}
-    title = request.args.get('title')
-    if title:
-        filters['title'] = title
-    author_id = request.args.get('author_id', type=int)
-    if author_id:
-        filters['author_id'] = author_id
+    type = request.args.get('type')  # Get the type from query parameters
+    if type:
+        filters['type'] = type
 
-    # Retrieve the blogs using the Crud.read method
-    blogs = Crud.read(Blog, filters=filters, page=page, per_page=per_page)
+    # Get search query
+    search = request.args.get('search')
 
-    # Convert the blogs to dictionaries
-    blogs_dict = [blog.to_dict() for blog in blogs.items]
+    query = Blog.query
+
+    if filters:
+        for key, value in filters.items():
+            query = query.filter(getattr(Blog, key) == value)
+
+    if search:
+        search = f"%{search}%"  # Add percentage sign for matching any string
+        query = query.filter(or_(Blog.title.ilike(search), Blog.content.ilike(search)))
+
+    if page and per_page:
+        pagination = query.order_by(Blog.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
+        # Convert the blogs to dictionaries
+        blogs_dict = [blog.to_dict() for blog in pagination.items]
+    else:
+        blogs = query.order_by(Blog.id.desc()).all()
+        blogs_dict = [blog.to_dict() for blog in blogs]
 
     return jsonify(blogs_dict)
 
@@ -131,16 +144,35 @@ def get_university(university_id):
     university = universities[0]
     return jsonify(university.to_dict())
 
-@app.route('/universities', methods=['GET'])
+@app.route('/universities/all', methods=['GET'])
 def get_all_universities():
     universities = Crud.read(University)
     return jsonify([university.to_dict() for university in universities])
 
 @app.route('/universities', methods=['GET'])
-def get_limited_universities():
-    limit = request.args.get('limit', type=int)
-    universities = Crud.read(University).limit(limit)
-    return jsonify([university.to_dict() for university in universities])
+def get_universities():
+    # Get the page number (default None if not supplied)
+    page = request.args.get('page', type=int, default=None)
+    per_page = request.args.get('per_page', type=int, default=None)
+
+    # Get search query
+    search = request.args.get('search')
+
+    query = University.query
+
+    if search:
+        search = f"%{search}%"  # Add percentage sign for matching any string
+        query = query.filter(University.name.ilike(search))
+
+    if page and per_page:
+        pagination = query.order_by(University.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
+        # Convert the universities to dictionaries
+        universities_dict = [university.to_dict() for university in pagination.items]
+    else:
+        universities = query.order_by(University.id.desc()).all()
+        universities_dict = [university.to_dict() for university in universities]
+
+    return jsonify(universities_dict)
 
 @app.route('/universities/<int:university_id>', methods=['PUT'])
 def update_university(university_id):

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        .header .title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .header .contact {
+            font-size: 16px;
+            text-align: center;
+            color: #34495e;
+        }
+        .section .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        .section .content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">{{ user.username }}</div>
+            <div class="contact">{{ user.email }} | {{ user.phone }}</div>
+        </div>
+        <div class="section">
+            <div class="title">About Me:</div>
+            <div class="content">{{ user.about_me }}</div>
+        </div>
+        <div class="section">
+            <div class="title">Experiences:</div>
+            {% if experiences is not none %}
+            {% for experience in experiences %}
+                <div class="content">
+                    <strong>{{ experience.title }}</strong>
+                    <p>{{ experience.description }}</p>
+                    <p>{{ experience.start_date }} - {{ experience.end_date if not experience.is_current else 'Present' }}</p>
+                </div>
+            {% endfor %}
+            {% else %}
+            <div class="content">
+                <p>No experiences available.</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="section">
+            <div class="title">Links:</div>
+            <div class="content">
+                <p>LinkedIn: <a href="{{ user.linkedin_link }}">{{ user.linkedin_link }}</a></p>
+                {% if user.other_links is not none %}
+                {% for link in user.other_links %}
+                    <p>Other: <a href="{{ link }}">{{ link }}</a></p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
