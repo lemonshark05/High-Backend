@@ -133,16 +133,18 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 
 **Table: Blogs**
 
-| Column Name  | Type                   | Description                  |
-|--------------|------------------------|------------------------------|
-| id           | SERIAL PRIMARY KEY     | Unique ID for the blog       |
-| title        | VARCHAR(255)           | Title of the blog            |
-| content      | TEXT                   | Content of the blog          |
-| author_id    | INT REFERENCES Users(id)  | Author's User ID        |
-| type         | VARCHAR(255)           | Type of the blog             |
-| image_url    | VARCHAR(255)           | URL of the blog image        |
-| created_at   | TIMESTAMP              | Time when the blog was created |
-| updated_at   | TIMESTAMP              | Time when the blog was last updated |
+| Column Name | Type                     | Description                         |
+|-------------|--------------------------|-------------------------------------|
+| id          | SERIAL PRIMARY KEY       | Unique ID for the blog              |
+| title       | VARCHAR(255)             | Title of the blog                   |
+| content     | TEXT                     | Content of the blog                 |
+| author_id   | INT REFERENCES Users(id) | Author's User ID                    |
+| type        | VARCHAR(255)             | Type of the blog                    |
+| views_count | INT                      | views of this blog                  |
+| likes_count | INT                      | likes of this blog                  |
+| image_url   | VARCHAR(255)             | URL of the blog image               |
+| created_at  | TIMESTAMP                | Time when the blog was created      |
+| updated_at  | TIMESTAMP                | Time when the blog was last updated |
 
 **Table: Comments**
 

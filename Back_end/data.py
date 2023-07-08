@@ -31,6 +31,7 @@ class Blog(Base):
     type = db.Column(db.String(255))
     image_url = db.Column(db.String(255))
     views_count = db.Column(db.Integer)
+    likes_count = db.Column(db.Integer)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
