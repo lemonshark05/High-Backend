@@ -286,6 +286,54 @@ def delete_scholarship(scholarship_id):
     Crud.delete(scholarship)
     return jsonify({'message': 'Scholarship deleted'})
 
+#Follower and Follow
+@app.route('/followers', methods=['POST'])
+def create_follower_relationship():
+    data = request.get_json()
+    follower = Follower(**data)
+    Crud.create(follower, check_foreign_keys={"User": follower.user_id, "User": follower.follower_id})
+    return jsonify(follower.to_dict()), 201
+
+@app.route('/followers/<int:id>', methods=['GET'])
+def get_follower_relationship(id):
+    followers = Crud.read(Follower, filters={"id": id})
+    if not followers:
+        return jsonify({'error': 'Follower relationship not found'}), 404
+    follower = followers[0]
+    return jsonify(follower.to_dict())
+
+@app.route('/followers/<int:id>', methods=['DELETE'])
+def delete_follower_relationship(id):
+    followers = Crud.read(Follower, filters={"id": id})
+    if not followers:
+        return jsonify({'error': 'Follower relationship not found'}), 404
+    follower = followers[0]
+    Crud.delete(follower)
+    return jsonify({'message': 'Follower relationship deleted successfully'}), 204
+
+@app.route('/followers/user/<int:user_id>', methods=['GET'])
+def get_all_followers(user_id):
+    followers = Crud.read(Follower, filters={"user_id": user_id})
+    return jsonify([follower.to_dict() for follower in followers])
+
+@app.route('/followers/follows/<int:user_id>', methods=['GET'])
+def get_all_follows(user_id):
+    follows = Crud.read(Follower, filters={"follower_id": user_id})
+    return jsonify([follow.to_dict() for follow in follows])
+
+@app.route('/followers/batch/add', methods=['POST'])
+def batch_add_followers():
+    data = request.get_json()
+    followers = [Follower(user_id=data["user_id"], follower_id=f_id) for f_id in data["follower_ids"]]
+    Crud.create_batch(Follower, followers)
+    return jsonify({'message': 'Followers added successfully'}), 201
+
+@app.route('/followers/batch/delete', methods=['POST'])
+def batch_delete_followers():
+    data = request.get_json()
+    Crud.delete_batch(Follower, filters={"user_id": data["user_id"], "follower_id": data["follower_ids"]})
+    return jsonify({'message': 'Followers deleted successfully'}), 204
+
 # Export user profile
 @app.route('/profile/<int:id>', methods=['GET'])
 def generate_pdf(id):
