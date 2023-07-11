@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
-from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud
+from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud, Follower
 from werkzeug.utils import secure_filename
 import os
 import pdfkit
@@ -193,6 +193,98 @@ def delete_university(university_id):
     university = universities[0]
     Crud.delete(university)
     return jsonify({'message': 'University deleted successfully'}), 204
+
+# Scholarship
+@app.route('/scholarships', methods=['POST'])
+def create_scholarship():
+    data = request.get_json()
+    scholarship = Scholarship(**data)
+    Crud.create(scholarship)
+    return jsonify(scholarship.to_dict()), 201
+
+@app.route('/scholarships/<int:scholarship_id>', methods=['GET'])
+def get_scholarship(scholarship_id):
+    scholarships = Crud.read(Scholarship, filters={"id": scholarship_id})
+
+    if not scholarships:  # If the list is empty, the scholarship was not found
+        return jsonify({'error': 'Scholarship not found'}), 404
+
+    # Since id is unique, the list should contain only one scholarship
+    scholarship = scholarships[0]
+    scholarship_dict = scholarship.to_dict()
+    return jsonify(scholarship_dict)
+
+@app.route('/scholarships/all', methods=['GET'])
+def get_all_scholarships():
+    scholarships = Crud.read(Scholarship)
+    scholarship_list = [scholarship.to_dict() for scholarship in scholarships]
+    return jsonify(scholarship_list)
+
+@app.route('/scholarships', methods=['GET'])
+def get_scholarships():
+    # Get the page number (default None if not supplied)
+    page = request.args.get('page', type=int, default=None)
+    per_page = request.args.get('per_page', type=int, default=None)
+
+    # Get filters if any
+    filters = {}
+    type = request.args.get('type')  # Get the type from query parameters
+    university_id = request.args.get('university_id', type=int)  # Get the university_id from query parameters
+    country = request.args.get('country')  # Get the country from query parameters
+    if type:
+        filters['type'] = type
+    if university_id:
+        filters['university_id'] = university_id
+    if country:
+        filters['country'] = country
+
+    # Get search query
+    search = request.args.get('search')
+
+    query = Scholarship.query
+
+    if filters:
+        for key, value in filters.items():
+            query = query.filter(getattr(Scholarship, key) == value)
+
+    if search:
+        search = f"%{search}%"  # Add percentage sign for matching any string
+        query = query.filter(or_(Scholarship.type.ilike(search), Scholarship.description.ilike(search)))
+
+    if page and per_page:
+        pagination = query.order_by(Scholarship.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
+        # Convert the scholarships to dictionaries
+        scholarships_dict = [scholarship.to_dict() for scholarship in pagination.items]
+    else:
+        scholarships = query.order_by(Scholarship.id.desc()).all()
+        scholarships_dict = [scholarship.to_dict() for scholarship in scholarships]
+
+    return jsonify(scholarships_dict)
+
+@app.route('/scholarships/<int:scholarship_id>', methods=['PUT'])
+def update_scholarship(scholarship_id):
+    data = request.get_json()
+    scholarships = Crud.read(Scholarship, filters={"id": scholarship_id})
+
+    if not scholarships:  # If the list is empty, the scholarship was not found
+        return jsonify({'error': 'Scholarship not found'}), 404
+
+    # Since id is unique, the list should contain only one scholarship
+    scholarship = scholarships[0]
+    Crud.update(scholarship, **data)
+    return jsonify(scholarship.to_dict())
+
+@app.route('/scholarships/<int:scholarship_id>', methods=['DELETE'])
+def delete_scholarship(scholarship_id):
+    scholarships = Crud.read(Scholarship, filters={"id": scholarship_id})
+
+    if not scholarships:  # If the list is empty, the scholarship was not found
+        return jsonify({'error': 'Scholarship not found'}), 404
+
+    # Since id is unique, the list should contain only one scholarship
+    scholarship = scholarships[0]
+    Crud.delete(scholarship)
+    return jsonify({'message': 'Scholarship deleted'})
 
 # Export user profile
 @app.route('/profile/<int:id>', methods=['GET'])

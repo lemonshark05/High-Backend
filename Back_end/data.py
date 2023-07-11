@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
@@ -172,11 +173,19 @@ def handle_error(func):
 
 class Crud:
     @staticmethod
-    def create(model_instance):
+    def create(model_instance, check_foreign_keys=None):
         try:
+            # Check if the foreign keys exist
+            if check_foreign_keys:
+                for model, id_value in check_foreign_keys.items():
+                    db.session.query(model).filter_by(id=id_value).one()
             db.session.add(model_instance)
             db.session.commit()
+        except NoResultFound:
+            return jsonify(error=f'Referenced record in {model.__name__} not found'), 400
         except SQLAlchemyError as e:
+            db.session.rollback()
+            print("Error info: ", e)
             return jsonify(error=str(e)), 400
 
     @staticmethod
