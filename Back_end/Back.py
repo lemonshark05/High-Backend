@@ -363,6 +363,44 @@ def generate_pdf(id):
     os.remove(pdf_path)
 
     return response
+# Save images to Google Drive
+gauth = GoogleAuth(settings_file='client_secret.json')
+gauth.scope = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.file'
+]
+
+drive = GoogleDrive(gauth)
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+
+    # check if the file is one of the allowed types/extensions
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+
+        # Save file to disk
+        local_file_path = os.path.join("/tmp", filename)
+        file.save(local_file_path)
+
+        # Create & upload a file
+        uploaded_file = drive.CreateFile({'title': filename})
+        uploaded_file.SetContentFile(local_file_path)
+        uploaded_file.Upload()
+
+        # The ID of the file on Google Drive
+        file_id = uploaded_file['id']
+
+        # The URL where the image is stored on Google Drive
+        file_url = f"https://drive.google.com/uc?export=view&id={file_id}"
+
+        return jsonify({'file_url': file_url}), 200
+
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 if __name__ == '__main__':
     app.run(debug=True)
