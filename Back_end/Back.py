@@ -1,5 +1,7 @@
+import json
+
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
-from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud, Follower
+from data import db, Comment, User, Blog, UserRole, UserPassword, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud, Follower
 from werkzeug.utils import secure_filename
 import os
 import pdfkit
@@ -35,6 +37,52 @@ def google_login():
         return "You are {email} on Google".format(email=resp.json()["email"])
     except TokenExpiredError:
         return redirect(url_for("google.login"))
+
+@app.route("/login")
+def login():
+    data = request.get_json()
+    name = data['username']
+    pwd = data['password']
+    records = Crud.read(UserPassword, filters={'username':name})
+    record_dict = records[0].to_dict()
+    if pwd != record_dict['password']:
+        return jsonify({'error': 'wrong password!'}), 404
+    return jsonify({'message': 'login successfully!'}), 204
+
+@app.route("/register/account")
+def register():
+    data = request.get_json()
+    pwd = data['password']
+    repwd = data['repassword']
+    if pwd != repwd:
+        return jsonify({'error': 'password not matched'}), 404
+    user_pwd = UserPassword(username=data['username'], password=pwd)
+    Crud.create(user_pwd)
+    user = User(username=data['username'], email=data['email'])
+    Crud.create(user)
+    return redirect(url_for('register/interest'))
+
+@app.route("/register/interest")
+def register_interest():
+    data = request.get_json()
+    users = Crud.read(User, filters={"username": data['username']})
+    if not users:
+        return jsonify({'error': 'User not found'}), 404
+    user = users[0]
+    coaches = data['coaches']
+    coach_json = json.dumps(coaches)
+    Crud.update(user, interested_in_coaches=coach_json)
+    return redirect(url_for('register/moreinfo'))
+
+@app.route("/register/moreinfo")
+def register_moreinfo():
+    data = request.get_json()
+    users = Crud.read(User, filters={"username": data['username']})
+    if not users:
+        return jsonify({'error': 'User not found'}), 404
+    user = users[0]
+    Crud.update(user, display_name=data['display_name'], title=data['title'], about_me=data['about_me'])
+    return jsonify({'message':'Register successfully!'}), 204
 
 # Blog
 @app.route('/blogs', methods=['POST'])
