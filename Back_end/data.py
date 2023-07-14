@@ -24,7 +24,7 @@ class UserRole(Base):
 class UserPassword(Base):
     __tablename__ = 'UserPassword'
 
-    username = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(255), primary_key=True)
     password = db.Column(db.String(255), nullable=False)
 
 class Blog(Base):

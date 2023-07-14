@@ -1,7 +1,8 @@
 import json
 
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
-from data import db, Comment, User, Blog, UserRole, UserPassword, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud, Follower
+from data import db, Comment, User, Blog, UserRole, UserPassword, UserExperience, University, UserImage, UserVideo, \
+    Scholarship, AthleteType, Crud, Follower
 from werkzeug.utils import secure_filename
 import os
 import pdfkit
@@ -11,8 +12,9 @@ from pydrive.drive import GoogleDrive
 from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
-app = Flask(__name__, template_folder='template')
+os.environ[
+    'OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # (**deploy should delete this line)Solve the problem about http to https
+app = Flask(__name__, template_folder='templates')
 app.config.from_object('config.Config')
 app.secret_key = "mysecretkey"  # Replace with your secret key
 
@@ -20,11 +22,13 @@ app.secret_key = "mysecretkey"  # Replace with your secret key
 google_blueprint = make_google_blueprint(
     client_id=app.config.get("GOOGLE_OAUTH_CLIENT_ID"),  # Get Client ID from Config
     client_secret=app.config.get("GOOGLE_OAUTH_CLIENT_SECRET"),  # Get Client Secret from Config
-    scope=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"]
+    scope=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email",
+           "openid"]
 )
 app.register_blueprint(google_blueprint, url_prefix="/google_login")
 # initialize
 db.init_app(app)
+
 
 # Google mail login API
 @app.route("/google_login")
@@ -38,31 +42,38 @@ def google_login():
     except TokenExpiredError:
         return redirect(url_for("google.login"))
 
-@app.route("/login")
+
+# log in with username and password
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    data = request.get_json()
-    name = data['username']
-    pwd = data['password']
-    records = Crud.read(UserPassword, filters={'username':name})
-    record_dict = records[0].to_dict()
-    if pwd != record_dict['password']:
-        return jsonify({'error': 'wrong password!'}), 404
-    return jsonify({'message': 'login successfully!'}), 204
+    if request.method == 'POST':
+        name = request.form['username']
+        pwd = request.form['password']
+        records = Crud.read(UserPassword, filters={'username': name})
+        record_dict = records[0].to_dict()
+        if pwd != record_dict['password']:
+            return render_template('error.html', text='Wrong Password!')
+    return render_template('login.html')
 
-@app.route("/register/account")
+
+@app.route("/register_account", methods=['GET', 'POST'])
 def register():
-    data = request.get_json()
-    pwd = data['password']
-    repwd = data['repassword']
-    if pwd != repwd:
-        return jsonify({'error': 'password not matched'}), 404
-    user_pwd = UserPassword(username=data['username'], password=pwd)
-    Crud.create(user_pwd)
-    user = User(username=data['username'], email=data['email'])
-    Crud.create(user)
-    return redirect(url_for('register/interest'))
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        pwd = request.form['password']
+        repwd = request.form['repassword']
+        print(username, email, pwd, repwd)
+        if pwd != repwd:
+            return render_template('error.html', text='Passwords are not the same!')
+        user_pwd = UserPassword(username, pwd)
+        Crud.create(user_pwd)
+        user = User(username, email)
+        Crud.create(user)
+    return render_template('register_account.html')
 
-@app.route("/register/interest")
+
+@app.route("/register_interest")
 def register_interest():
     data = request.get_json()
     users = Crud.read(User, filters={"username": data['username']})
@@ -72,7 +83,8 @@ def register_interest():
     coaches = data['coaches']
     coach_json = json.dumps(coaches)
     Crud.update(user, interested_in_coaches=coach_json)
-    return redirect(url_for('register/moreinfo'))
+    return redirect(url_for('register_moreinfo'))
+
 
 @app.route("/register/moreinfo")
 def register_moreinfo():
@@ -82,7 +94,8 @@ def register_moreinfo():
         return jsonify({'error': 'User not found'}), 404
     user = users[0]
     Crud.update(user, display_name=data['display_name'], title=data['title'], about_me=data['about_me'])
-    return jsonify({'message':'Register successfully!'}), 204
+    return jsonify({'message': 'Register successfully!'}), 204
+
 
 # Blog
 @app.route('/blogs', methods=['POST'])
@@ -91,6 +104,7 @@ def create_blog():
     blog = Blog(**data)
     Crud.create(blog)
     return jsonify(blog.to_dict()), 201
+
 
 @app.route('/blogs/<int:blog_id>', methods=['GET'])
 def get_blog(blog_id):
@@ -112,10 +126,12 @@ def get_blog(blog_id):
     # Return the blog_dict which includes blog data and its comments
     return jsonify(blog_dict)
 
+
 @app.route('/blogs/all', methods=['GET'])
 def get_all_blogs():
     blogs = Crud.read(Blog, order_by=['-id'])
     return jsonify([blog.to_dict() for blog in blogs])
+
 
 @app.route('/blogs', methods=['GET'])
 def get_blogs():
@@ -154,6 +170,7 @@ def get_blogs():
 
     return jsonify(blogs_dict)
 
+
 @app.route('/blogs/<int:blog_id>', methods=['PUT'])
 def update_blog(blog_id):
     data = request.get_json()
@@ -164,6 +181,7 @@ def update_blog(blog_id):
     blog = blogs[0]
     Crud.update(blog, **data)
     return jsonify(blog.to_dict())
+
 
 @app.route('/blogs/<int:blog_id>', methods=['DELETE'])
 def delete_blog(blog_id):
@@ -176,6 +194,7 @@ def delete_blog(blog_id):
     # Delete Comments about the Blog
     return jsonify({'message': 'Blog deleted successfully'}), 204
 
+
 # University
 
 @app.route('/universities', methods=['POST'])
@@ -185,6 +204,7 @@ def create_university():
     Crud.create(university)
     return jsonify(university.to_dict()), 201
 
+
 @app.route('/universities/<int:university_id>', methods=['GET'])
 def get_university(university_id):
     universities = Crud.read(University, filters={"id": university_id})
@@ -193,10 +213,12 @@ def get_university(university_id):
     university = universities[0]
     return jsonify(university.to_dict())
 
+
 @app.route('/universities/all', methods=['GET'])
 def get_all_universities():
     universities = Crud.read(University)
     return jsonify([university.to_dict() for university in universities])
+
 
 @app.route('/universities', methods=['GET'])
 def get_universities():
@@ -223,6 +245,7 @@ def get_universities():
 
     return jsonify(universities_dict)
 
+
 @app.route('/universities/<int:university_id>', methods=['PUT'])
 def update_university(university_id):
     data = request.get_json()
@@ -233,6 +256,7 @@ def update_university(university_id):
     Crud.update(university, **data)
     return jsonify(university.to_dict())
 
+
 @app.route('/universities/<int:university_id>', methods=['DELETE'])
 def delete_university(university_id):
     universities = Crud.read(University, filters={"id": university_id})
@@ -242,6 +266,7 @@ def delete_university(university_id):
     Crud.delete(university)
     return jsonify({'message': 'University deleted successfully'}), 204
 
+
 # Scholarship
 @app.route('/scholarships', methods=['POST'])
 def create_scholarship():
@@ -249,6 +274,7 @@ def create_scholarship():
     scholarship = Scholarship(**data)
     Crud.create(scholarship)
     return jsonify(scholarship.to_dict()), 201
+
 
 @app.route('/scholarships/<int:scholarship_id>', methods=['GET'])
 def get_scholarship(scholarship_id):
@@ -262,11 +288,13 @@ def get_scholarship(scholarship_id):
     scholarship_dict = scholarship.to_dict()
     return jsonify(scholarship_dict)
 
+
 @app.route('/scholarships/all', methods=['GET'])
 def get_all_scholarships():
     scholarships = Crud.read(Scholarship)
     scholarship_list = [scholarship.to_dict() for scholarship in scholarships]
     return jsonify(scholarship_list)
+
 
 @app.route('/scholarships', methods=['GET'])
 def get_scholarships():
@@ -309,6 +337,7 @@ def get_scholarships():
 
     return jsonify(scholarships_dict)
 
+
 @app.route('/scholarships/<int:scholarship_id>', methods=['PUT'])
 def update_scholarship(scholarship_id):
     data = request.get_json()
@@ -322,6 +351,7 @@ def update_scholarship(scholarship_id):
     Crud.update(scholarship, **data)
     return jsonify(scholarship.to_dict())
 
+
 @app.route('/scholarships/<int:scholarship_id>', methods=['DELETE'])
 def delete_scholarship(scholarship_id):
     scholarships = Crud.read(Scholarship, filters={"id": scholarship_id})
@@ -334,13 +364,15 @@ def delete_scholarship(scholarship_id):
     Crud.delete(scholarship)
     return jsonify({'message': 'Scholarship deleted'})
 
-#Follower and Follow
+
+# Follower and Follow
 @app.route('/followers', methods=['POST'])
 def create_follower_relationship():
     data = request.get_json()
     follower = Follower(**data)
     Crud.create(follower, check_foreign_keys={"User": follower.user_id, "User": follower.follower_id})
     return jsonify(follower.to_dict()), 201
+
 
 @app.route('/followers/<int:id>', methods=['GET'])
 def get_follower_relationship(id):
@@ -349,6 +381,7 @@ def get_follower_relationship(id):
         return jsonify({'error': 'Follower relationship not found'}), 404
     follower = followers[0]
     return jsonify(follower.to_dict())
+
 
 @app.route('/followers/<int:id>', methods=['DELETE'])
 def delete_follower_relationship(id):
@@ -359,15 +392,18 @@ def delete_follower_relationship(id):
     Crud.delete(follower)
     return jsonify({'message': 'Follower relationship deleted successfully'}), 204
 
+
 @app.route('/followers/user/<int:user_id>', methods=['GET'])
 def get_all_followers(user_id):
     followers = Crud.read(Follower, filters={"user_id": user_id})
     return jsonify([follower.to_dict() for follower in followers])
 
+
 @app.route('/followers/follows/<int:user_id>', methods=['GET'])
 def get_all_follows(user_id):
     follows = Crud.read(Follower, filters={"follower_id": user_id})
     return jsonify([follow.to_dict() for follow in follows])
+
 
 @app.route('/followers/batch/add', methods=['POST'])
 def batch_add_followers():
@@ -376,11 +412,13 @@ def batch_add_followers():
     Crud.create_batch(Follower, followers)
     return jsonify({'message': 'Followers added successfully'}), 201
 
+
 @app.route('/followers/batch/delete', methods=['POST'])
 def batch_delete_followers():
     data = request.get_json()
     Crud.delete_batch(Follower, filters={"user_id": data["user_id"], "follower_id": data["follower_ids"]})
     return jsonify({'message': 'Followers deleted successfully'}), 204
+
 
 # Export user profile
 @app.route('/profile/<int:id>', methods=['GET'])
@@ -394,7 +432,7 @@ def generate_pdf(id):
     user_role = Crud.read(UserRole, filters={"id": user.role_id})[0]
     user_experiences = Crud.read(UserExperience, filters={"user_id": id})
 
-    # Render template and generate pdf
+    # Render templates and generate pdf
     html = render_template('profile.html', user=user, role=user_role, experiences=user_experiences)
 
     # Save pdf to a file
@@ -411,6 +449,8 @@ def generate_pdf(id):
     os.remove(pdf_path)
 
     return response
+
+
 # Save images to Google Drive
 gauth = GoogleAuth(settings_file='client_secret.json')
 gauth.scope = [
@@ -419,6 +459,8 @@ gauth.scope = [
 ]
 
 drive = GoogleDrive(gauth)
+
+
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
     if 'file' not in request.files:
@@ -446,9 +488,11 @@ def upload_image():
 
         return jsonify({'file_url': file_url}), 200
 
+
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 if __name__ == '__main__':
     app.run(debug=True)
