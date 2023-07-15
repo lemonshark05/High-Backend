@@ -1,0 +1,340 @@
+/* screen - search */
+
+.search {
+  align-items: flex-start;
+  border: 1px none;
+  display: flex;
+  height: 810px;
+  overflow: hidden;
+  width: 1440px;
+}
+
+.search .overlap-group1 {
+  height: 1472px;
+  margin-left: -63px;
+  position: relative;
+  width: 1503px;
+}
+
+.search .divl-wb-aav {
+  background-color: var(--white);
+  height: 1472px;
+  left: 63px;
+  position: absolute;
+  top: 0;
+  width: 1440px;
+}
+
+.search .search-1 {
+  align-items: flex-end;
+  border: 0.52px solid;
+  border-color: var(--black-3);
+  border-radius: 5.21px;
+  display: flex;
+  height: 25px;
+  left: 1063px;
+  overflow: hidden;
+  position: absolute;
+  top: 25px;
+  width: 207px;
+}
+
+.search .search-2 {
+  align-items: flex-start;
+  display: flex;
+  height: 24px;
+  margin-bottom: 0;
+  margin-left: 1px;
+  width: 206px;
+}
+
+.search .frame {
+  align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 7px;
+}
+
+.search .vector {
+  cursor: pointer;
+  height: 7px;
+  margin-bottom: 0;
+  width: 7px;
+}
+
+.search .divl-yhw1-a {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  padding: 6.83px 0px 7.76px;
+  position: relative;
+}
+
+.search .name {
+  margin-top: -0.64px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.search .button {
+  align-items: flex-start;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 14px;
+  height: 41px;
+  justify-content: flex-end;
+  left: 1281px;
+  min-width: 120px;
+  padding: 4px 10px;
+  position: absolute;
+  top: 16px;
+}
+
+.search .cart {
+  align-items: flex-start;
+  display: flex;
+  height: 42px;
+  justify-content: flex-end;
+  left: 1401px;
+  min-width: 35px;
+  padding: 0 0.8px;
+  position: absolute;
+  top: 15px;
+}
+
+.search .overlap-group {
+  height: 42px;
+  margin-top: 0;
+  position: relative;
+  width: 33px;
+}
+
+.search .vector-1 {
+  height: 33px;
+  left: 0;
+  position: absolute;
+  top: 9px;
+  width: 33px;
+}
+
+.search .vector-2 {
+  height: 10px;
+  left: 9px;
+  position: absolute;
+  top: 0;
+  width: 16px;
+}
+
+.search .number {
+  left: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 14px;
+  width: 11px;
+}
+
+.search .john1 {
+  align-items: flex-start;
+  background-color: var(--sazerac);
+  border-radius: 50px;
+  display: flex;
+  gap: 18px;
+  height: 334px;
+  justify-content: flex-end;
+  left: 0;
+  min-width: 1470px;
+  padding: 30px 97px;
+  position: absolute;
+  top: 81px;
+}
+
+.search .ellipse {
+  height: 176px;
+  margin-top: 3px;
+  object-fit: cover;
+  width: 176px;
+}
+
+.search .flex-col {
+  align-items: flex-start;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 251px;
+  width: 1019px;
+}
+
+.search .name-1 {
+  min-height: 29px;
+  min-width: 159px;
+  text-align: center;
+}
+
+.search .a-talented-high-scho {
+  align-self: flex-end;
+  letter-spacing: 2.40px;
+  line-height: 30px;
+  min-height: 208px;
+  width: 997px;
+}
+
+.search .john2 {
+  align-items: flex-start;
+  background-color: var(--sazerac);
+  border-radius: 50px;
+  display: flex;
+  gap: 40px;
+  height: 334px;
+  justify-content: flex-end;
+  left: 0;
+  min-width: 1470px;
+  padding: 30px 97px;
+  position: absolute;
+  top: 440px;
+}
+
+.search .flex-col-1 {
+  gap: 14px;
+  min-height: 251px;
+  width: 997px;
+}
+
+.search .john-johnson {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 5px;
+  min-height: 29px;
+  min-width: 105px;
+  text-align: center;
+}
+
+.search .a-talented-high-scho-1 {
+  min-height: 208px;
+  width: 997px;
+}
+
+.search .item-link-home {
+  left: 302px;
+  min-width: 47px;
+}
+
+.search .item-link-explore {
+  left: 367px;
+  min-width: 58px;
+}
+
+.search .item-link-resources {
+  left: 443px;
+  min-width: 79px;
+}
+
+.search .item-link-resources-1 {
+  height: 18px;
+  letter-spacing: 0.70px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 79px;
+}
+
+.search .item-link-connect {
+  left: 539px;
+  min-width: 65px;
+}
+
+.search .heading-2-link-high-lytr {
+  align-items: flex-start;
+  display: flex;
+  height: 41px;
+  left: 158px;
+  min-width: 105px;
+  position: absolute;
+  top: 15px;
+}
+
+.search .john3 {
+  align-items: flex-start;
+  background-color: var(--sazerac);
+  border-radius: 50px;
+  display: flex;
+  gap: 34px;
+  height: 354px;
+  justify-content: flex-end;
+  left: 10px;
+  min-width: 1459px;
+  padding: 31.7px 96.3px;
+  position: absolute;
+  top: 801px;
+}
+
+.search .ellipse-1 {
+  height: 187px;
+  margin-top: 3.24px;
+  object-fit: cover;
+  width: 175px;
+}
+
+.search .flex-col-2 {
+  gap: 17px;
+  min-height: 266px;
+  width: 995px;
+}
+
+.search .john-johnson-1 {
+  letter-spacing: 0;
+  line-height: normal;
+  min-height: 29px;
+  min-width: 125px;
+  text-align: center;
+}
+
+.search .a-talented-high-scho-2 {
+  align-self: flex-end;
+  min-height: 220px;
+  width: 990px;
+}
+
+.search .title {
+  color: var(--saddle);
+  font-family: var(--font-family-montserrat);
+  font-size: 50px;
+  font-weight: 400;
+  height: 29px;
+  left: 121px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  position: absolute;
+  text-align: center;
+  top: 1278px;
+  white-space: nowrap;
+}
+
+.search .a-talented-high-scho-3 {
+  letter-spacing: 2.40px;
+  line-height: 30px;
+}
+
+.search .flex-col-3 {
+  align-items: flex-start;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.search .item-link {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  height: 18px;
+  position: absolute;
+  top: 27px;
+}
+
+.search .name-2 {
+  letter-spacing: 0;
+  line-height: normal;
+}

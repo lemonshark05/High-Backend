@@ -1,0 +1,886 @@
+/* screen - scholarship */
+
+.scholarship {
+  align-items: flex-start;
+  border: 1px none;
+  display: flex;
+  height: 810px;
+  min-width: 1440px;
+}
+
+.scholarship .overlap-group4 {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  margin-top: -57px;
+  min-height: 799px;
+  padding: 69px 67.0px;
+  width: 1440px;
+}
+
+.scholarship .flex-row {
+  align-items: center;
+  align-self: flex-end;
+  display: flex;
+  height: 45px;
+  min-width: 1278px;
+}
+
+.scholarship .heading-2-link-high-lytr {
+  align-items: flex-start;
+  align-self: flex-end;
+  display: flex;
+  margin-bottom: 0.81px;
+  min-width: 105px;
+}
+
+.scholarship .item-link-home {
+  margin-left: 39px;
+  min-width: 47px;
+}
+
+.scholarship .item-link-explore {
+  margin-left: 18px;
+  min-width: 58px;
+}
+
+.scholarship .item-link-resources {
+  margin-left: 18px;
+  min-width: 79px;
+}
+
+.scholarship .item-link-resources-1 {
+  height: 18px;
+  letter-spacing: 0.70px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 79px;
+}
+
+.scholarship .item-link-connect {
+  margin-left: 18px;
+  min-width: 65px;
+}
+
+.scholarship .search {
+  align-items: flex-end;
+  align-self: flex-start;
+  border: 0.52px solid;
+  border-color: var(--black-3);
+  border-radius: 5.21px;
+  display: flex;
+  height: 25px;
+  margin-left: 261px;
+  overflow: hidden;
+  width: 207px;
+}
+
+.scholarship .search-1 {
+  align-items: flex-start;
+  display: flex;
+  height: 24px;
+  margin-bottom: 0;
+  margin-left: 1px;
+  width: 206px;
+}
+
+.scholarship .divl-yhw1-a {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  padding: 6.83px 0px 7.76px;
+  position: relative;
+}
+
+.scholarship .name {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -0.64px;
+}
+
+.scholarship .button-1 {
+  align-items: flex-start;
+  align-self: flex-end;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 14px;
+  height: 41px;
+  justify-content: flex-end;
+  margin-bottom: 0.4px;
+  margin-left: 209px;
+  min-width: 120px;
+  padding: 4px 10px;
+}
+
+.scholarship .cart {
+  align-items: flex-start;
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 35px;
+  padding: 0 0.8px;
+}
+
+.scholarship .overlap-group-1 {
+  height: 42px;
+  margin-top: 0;
+  position: relative;
+  width: 33px;
+}
+
+.scholarship .vector {
+  height: 33px;
+  left: 0;
+  position: absolute;
+  top: 9px;
+  width: 33px;
+}
+
+.scholarship .vector-1 {
+  height: 10px;
+  left: 9px;
+  position: absolute;
+  top: 0;
+  width: 16px;
+}
+
+.scholarship .number {
+  left: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 14px;
+  width: 11px;
+}
+
+.scholarship .title {
+  color: #635151;
+  font-family: var(--font-family-montserrat);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 54.0px;
+  margin-left: 23.0px;
+  margin-top: 12px;
+  min-height: 42px;
+  white-space: nowrap;
+}
+
+.scholarship .data-table::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.scholarship .data-table {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px #00000014 , 0px 1px 4px #454b561f , 0px 0px 0px 1px #98a0b21a;
+  display: flex;
+  flex-direction: column;
+  height: 506px;
+  margin-left: 68.0px;
+  margin-top: 34px;
+  overflow: hidden;
+  overflow-y: scroll;
+  width: 1030px;
+}
+
+.scholarship .overlap-group1 {
+  -webkit-backdrop-filter: blur(8px) brightness(100%);
+  align-items: flex-start;
+  backdrop-filter: blur(8px) brightness(100%);
+  background-color: #f4f6fcbf;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 104px;
+  width: 1020px;
+}
+
+.scholarship .flex-row-1 {
+  align-items: flex-start;
+  display: flex;
+  height: 32px;
+  margin-left: 20px;
+  margin-top: 16px;
+  min-width: 939px;
+}
+
+.scholarship .button-2 {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px #5960781a , 0px 0px 0px 1px #464e6029 , 0px 1px 1px #0000001a;
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  padding: 8px 12px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .filter {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .input {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 6px;
+  box-shadow: 0px 0px 0px 1px #68708229 , 0px 1px 2px #0000000f;
+  display: flex;
+  gap: 8px;
+  margin-left: 16px;
+  overflow: hidden;
+  padding: 6px 12px;
+  position: relative;
+  width: 320px;
+}
+
+.scholarship .search-2 {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .search-3 {
+  color: var(--gray300);
+  flex: 1;
+  font-weight: 400;
+  line-height: 20px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.scholarship .button-3 {
+  align-items: center;
+  background-color: var(--blue500);
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px #2264e51f , 0px 0px 0px 1px #2264e5 , 0px 1px 1px #00000024 , inset 0px 1px 0px #4a85f9;
+  display: flex;
+  gap: 8px;
+  margin-left: 299px;
+  overflow: hidden;
+  padding: 6px 12px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .button {
+  color: var(--white);
+  font-weight: 500;
+  line-height: 20px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .button-4 {
+  align-items: center;
+  background-color: var(--blue500);
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px #2264e51f , 0px 0px 0px 1px #2264e5 , 0px 1px 1px #00000024 , inset 0px 1px 0px #4a85f9;
+  display: flex;
+  gap: 8px;
+  margin-left: 48px;
+  overflow: hidden;
+  padding: 6px 12px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .frame-1 {
+  gap: 20px;
+  padding: 0px 50px 0px 10px;
+  width: 1020px;
+}
+
+.scholarship .checkbox-1 {
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .column-header-1 {
+  width: 36px;
+}
+
+.scholarship .name-1 {
+  color: var(--mirage);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+}
+
+.scholarship .column-sorting {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .column-header-2 {
+  width: 160px;
+}
+
+.scholarship .place {
+  color: var(--gray700);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .column-header-3 {
+  flex: 1;
+}
+
+.scholarship .name-2 {
+  color: var(--gray700);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+}
+
+.scholarship .column-header-4 {
+  width: 70px;
+}
+
+.scholarship .name-3 {
+  color: var(--gray700);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+}
+
+.scholarship .column-header {
+  align-items: center;
+  display: flex;
+  gap: 2px;
+  justify-content: flex-end;
+  padding: 12px 0px;
+  position: relative;
+  width: 100px;
+}
+
+.scholarship .name-4 {
+  color: var(--gray700);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+}
+
+.scholarship .name-5 {
+  color: var(--gray700);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+}
+
+.scholarship .name-6 {
+  color: var(--gray700);
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: -1.00px;
+}
+
+.scholarship .overlap-group {
+  height: 64px;
+  position: relative;
+  width: 1020px;
+}
+
+.scholarship .customer-1 {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.scholarship .checkbox {
+  margin-top: 1px;
+  width: 16px;
+}
+
+.scholarship .number-1 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 20px;
+  margin-left: 20px;
+  min-width: 7px;
+  white-space: nowrap;
+}
+
+.scholarship .kadin-herwitz-2 {
+  margin-left: 49px;
+}
+
+.scholarship .lorem-ipsum-dolor-si {
+  color: var(--gray700);
+  font-weight: 400;
+  line-height: 20px;
+  margin-left: 30px;
+  white-space: nowrap;
+  width: 238px;
+}
+
+.scholarship .tag {
+  background-color: var(--indigo0);
+}
+
+.scholarship .info {
+  color: var(--indigo500);
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .flex-col {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 38px;
+  min-height: 40px;
+  width: 100px;
+}
+
+.scholarship .overlap-group-2 {
+  height: 40px;
+  margin-left: 20px;
+  position: relative;
+  width: 100px;
+}
+
+.scholarship .cad-1 {
+  left: 0;
+  position: absolute;
+  top: 22px;
+}
+
+.scholarship .x27000-1 {
+  color: var(--cherry);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.scholarship .flex-col-1 {
+  margin-left: 20px;
+}
+
+.scholarship .vector-1-1 {
+  height: 1px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 1020px;
+}
+
+.scholarship .customer-2 {
+  background-color: #f9fafc;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.scholarship .x1 {
+  min-width: 9px;
+}
+
+.scholarship .kadin-herwitz {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 20px;
+  margin-left: 47px;
+  white-space: nowrap;
+  width: 150px;
+}
+
+.scholarship .tag-1 {
+  background-color: var(--green0);
+}
+
+.scholarship .success {
+  color: var(--green500);
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .flex-col-2 {
+  margin-left: 28px;
+}
+
+.scholarship .percent {
+  color: var(--gray700);
+  font-weight: 400;
+  line-height: 20px;
+  text-align: right;
+  white-space: nowrap;
+  width: 100px;
+}
+
+.scholarship .x27000-2 {
+  color: #f80404;
+  white-space: nowrap;
+}
+
+.scholarship .vector-2 {
+  height: 1px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 22px;
+  width: 1020px;
+}
+
+.scholarship .x1-1 {
+  min-width: 10px;
+}
+
+.scholarship .kadin-herwitz-1 {
+  margin-left: 46px;
+}
+
+.scholarship .tag-2 {
+  background-color: var(--indigo0);
+}
+
+.scholarship .x27000 {
+  color: var(--cherry);
+  white-space: nowrap;
+}
+
+.scholarship .customer-3 {
+  background-color: #f9fafc;
+}
+
+.scholarship .x1-2 {
+  min-width: 10px;
+}
+
+.scholarship .tag-3 {
+  background-color: var(--gray50);
+}
+
+.scholarship .inactive {
+  color: #5788e9;
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .x27000-3 {
+  color: #d51010;
+  white-space: nowrap;
+}
+
+.scholarship .x1-3 {
+  min-width: 9px;
+}
+
+.scholarship .tag-4 {
+  background-color: var(--indigo0);
+}
+
+.scholarship .table-pagination {
+  -webkit-backdrop-filter: blur(8px) brightness(100%);
+  align-items: center;
+  backdrop-filter: blur(8px) brightness(100%);
+  background-color: #f4f7fcbf;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 12px 20px;
+  position: relative;
+  width: 1020px;
+}
+
+.scholarship .x1-10-of-97 {
+  color: var(--gray500);
+  flex: 1;
+  font-weight: 500;
+  line-height: 18px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.scholarship .group-842 {
+  height: 18px;
+  min-width: 124px;
+  position: relative;
+}
+
+.scholarship .frame-844 {
+  gap: 4px;
+  justify-content: center;
+  width: fit-content;
+}
+
+.scholarship .rows-per-page {
+  color: var(--gray500);
+  font-weight: 500;
+  line-height: 18px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .group-846 {
+  height: 16px;
+  margin-right: -2.00px;
+  min-width: 28px;
+  position: relative;
+}
+
+.scholarship .x10 {
+  color: var(--gray500);
+  font-weight: 500;
+  left: 0;
+  line-height: 14px;
+  position: absolute;
+  text-align: right;
+  top: 1px;
+  white-space: nowrap;
+}
+
+.scholarship .down {
+  height: 16px;
+  left: 10px;
+  position: absolute;
+  top: 0;
+  width: 16px;
+}
+
+.scholarship .group-843 {
+  height: 20px;
+  min-width: 87px;
+  position: relative;
+}
+
+.scholarship .frame-850 {
+  gap: 10px;
+  justify-content: center;
+  width: fit-content;
+}
+
+.scholarship .button-5 {
+  align-items: center;
+  background-color: var(--gray0);
+  border-radius: 6px;
+  box-shadow: 0px 0px 0px 1px #464e603d;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2px 4px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .left {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .x110 {
+  color: transparent;
+  font-weight: 500;
+  line-height: 18px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .span0 {
+  color: var(--gray900);
+}
+
+.scholarship .span1 {
+  color: var(--gray500);
+}
+
+.scholarship .button-6 {
+  align-items: flex-start;
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .button-7 {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px #5960781a , 0px 0px 0px 1px #464e6029 , 0px 1px 1px #0000001a;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2px 4px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .right {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .rectangle {
+  background-color: var(--white);
+  height: 44px;
+  margin-top: 886px;
+  width: 1020px;
+}
+
+.scholarship .add-2 {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .cad-15 {
+  color: var(--gray500);
+  font-weight: 400;
+  line-height: 18px;
+  text-align: right;
+  white-space: nowrap;
+  width: 100px;
+}
+
+.scholarship .checkbox-2 {
+  background-color: var(--white);
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px #5960781a , 0px 0px 0px 1px #464e6029 , 0px 1px 1px #0000001a;
+  height: 16px;
+}
+
+.scholarship .column-header-5 {
+  align-items: center;
+  display: flex;
+  gap: 2px;
+  padding: 12px 0px;
+  position: relative;
+}
+
+.scholarship .column-sorting-3 {
+  height: 16px;
+  min-width: 16px;
+  position: relative;
+}
+
+.scholarship .customer-4 {
+  align-items: flex-start;
+  display: flex;
+  height: 64px;
+  min-width: 1020px;
+  padding: 11px 10px;
+}
+
+.scholarship .flex-col-3 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 40px;
+  width: 100px;
+}
+
+.scholarship .frame {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.scholarship .item-link {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  margin-top: 3.19px;
+}
+
+.scholarship .kadin-herwitz-3 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  width: 150px;
+}
+
+.scholarship .name-7 {
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.scholarship .tag-5 {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-left: 20px;
+  margin-top: 1px;
+  padding: 1px 10px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .x1-4 {
+  color: var(--mirage);
+  font-weight: 500;
+  line-height: 20px;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+
+.scholarship .x27000-4 {
+  font-weight: 400;
+  line-height: 20px;
+  text-align: right;
+  width: 100px;
+}
+
+.scholarship .x50000-5 {
+  color: var(--gray700);
+  font-weight: 400;
+  line-height: 20px;
+  text-align: right;
+  white-space: nowrap;
+  width: 100px;
+}
+
+.scholarship .x7000-4 {
+  color: var(--gray700);
+  font-weight: 400;
+  line-height: 20px;
+  text-align: right;
+  white-space: nowrap;
+  width: 100px;
+}

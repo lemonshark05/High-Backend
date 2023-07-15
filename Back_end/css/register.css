@@ -1,0 +1,484 @@
+/* screen - register */
+
+.register {
+  align-items: flex-start;
+  background-color: var(--white);
+  border: 1px none;
+  display: flex;
+  height: 810px;
+  min-width: 1440px;
+}
+
+.register .overlap-group7 {
+  height: 1608px;
+  position: relative;
+  width: 1440px;
+}
+
+.register .divl-wb-aav {
+  background-color: #f0efee;
+  height: 1597px;
+  left: 0;
+  position: absolute;
+  top: 11px;
+  width: 1440px;
+}
+
+.register .divl-wb-aav-1 {
+  background-color: var(--white);
+  height: 82px;
+  top: 0;
+}
+
+.register .rectangle-9 {
+  background-color: var(--white);
+  border-radius: 50px;
+  height: 473px;
+  left: 51px;
+  position: absolute;
+  top: 944px;
+  width: 1353px;
+}
+
+.register .divl-wb-aav-2 {
+  background-color: var(--coffee);
+  height: 312px;
+  top: 82px;
+}
+
+.register .rectangle-4 {
+  background-color: var(--white);
+  border-radius: 50px;
+  height: 473px;
+  left: 43px;
+  position: absolute;
+  top: 433px;
+  width: 1353px;
+}
+
+.register .usfcajpg {
+  height: 264px;
+  left: 175px;
+  position: absolute;
+  top: 536px;
+  width: 259px;
+}
+
+.register .title {
+  left: 91px;
+  letter-spacing: 0;
+  line-height: 64.8px;
+  position: absolute;
+  top: 949px;
+  white-space: nowrap;
+  width: 594px;
+}
+
+.register .stanfordjpg {
+  height: 268px;
+  left: 589px;
+  position: absolute;
+  top: 532px;
+  width: 263px;
+}
+
+.register .berkeleyjpg {
+  height: 268px;
+  left: 986px;
+  position: absolute;
+  top: 532px;
+  width: 272px;
+}
+
+.register .add-interested-universities {
+  left: 83px;
+  letter-spacing: 0;
+  line-height: 64.8px;
+  position: absolute;
+  top: 438px;
+  white-space: nowrap;
+  width: 594px;
+}
+
+.register .followers-0-following-0 {
+  color: var(--white);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-m);
+  font-weight: 400;
+  height: 29px;
+  left: 325px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  position: absolute;
+  text-align: center;
+  top: 273px;
+  white-space: nowrap;
+}
+
+.register .name {
+  color: var(--white);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  height: 29px;
+  left: 333px;
+  line-height: 28.8px;
+  top: 222px;
+  white-space: nowrap;
+}
+
+.register .search {
+  align-items: flex-end;
+  border: 0.52px solid;
+  border-color: var(--black-3);
+  border-radius: 5.21px;
+  display: flex;
+  height: 25px;
+  left: 1001px;
+  overflow: hidden;
+  position: absolute;
+  top: 25px;
+  width: 207px;
+}
+
+.register .search-1 {
+  align-items: flex-start;
+  display: flex;
+  height: 24px;
+  margin-bottom: 0;
+  margin-left: 1px;
+  width: 206px;
+}
+
+.register .divl-yhw1-a {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 6.83px 0px 7.76px;
+  position: relative;
+}
+
+.register .button {
+  align-items: flex-start;
+  border-radius: 10px;
+  gap: 14px;
+  height: 41px;
+  justify-content: flex-end;
+  left: 1218px;
+  min-width: 120px;
+  padding: 4px 10px;
+  top: 16px;
+}
+
+.register .cart {
+  align-items: center;
+  display: flex;
+  height: 42px;
+  justify-content: flex-end;
+  left: 1338px;
+  min-width: 35px;
+  padding: 0 0.8px;
+  position: absolute;
+  top: 15px;
+}
+
+.register .overlap-group-1 {
+  height: 42px;
+  position: relative;
+  width: 33px;
+}
+
+.register .vector {
+  height: 33px;
+  left: 0;
+  position: absolute;
+  top: 9px;
+  width: 33px;
+}
+
+.register .vector-1 {
+  height: 10px;
+  left: 9px;
+  position: absolute;
+  top: 0;
+  width: 16px;
+}
+
+.register .number {
+  left: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 14px;
+  width: 11px;
+}
+
+.register .item-link-home {
+  left: 239px;
+  min-width: 47px;
+}
+
+.register .item-link-explore {
+  left: 304px;
+  min-width: 58px;
+}
+
+.register .item-link-resources {
+  left: 380px;
+  min-width: 79px;
+}
+
+.register .item-link-resources-1 {
+  height: 18px;
+  letter-spacing: 0.70px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 79px;
+}
+
+.register .item-link-connect {
+  left: 476px;
+  min-width: 65px;
+}
+
+.register .heading-2-link-high-lytr {
+  align-items: flex-start;
+  display: flex;
+  height: 41px;
+  left: 95px;
+  min-width: 105px;
+  position: absolute;
+  top: 15px;
+}
+
+.register .component-5 {
+  background-color: #866f65;
+  border-radius: 111px;
+  height: 222px;
+  left: 64px;
+  min-width: 222px;
+  padding: 58px 53px;
+  top: 127px;
+}
+
+.register .component-6 {
+  gap: 8px;
+  height: 32px;
+  left: 613px;
+  min-width: 155px;
+  top: 852px;
+}
+
+.register .overlap-group {
+  align-items: flex-end;
+  background-size: 100% 100%;
+  display: flex;
+  height: 32px;
+  min-width: 32px;
+  padding: 7.0px 7px;
+}
+
+.register .icons8 {
+  height: 18px;
+  width: 18px;
+}
+
+.register .overlap-group1 {
+  align-self: flex-end;
+  background-size: 100% 100%;
+  height: 32px;
+  position: relative;
+  width: 33px;
+}
+
+.register .rectangle {
+  height: 32px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 33px;
+}
+
+.register .placeholder {
+  color: var(--primary);
+  font-family: var(--font-family-open_sans);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  left: 12px;
+  letter-spacing: 0.25px;
+  line-height: 20px;
+  position: absolute;
+  top: 5px;
+  white-space: nowrap;
+  width: 9px;
+}
+
+.register .content {
+  color: var(--gray-3);
+  width: 9px;
+}
+
+.register .content-1 {
+  color: #00062b;
+  width: 17px;
+}
+
+.register .button-1 {
+  align-items: center;
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  height: 52px;
+  left: 556px;
+  min-width: 343px;
+  padding: 0 17.3px;
+  top: 1512px;
+}
+
+.register .next {
+  height: 28px;
+  letter-spacing: 0.96px;
+  line-height: normal;
+  min-width: 306px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.register .john-johnson {
+  left: 227px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 1265px;
+}
+
+.register .jing-wu {
+  left: 533px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 1271px;
+}
+
+.register .name-1 {
+  left: 824px;
+  line-height: normal;
+  top: 1273px;
+}
+
+.register .name-2 {
+  left: 1142px;
+  line-height: normal;
+  top: 1267px;
+}
+
+.register .component-7 {
+  gap: 8px;
+  height: 32px;
+  left: 642px;
+  min-width: 155px;
+  top: 1355px;
+}
+
+.register .overlap-group6 {
+  align-items: flex-end;
+  background-image: url(../img/diamond-3.svg);
+  background-size: 100% 100%;
+  display: flex;
+  height: 32px;
+  min-width: 32px;
+  padding: 7.0px 7px;
+}
+
+.register .overlap-group5 {
+  align-self: flex-end;
+  background-image: url(../img/rectangle.svg);
+  background-size: 100% 100%;
+  height: 32px;
+  position: relative;
+  width: 33px;
+}
+
+.register .overlap-group4 {
+  align-items: flex-end;
+  background-image: url(../img/diamond-2.svg);
+  background-size: 100% 100%;
+  display: flex;
+  height: 32px;
+  min-width: 32px;
+  padding: 7.0px 7px;
+}
+
+.register .ellipse {
+  left: 176px;
+  width: 207px;
+}
+
+.register .ellipse-1 {
+  left: 1074px;
+  width: 207px;
+}
+
+.register .ellipse-2 {
+  left: 774px;
+  width: 208px;
+}
+
+.register .ellipse-3 {
+  left: 475px;
+  width: 208px;
+}
+
+.register .button-2 {
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+}
+
+.register .component {
+  align-items: flex-start;
+  display: flex;
+  position: absolute;
+}
+
+.register .content-2 {
+  align-self: center;
+  font-family: var(--font-family-open_sans);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  line-height: 20px;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.register .divl-wb-aav-3 {
+  left: 0;
+  position: absolute;
+  width: 1440px;
+}
+
+.register .ellipse-4 {
+  height: 203px;
+  object-fit: cover;
+  position: absolute;
+  top: 1038px;
+}
+
+.register .item-link {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  height: 18px;
+  position: absolute;
+  top: 27px;
+}
+
+.register .name-3 {
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+}
