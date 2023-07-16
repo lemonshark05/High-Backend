@@ -2,7 +2,7 @@ import json
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
-from data import db, Comment, User, Blog, UserRole, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
+from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
 from werkzeug.utils import secure_filename
 import os
 import pdfkit
