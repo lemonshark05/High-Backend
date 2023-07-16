@@ -1,7 +1,8 @@
 import json
-
+from sqlalchemy.exc import IntegrityError
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
-from data import db, Comment, User, Blog, UserRole, UserPassword, UserExperience, University, UserImage, UserVideo, Scholarship, AthleteType, Crud, Follower
+from data import db, Comment, User, Blog, UserRole, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
 from werkzeug.utils import secure_filename
 import os
 import pdfkit
@@ -41,26 +42,37 @@ def google_login():
 @app.route("/login")
 def login():
     data = request.get_json()
-    name = data['username']
-    pwd = data['password']
-    records = Crud.read(UserPassword, filters={'username':name})
-    record_dict = records[0].to_dict()
-    if pwd != record_dict['password']:
-        return jsonify({'error': 'wrong password!'}), 404
-    return jsonify({'message': 'login successfully!'}), 204
+    username = data.get('username')
+    password = data.get('password')
 
-@app.route("/register/account")
+    if not username or not password:
+        return jsonify({'error': 'username and password required'}), 400
+
+    records = Crud.read(User, filters={'username': username})
+    if not records:
+        return jsonify({'error': 'user not found'}), 404
+
+    record_dict = records[0].to_dict()
+
+    if not check_password_hash(record_dict['password'], password):
+        return jsonify({'error': 'wrong password'}), 401
+
+    return jsonify({'message': 'login successfully'}), 200
+
+@app.route("/register/account", methods=["POST"])
 def register():
     data = request.get_json()
-    pwd = data['password']
-    repwd = data['repassword']
+    pwd = generate_password_hash(data['password'])  # hash the password
+    repwd = generate_password_hash(data['repassword'])  # hash the repassword
     if pwd != repwd:
-        return jsonify({'error': 'password not matched'}), 404
-    user_pwd = UserPassword(username=data['username'], password=pwd)
-    Crud.create(user_pwd)
-    user = User(username=data['username'], email=data['email'])
-    Crud.create(user)
-    return redirect(url_for('register/interest'))
+        return jsonify({'error': 'password not matched'}), 400
+    user = User(username=data['username'], email=data['email'], password=pwd)
+    try:
+        Crud.create(user)
+    except IntegrityError:
+        db.session.rollback()  # necessary to continue using the session
+        return jsonify({'error': 'username or email already in use'}), 400
+    return redirect(url_for('register_interest'))
 
 @app.route("/register/interest")
 def register_interest():

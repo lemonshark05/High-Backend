@@ -5,7 +5,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask import jsonify
-from sqlalchemy import inspect
 
 db = SQLAlchemy()
 
@@ -20,12 +19,6 @@ class UserRole(Base):
 
     id = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.String(255), nullable=False)
-
-class UserPassword(Base):
-    __tablename__ = 'UserPassword'
-
-    username = db.Column(db.String(255), nullable=False)
-    password = db.Column(db.String(255), nullable=False)
 
 class Blog(Base):
     __tablename__ = 'Blogs'
@@ -81,9 +74,9 @@ class User(Base):
     __tablename__ = 'Users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    loginemail = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(255), nullable=False, unique=True)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    password = db.Column(db.String(255), nullable=False)
     phone = db.Column(db.String(255))
     avatar_url = db.Column(db.String(255))
     role_id = db.Column(db.Integer, ForeignKey('UserRoles.id'))
@@ -158,7 +151,6 @@ class University(Base):
     intro_image_url = db.Column(db.String(255))
     thumbnail_url = db.Column(db.String(255))
     scholarships_link = db.Column(db.String(255))
-
 
 class AthleteType(Base):
     __tablename__ = 'AthleteTypes'
