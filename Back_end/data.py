@@ -84,10 +84,10 @@ class Scholarship(Base):
     success_rate = db.Column(db.Numeric(5, 2))
     image_url = db.Column(db.String(255))
     video_url = db.Column(db.String(255))
-    created_by = db.Column(db.Integer, ForeignKey('UserRoles.id'))
+    created_id = db.Column(db.Integer, ForeignKey('Users.id'))
 
     university = relationship('University', backref='scholarships')
-    creator = relationship('UserRole', backref='scholarships')
+    creator = relationship('User', backref='scholarships')
 
 
 class User(Base):
