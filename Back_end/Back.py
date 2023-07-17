@@ -13,7 +13,7 @@ from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__, static_folder='static', template_folder='.')
 app.config.from_object('config.Config')
 app.secret_key = "mysecretkey"  # Replace with your secret key
 
@@ -27,8 +27,12 @@ app.register_blueprint(google_blueprint, url_prefix="/google_login")
 # initialize
 db.init_app(app)
 
-@app.route("/")
+@app.route("/home")
 def home_page():
+    return render_template('front/home.html')
+
+@app.route("/")
+def home():
     return render_template('front/home.html')
 
 @app.route("/login")
@@ -41,7 +45,7 @@ def register_html():
 
 @app.route("/more-info")
 def more_info_html():
-    return render_template('more-info.html')
+    return render_template('front/more-info.html')
 
 @app.route("/connect")
 def connect_html():
