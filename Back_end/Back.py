@@ -39,6 +39,10 @@ def home():
 def login_html():
     return render_template('front/login.html')
 
+@app.route("/login_email")
+def login_email_html():
+    return render_template('front/login_email.html')
+
 @app.route("/register")
 def register_html():
     return render_template('front/register.html')
