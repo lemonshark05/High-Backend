@@ -5,14 +5,34 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask import jsonify
+from sqlalchemy import inspect
+from datetime import datetime
+from sqlalchemy.orm import RelationshipProperty
 
 db = SQLAlchemy()
 
 class Base(db.Model):
     __abstract__ = True
 
-    def to_dict(self):
-        return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
+    def to_dict(self, depth=1):
+        output_dict = {}
+        for attr in inspect(self).mapper.column_attrs:
+            if attr.key != 'password':
+                output_dict[attr.key] = getattr(self, attr.key)
+
+        if depth > 0:  # only process relationships if depth is greater than 0
+            for name, attr in inspect(self).mapper.relationships.items():
+                if isinstance(attr, RelationshipProperty):
+                    related_obj = getattr(self, name)
+                    if related_obj is not None:
+                        if attr.uselist:
+                            # If it's a list, call to_dict on each item, reducing depth by 1
+                            output_dict[name] = [obj.to_dict(depth - 1) for obj in related_obj]
+                        else:
+                            # Call to_dict on the object, reducing depth by 1
+                            output_dict[name] = related_obj.to_dict(depth - 1)
+
+        return output_dict
 
 class UserRole(Base):
     __tablename__ = 'UserRoles'
@@ -151,6 +171,18 @@ class University(Base):
     intro_image_url = db.Column(db.String(255))
     thumbnail_url = db.Column(db.String(255))
     scholarships_link = db.Column(db.String(255))
+
+class Message(Base):
+    __tablename__ = 'Messages'
+
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, ForeignKey('Users.id'))
+    receiver_id = db.Column(db.Integer, ForeignKey('Users.id'))
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    sender = relationship('User', backref='sent_messages', foreign_keys=[sender_id])
+    receiver = relationship('User', backref='received_messages', foreign_keys=[receiver_id])
 
 class AthleteType(Base):
     __tablename__ = 'AthleteTypes'

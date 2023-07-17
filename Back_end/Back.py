@@ -2,7 +2,7 @@ import json
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
-from data import db, Comment, User, Blog, UserRole, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
+from data import db, Comment, User, Blog, UserRole, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
 from werkzeug.utils import secure_filename
 import os
 import pdfkit
@@ -423,6 +423,7 @@ def generate_pdf(id):
     os.remove(pdf_path)
 
     return response
+
 # Save images to Google Drive
 gauth = GoogleAuth(settings_file='client_secret.json')
 gauth.scope = [
@@ -461,6 +462,44 @@ def upload_image():
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/messages', methods=['POST'])
+@handle_error
+def send_message():
+    data = request.get_json()
+    message = Message(sender_id=data['sender_id'], receiver_id=data['receiver_id'], content=data['message'])
+    result = Crud.create(message, check_foreign_keys={"Users": data["sender_id"], "Users": data["receiver_id"]})
+    if 'error' in result:
+        return result
+    return jsonify({'message': 'Message sent successfully'}), 200
+
+@app.route('/messages/<int:user_id>/<int:other_user_id>', methods=['GET'])
+@handle_error
+def get_messages(user_id, other_user_id):
+    messages = Crud.read(
+        Message,
+        filters={
+            "sender_id": [user_id, other_user_id],
+            "receiver_id": [user_id, other_user_id]
+        }
+    )
+    if 'error' in messages:
+        return messages
+    return jsonify([message.to_dict() for message in messages]), 200
+
+@app.route('/conversations/<int:user_id>', methods=['GET'])
+@handle_error
+def get_conversations(user_id):
+    conversations = Crud.read(
+        Message,
+        filters={
+            "sender_id": user_id,
+            "receiver_id": user_id
+        }
+    )
+    if 'error' in conversations:
+        return conversations
+    return jsonify([conversation.to_dict() for conversation in conversations]), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
