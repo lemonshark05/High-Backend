@@ -13,7 +13,7 @@ from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder='.')
 app.config.from_object('config.Config')
 app.secret_key = "mysecretkey"  # Replace with your secret key
 
@@ -26,6 +26,50 @@ google_blueprint = make_google_blueprint(
 app.register_blueprint(google_blueprint, url_prefix="/google_login")
 # initialize
 db.init_app(app)
+
+@app.route("/")
+def home_page():
+    return render_template('front/home.html')
+
+@app.route("/login")
+def login_html():
+    return render_template('front/login.html')
+
+@app.route("/register")
+def register_html():
+    return render_template('front/register.html')
+
+@app.route("/more-info")
+def more_info_html():
+    return render_template('more-info.html')
+
+@app.route("/connect")
+def connect_html():
+    return render_template('front/connect.html')
+
+@app.route("/explore")
+def explore_html():
+    return render_template('front/explore.html')
+
+@app.route("/resources")
+def resources_html():
+    return render_template('front/resources.html')
+
+@app.route("/scholarship")
+def scholarship_html():
+    return render_template('front/scholarship.html')
+
+@app.route("/university")
+def university_html():
+    return render_template('front/university.html')
+
+@app.route("/search")
+def search_html():
+    return render_template('front/search.html')
+
+@app.route("/signup")
+def signup_html():
+    return render_template('front/signup.html')
 
 # Google mail login API
 @app.route("/google_login")
@@ -441,7 +485,7 @@ def generate_pdf(id):
     user_experiences = Crud.read(UserExperience, filters={"user_id": id})
 
     # Render template and generate pdf
-    html = render_template('profile.html', user=user, role=user_role, experiences=user_experiences)
+    html = render_template('template/profile.html', user=user, role=user_role, experiences=user_experiences)
 
     # Save pdf to a file
     pdf_path = f"profile_{id}.pdf"
