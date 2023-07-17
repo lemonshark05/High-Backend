@@ -96,6 +96,40 @@ def register_moreinfo():
     Crud.update(user, display_name=data['display_name'], title=data['title'], about_me=data['about_me'])
     return jsonify({'message':'Register successfully!'}), 204
 
+# User
+@app.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    # Get the user
+    users = Crud.read(User, filters={"id": user_id})
+
+    if not users:  # If the list is empty, the user was not found
+        return jsonify({'error': 'User not found'}), 404
+
+    # Since id is unique, the list should contain only one user
+    user = users[0]
+    user_dict = user.to_dict()
+
+    # Get user's role
+    role = Crud.read(UserRole, filters={"id": user.role_id})
+
+    # Get user's images
+    user_images = Crud.read(UserImage, filters={"user_id": user_id})
+
+    # Get user's videos
+    user_videos = Crud.read(UserVideo, filters={"user_id": user_id})
+
+    # Get user's experiences
+    user_experiences = Crud.read(UserExperience, filters={"user_id": user_id})
+
+    # Add related data to the user_dict
+    user_dict["role"] = role[0].to_dict() if role else None
+    user_dict["images"] = [image.to_dict() for image in user_images]
+    user_dict["videos"] = [video.to_dict() for video in user_videos]
+    user_dict["experiences"] = [experience.to_dict() for experience in user_experiences]
+
+    # Return the user_dict which includes user data and related data
+    return jsonify(user_dict)
+
 # Blog
 @app.route('/blogs', methods=['POST'])
 def create_blog():

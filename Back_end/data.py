@@ -20,17 +20,9 @@ class Base(db.Model):
             if attr.key != 'password':
                 output_dict[attr.key] = getattr(self, attr.key)
 
-        if depth > 0:  # only process relationships if depth is greater than 0
-            for name, attr in inspect(self).mapper.relationships.items():
-                if isinstance(attr, RelationshipProperty):
-                    related_obj = getattr(self, name)
-                    if related_obj is not None:
-                        if attr.uselist:
-                            # If it's a list, call to_dict on each item, reducing depth by 1
-                            output_dict[name] = [obj.to_dict(depth - 1) for obj in related_obj]
-                        else:
-                            # Call to_dict on the object, reducing depth by 1
-                            output_dict[name] = related_obj.to_dict(depth - 1)
+        # Handle UserRole specifically
+        if isinstance(self, User):
+            output_dict['role'] = self.role.to_dict(depth - 1)
 
         return output_dict
 
