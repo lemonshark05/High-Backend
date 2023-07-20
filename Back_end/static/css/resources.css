@@ -1,183 +1,131 @@
 /* screen - resources */
 
 .resources {
-  align-items: flex-start;
+  align-items: center;
+  background-color: var(--white);
   border: 1px none;
   display: flex;
-  height: 824px;
-  min-width: 1440px;
-}
-
-.resources .overlap-group3 {
-  height: 994px;
-  position: relative;
+  flex-direction: column;
+  min-height: 1287px;
   width: 1440px;
 }
 
-.resources .divmain_mf {
+.resources .header {
   align-items: flex-start;
-  display: flex;
-  left: 0;
-  padding: 82px 230px 79px;
-  position: absolute;
-  top: 0;
-  width: fit-content;
-}
-
-.resources .divbg-layers_page-background_i20r8 {
   background-color: var(--white);
-  height: 994px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1440px;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 67px;
+  justify-content: flex-start;
+  min-width: 1440px;
+  mix-blend-mode: normal;
+  padding: 14px 118px;
+  width: auto;
 }
 
-.resources .search {
-  align-items: flex-end;
-  border: 0.52px solid;
-  border-color: var(--black-3);
-  border-radius: 5.21px;
-  display: flex;
-  height: 28px;
-  left: 946px;
-  overflow: hidden;
-  padding: 0 0.2px;
-  position: absolute;
-  top: 24px;
-  width: 246px;
+.resources .span0 {
+  letter-spacing: 1.00px;
+  line-height: 30px;
 }
 
-.resources .search-1 {
-  align-items: flex-start;
-  display: flex;
-  height: 27px;
-  margin-bottom: 0;
-  margin-left: 1px;
-  width: 245px;
-}
-
-.resources .divl-yhw1-a {
-  align-items: flex-start;
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  padding: 6.83px 0px 7.76px;
-  position: relative;
+.resources .span1 {
+  letter-spacing: 0.70px;
 }
 
 .resources .button {
-  align-items: flex-start;
+  align-self: flex-end;
   border-radius: 10px;
   cursor: pointer;
+  justify-content: center;
+  margin-bottom: 0.66px;
+  margin-left: 493px;
+  padding: 2px 0px;
+}
+
+.resources .svg {
+  height: 26px;
+  min-width: 38px;
+  position: relative;
+}
+
+.resources .sign-in {
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: 56px;
+}
+
+.resources .cart {
+  align-items: center;
+  align-self: center;
   display: flex;
-  gap: 14px;
-  height: 41px;
-  justify-content: flex-end;
-  left: 1216px;
-  min-width: 120px;
-  padding: 4px 10px;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 39px;
+  margin-top: 0;
+  position: relative;
+  width: fit-content;
+}
+
+.resources .vector {
+  height: 8.19px;
+  min-width: 16.05px;
+  position: relative;
+}
+
+.resources .vector-1 {
+  height: 28.46px;
+  min-width: 33.34px;
+  position: relative;
+}
+
+.resources .number {
+  left: 12px;
+  line-height: normal;
   position: absolute;
-  top: 19px;
+  top: 12px;
+  width: 10px;
 }
 
 .resources .main-section {
+  align-items: flex-start;
   background-color: var(--white);
-  height: 833px;
-  min-width: 980px;
-  position: relative;
-}
-
-.resources .divcontent-wrapper {
-  align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 0px 0px 20px;
-  position: relative;
-  width: fit-content;
+  margin-top: 105px;
+  min-height: 774px;
+  width: 938px;
 }
 
-.resources .divf-dtnt5 {
+.resources .post-header {
   align-items: flex-start;
   background-color: var(--white);
   display: flex;
-  padding: 0px 20px;
-  position: relative;
-  width: fit-content;
+  height: 61px;
+  padding: 22px 0;
+  width: 940px;
 }
 
-.resources .divy0bxin {
-  height: 80px;
-  min-width: 940px;
-  position: relative;
-}
-
-.resources .nav-blog-list {
-  align-items: flex-start;
-  display: flex;
-  height: 80px;
-  left: 0;
-  overflow: hidden;
-  padding: 29.5px 0;
-  position: absolute;
-  top: 0;
-  width: 404px;
-}
-
-.resources .item-button-all-posts {
-  height: 20px;
-  letter-spacing: 0;
+.resources .all-posts-basketball-football-baseball {
+  height: 15px;
+  letter-spacing: 0.52px;
   line-height: normal;
+  min-width: 351px;
   text-align: center;
-  width: 68px;
-}
-
-.resources .item-button-basketball {
-  height: 20px;
-  margin-left: 39px;
-  min-width: 84px;
-}
-
-.resources .item-button-football {
-  height: 20px;
-  margin-left: 40px;
-  min-width: 66px;
-}
-
-.resources .item-button-baseball {
-  height: 19px;
-  margin-left: 40px;
   white-space: nowrap;
-  width: 68px;
 }
 
-.resources .button-search-img {
-  height: 19px;
-  left: 905px;
-  position: absolute;
-  top: 32px;
-  width: 19px;
-}
-
-.resources .divpro-gallery-pro-blog {
+.resources .post-content-container {
   align-items: flex-start;
   display: flex;
-  position: relative;
-  width: fit-content;
-}
-
-.resources .region-blog-feed-select-a-post-to-read {
-  align-items: flex-start;
-  display: flex;
-  position: relative;
-  width: fit-content;
-}
-
-.resources .divpro-gallery-margin-container-pro-blog {
-  height: 713px;
-  min-width: 940px;
-  position: relative;
+  flex-direction: column;
+  gap: 32px;
+  min-height: 704px;
+  width: 940px;
 }
 
 .resources .hitting-it-out-of-th {
@@ -185,10 +133,7 @@
   border: 1px solid;
   border-color: #e8e6e6bf;
   display: flex;
-  height: 340px;
-  left: 0;
-  position: absolute;
-  top: 0;
+  margin-left: -1px;
   width: 940px;
 }
 
@@ -436,11 +381,7 @@
 }
 
 .resources .button-1 {
-  align-items: center;
-  display: flex;
   gap: 4.83px;
-  position: relative;
-  width: fit-content;
 }
 
 .resources .spanlaz8-e8 {
@@ -463,10 +404,9 @@
   width: 191px;
 }
 
-.resources .number {
+.resources .number-1 {
   line-height: 12px;
   position: relative;
-  white-space: nowrap;
   width: fit-content;
 }
 
@@ -481,10 +421,6 @@
   border: 1px solid;
   border-color: #e8e6e6bf;
   display: flex;
-  height: 340px;
-  left: 0;
-  position: absolute;
-  top: 372px;
   width: 940px;
 }
 
@@ -551,84 +487,22 @@
   position: relative;
 }
 
-.resources .cart {
+.resources .footer {
+  align-items: flex-start;
+  margin-top: 272px;
+}
+
+.resources .footer-1 {
+  align-items: center;
+  height: 69px;
+  padding: 0 231.1px;
+}
+
+.resources .button-2 {
   align-items: center;
   display: flex;
-  height: 42px;
-  justify-content: flex-end;
-  left: 1338px;
-  min-width: 35px;
-  padding: 0 0.8px;
-  position: absolute;
-  top: 15px;
-}
-
-.resources .overlap-group2 {
-  height: 42px;
   position: relative;
-  width: 33px;
-}
-
-.resources .vector {
-  height: 33px;
-  left: 0;
-  position: absolute;
-  top: 9px;
-  width: 33px;
-}
-
-.resources .vector-1 {
-  height: 10px;
-  left: 9px;
-  position: absolute;
-  top: 0;
-  width: 16px;
-}
-
-.resources .number-1 {
-  left: 11px;
-  line-height: normal;
-  position: absolute;
-  top: 14px;
-  width: 11px;
-}
-
-.resources .item-link-home {
-  left: 239px;
-  min-width: 47px;
-}
-
-.resources .item-link-explore {
-  left: 304px;
-  min-width: 58px;
-}
-
-.resources .item-link-resources {
-  left: 380px;
-  min-width: 79px;
-}
-
-.resources .item-link-resources-1 {
-  height: 18px;
-  letter-spacing: 0.70px;
-  line-height: normal;
-  margin-top: -1px;
-  width: 79px;
-}
-
-.resources .item-link-connect {
-  left: 476px;
-  min-width: 65px;
-}
-
-.resources .heading-2-link-high-lytr {
-  align-items: flex-start;
-  display: flex;
-  height: 41px;
-  left: 95px;
-  min-width: 105px;
-  position: absolute;
-  top: 15px;
+  width: fit-content;
 }
 
 .resources .divitem-wrapper {
@@ -637,21 +511,6 @@
   position: absolute;
   top: 0;
   width: 454px;
-}
-
-.resources .item-button {
-  letter-spacing: 0;
-  line-height: normal;
-  text-align: center;
-}
-
-.resources .item-link {
-  align-items: flex-start;
-  cursor: pointer;
-  display: flex;
-  height: 18px;
-  position: absolute;
-  top: 27px;
 }
 
 .resources .link-2 {
@@ -669,4 +528,5 @@
 .resources .number-2 {
   letter-spacing: 0;
   text-align: center;
+  white-space: nowrap;
 }

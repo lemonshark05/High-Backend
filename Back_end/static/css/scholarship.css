@@ -35,14 +35,42 @@
   min-width: 105px;
 }
 
+.scholarship .heading-2-link-high-lytr-1 {
+  color: var(--christine);
+  font-family: var(--font-family-inter);
+  font-size: 25px;
+  font-weight: 400;
+  height: 41px;
+  letter-spacing: 0.32px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 105px;
+}
+
 .scholarship .item-link-home {
   margin-left: 39px;
   min-width: 47px;
 }
 
+.scholarship .item-link-home-1 {
+  height: 18px;
+  letter-spacing: 0.70px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 47px;
+}
+
 .scholarship .item-link-explore {
   margin-left: 18px;
   min-width: 58px;
+}
+
+.scholarship .item-link-explore-1 {
+  height: 18px;
+  letter-spacing: 0.70px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 58px;
 }
 
 .scholarship .item-link-resources {
@@ -61,6 +89,14 @@
 .scholarship .item-link-connect {
   margin-left: 18px;
   min-width: 65px;
+}
+
+.scholarship .item-link-connect-1 {
+  height: 18px;
+  letter-spacing: 0.70px;
+  line-height: normal;
+  margin-top: -1px;
+  width: 65px;
 }
 
 .scholarship .search {
@@ -85,6 +121,30 @@
   width: 206px;
 }
 
+.scholarship .diva-xob-on {
+  align-items: center;
+  background-color: var(--white);
+  display: flex;
+  gap: 6.25px;
+  padding: 0px 21.88px 0px 6.25px;
+  position: relative;
+  width: fit-content;
+}
+
+.scholarship .svg {
+  cursor: pointer;
+  height: 7.29px;
+  min-width: 7.29px;
+  position: relative;
+}
+
+.scholarship .divn-nn3mc {
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+  width: 164.06px;
+}
+
 .scholarship .divl-yhw1-a {
   align-items: flex-start;
   display: flex;
@@ -93,7 +153,19 @@
   position: relative;
 }
 
+.scholarship .input-find-universit {
+  align-items: flex-start;
+  display: flex;
+  padding: 0px 34.7px 0px 0px;
+  position: relative;
+  width: fit-content;
+}
+
 .scholarship .name {
+  color: var(--black-2);
+  font-family: var(--font-family-montserrat);
+  font-size: 7.7px;
+  font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
   margin-top: -0.64px;
@@ -112,6 +184,22 @@
   margin-left: 209px;
   min-width: 120px;
   padding: 4px 10px;
+}
+
+.scholarship .svg-1 {
+  align-self: center;
+  height: 26px;
+  margin-bottom: 0.02px;
+  width: 26px;
+}
+
+.scholarship .sign-in {
+  height: 29px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  min-width: 56px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .scholarship .cart {

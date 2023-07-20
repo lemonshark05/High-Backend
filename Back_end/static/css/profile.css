@@ -1,0 +1,507 @@
+/* screen - profile */
+
+.profile {
+  align-items: center;
+  background-color: #f1f0ef;
+  border: 1px none;
+  display: flex;
+  flex-direction: column;
+  min-height: 3129px;
+  width: 1440px;
+}
+
+.profile .header {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 67px;
+  justify-content: flex-start;
+  min-width: 1440px;
+  mix-blend-mode: normal;
+  padding: 14px 118px;
+  width: auto;
+}
+
+.profile .span0 {
+  letter-spacing: 1.00px;
+  line-height: 30px;
+}
+
+.profile .span1 {
+  letter-spacing: 0.70px;
+}
+
+.profile .button {
+  align-items: center;
+  align-self: flex-end;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.66px;
+  margin-left: 493px;
+  padding: 2px 0px;
+  position: relative;
+  width: fit-content;
+}
+
+.profile .svg {
+  height: 26px;
+  min-width: 38px;
+  position: relative;
+}
+
+.profile .sign-in {
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: 56px;
+}
+
+.profile .cart {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 39px;
+  margin-top: 0;
+  position: relative;
+  width: fit-content;
+}
+
+.profile .vector {
+  height: 8.19px;
+  min-width: 16.05px;
+  position: relative;
+}
+
+.profile .vector-1 {
+  height: 28.46px;
+  min-width: 33.34px;
+  position: relative;
+}
+
+.profile .number {
+  left: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 12px;
+  white-space: nowrap;
+  width: 10px;
+}
+
+.profile .overlap-group {
+  border-radius: 24px;
+  height: 312px;
+  position: relative;
+  width: 1440px;
+}
+
+.profile .component-12 {
+  background-color: var(--coffee);
+  border-radius: 24px;
+  gap: 80px;
+  height: 312px;
+  left: 0;
+  padding: 33px 94.6px;
+  position: absolute;
+  top: 0;
+}
+
+.profile .user-icon {
+  align-items: flex-start;
+  background-color: var(--sand-dune);
+  border-radius: 132.87px/111px;
+  display: flex;
+  height: 222px;
+  justify-content: flex-end;
+  min-width: 266px;
+  padding: 58px 63.4px;
+}
+
+.profile .u {
+  height: 103px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  text-align: center;
+  width: 139px;
+}
+
+.profile .name {
+  align-self: center;
+  height: 29px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-bottom: 27.0px;
+  min-width: 173px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.profile .followers-10-following-23 {
+  height: 29px;
+  left: 95px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  position: absolute;
+  text-align: center;
+  top: 269px;
+  white-space: nowrap;
+}
+
+.profile .experience {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  height: 705px;
+  margin-right: 3.0px;
+  margin-top: 85px;
+  overflow: hidden;
+  padding: 32px 49px;
+}
+
+.profile .experience-1 {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  white-space: nowrap;
+}
+
+.profile .high-school-basketba {
+  height: 559px;
+  min-width: 1255px;
+  position: relative;
+}
+
+.profile .flex-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  height: 559px;
+  position: relative;
+  top: -1px;
+  width: 1255px;
+}
+
+.profile .text {
+  white-space: nowrap;
+}
+
+.profile .education {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  height: 653px;
+  margin-right: 4.0px;
+  margin-top: 22px;
+  overflow: hidden;
+  padding: 28px 33px;
+  width: 1354px;
+}
+
+.profile .education-1 {
+  height: 42px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 17px;
+  white-space: nowrap;
+}
+
+.profile .high-school-diploma {
+  align-items: flex-start;
+  display: flex;
+  min-width: 1255px;
+}
+
+.profile .flex-container-1 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  height: 472px;
+  margin-top: -1px;
+  position: relative;
+  width: 1255px;
+}
+
+.profile .private-infor {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  height: 685px;
+  margin-top: 32px;
+  padding: 35px 88px;
+  width: 1354px;
+}
+
+.profile .flex-row {
+  align-items: center;
+  display: flex;
+  gap: 254px;
+  height: 502px;
+  min-width: 901px;
+}
+
+.profile .flex-col {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 502px;
+  width: 368px;
+}
+
+.profile .private-info {
+  height: 42px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.profile .first-name {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-left: 6.03px;
+  margin-top: 52px;
+  white-space: nowrap;
+}
+
+.profile .zhimin {
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -23px;
+  margin-left: 4.15px;
+  margin-top: 25px;
+  min-height: 17px;
+  white-space: nowrap;
+}
+
+.profile .email {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-left: 4.15px;
+  margin-top: 50px;
+  white-space: nowrap;
+}
+
+.profile .johndoeexamplecom {
+  align-self: flex-end;
+  cursor: pointer;
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -22px;
+  margin-top: 13px;
+  min-height: 18px;
+  text-decoration: underline;
+  white-space: nowrap;
+  width: 362px;
+}
+
+.profile .display-name {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-left: 4.15px;
+  margin-top: 56px;
+  white-space: nowrap;
+}
+
+.profile .name-1 {
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -22px;
+  margin-left: 6.03px;
+  margin-top: 19px;
+  min-height: 18px;
+  white-space: nowrap;
+}
+
+.profile .other-links {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-left: 13.55px;
+  margin-top: 140px;
+  white-space: nowrap;
+}
+
+.profile .flex-col-1 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60.92px;
+  min-height: 257px;
+  width: 279px;
+}
+
+.profile .last-name {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  white-space: nowrap;
+}
+
+.profile .meng {
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -23px;
+  margin-top: 27px;
+  min-height: 17px;
+  white-space: nowrap;
+}
+
+.profile .phone {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: 48px;
+  white-space: nowrap;
+}
+
+.profile .phone-1 {
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -22px;
+  margin-top: 17px;
+  min-height: 18px;
+  white-space: nowrap;
+}
+
+.profile .title {
+  height: 13px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: 46px;
+  white-space: nowrap;
+}
+
+.profile .athlete {
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -22px;
+  margin-top: 27px;
+  min-height: 18px;
+  white-space: nowrap;
+}
+
+.profile .httpswwwlinkedin {
+  cursor: pointer;
+  letter-spacing: 3.00px;
+  line-height: 40px;
+  margin-bottom: -22px;
+  margin-left: 6.03px;
+  min-height: 18px;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.profile .about {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  height: 302px;
+  margin-right: 4.0px;
+  margin-top: 13px;
+  overflow: hidden;
+  padding: 16px 49px;
+  width: 1354px;
+}
+
+.profile .about-1 {
+  letter-spacing: 0;
+  line-height: 64.8px;
+  margin-left: 1px;
+  min-height: 65px;
+  white-space: nowrap;
+}
+
+.profile .the-star-quarterback {
+  align-items: flex-start;
+  align-self: flex-end;
+  display: flex;
+  height: 135px;
+  min-width: 1255px;
+}
+
+.profile .the-star-quarterback-1 {
+  letter-spacing: 3.20px;
+  line-height: 40px;
+  margin-top: -1px;
+  min-height: 135px;
+  width: 1255px;
+}
+
+.profile .button-1 {
+  align-items: flex-end;
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  display: flex;
+  height: 52px;
+  margin-left: 1.0px;
+  margin-top: 66px;
+  min-width: 343px;
+  padding: 8px 111.3px;
+}
+
+.profile .next {
+  color: var(--coffee);
+  font-family: var(--font-family-roboto);
+  font-size: 30px;
+  font-weight: 900;
+  height: 35px;
+  letter-spacing: 1.20px;
+  line-height: normal;
+  min-width: 119px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.profile .footer {
+  align-items: flex-start;
+  margin-top: 66px;
+}
+
+.profile .footer-1 {
+  align-items: center;
+  height: 69px;
+  padding: 0 231.1px;
+}
+
+.profile .component {
+  align-items: flex-start;
+  display: flex;
+  min-width: 1440px;
+}
+
+.profile .experience-2 {
+  position: relative;
+  width: fit-content;
+}
+
+.profile .text-2 {
+  letter-spacing: 3.20px;
+  line-height: 40px;
+  position: relative;
+  width: 1255px;
+}
