@@ -8,205 +8,175 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/connect.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
+    <link rel="stylesheet" type="text/css" href="css/connect.css" />
+    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="css/globals.css" />
   </head>
-  <body style="margin: 0">
+  <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="connect" />
     <div class="container-center-horizontal">
       <div class="connect screen">
-        <div class="overlap-group3">
-          <div class="admissions">
-            <div class="overlap-group1">
-              <div class="divl-wb-aav"></div>
-              <h1 class="heading-2-connect valign-text-middle montserrat-normal-black-56px">About us</h1>
-              <img class="rectangle" src="" alt="Rectangle 4" />
-              <img class="rectangle" src="" alt="Rectangle 5" />
-              <div class="panels">
-                <article class="panel">
-                  <div class="all all-3">
-                    <div class="banner banner-3">
-                      <div class="price">
-                        <div class="type roboto-normal-white-29-2px">Free</div>
-                        <div class="frame-5 frame"><div class="per-month roboto-normal-white-13-3px">Forever</div></div>
-                      </div>
-                    </div>
-                    <div class="content">
-                      <div class="features">
-                        <p class="plan-feature-first plan-feature-3 roboto-normal-black-russian-13-3px">
-                          Upload up to 5 highlights videos
-                        </p>
-                        <p class="plan-feature roboto-normal-black-russian-13-3px">
-                          Need to connect with scout before<br />sending message
-                        </p>
-                        <div class="plan-feature-2 plan-feature-3"></div>
-                        <div class="frame-3 frame"><div class="previous-plan"></div></div>
-                      </div>
-                      <div class="button"><div class="buy-3 roboto-normal-mandy-15-3px">Buy</div></div>
-                    </div>
-                  </div>
-                </article>
-                <article class="panel">
-                  <div class="all-1 all-3">
-                    <div class="banner-1 banner-3">
-                      <div class="price">
-                        <div class="type roboto-normal-white-29-2px">Starter</div>
-                        <div class="frame-5-1 frame-5-3">
-                          <div class="overlap-group">
-                            <div class="frame-4 frame">
-                              <div class="price-1">$</div>
-                              <div class="number">99</div>
-                            </div>
-                            <div class="per-month-1 per-month-3 roboto-normal-white-13-3px">Per Year</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="content">
-                      <div class="features roboto-normal-black-russian-13-3px">
-                        <p class="plan-feature-first-1 plan-feature-first-3">
-                          Everything included in the Pro <br />membership PLUS...
-                        </p>
-                        <p class="plan-feature">Unlimited uploads of highlights videos</p>
-                        <p class="plan-feature">
-                          Unlimited free direct messages to <br />scouts without prior connection
-                        </p>
-                        <p class="plan-feature">Free 1-on-1 30 min session with <br />one of our consultants</p>
-                      </div>
-                      <div class="button"><div class="buy-3 roboto-normal-mandy-15-3px">Buy</div></div>
-                    </div>
-                  </div>
-                </article>
-                <article class="panel">
-                  <div class="all-2 all-3">
-                    <div class="banner-2 banner-3">
-                      <div class="price">
-                        <div class="type roboto-normal-white-29-2px">Basic</div>
-                        <div class="frame-5-2 frame-5-3">
-                          <div class="overlap-group-1">
-                            <div class="frame-4 frame">
-                              <div class="price-1">$</div>
-                              <div class="x30">9.9</div>
-                            </div>
-                            <div class="per-month-2 per-month-3 roboto-normal-white-13-3px">Per Month</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="content">
-                      <div class="features roboto-normal-black-russian-13-3px">
-                        <p class="plan-feature-first-3">Upload up to 10 highlights videos</p>
-                        <p class="plan-feature-3">Can see who visits your profile</p>
-                        <p class="plan-feature-3">
-                          5/month free direct messages to <br />scouts without prior connection
-                        </p>
-                        <p class="plan-feature">
-                          More options to personalise<br />
-                          vour profile
-                        </p>
-                        <div class="frame-3 frame"></div>
-                      </div>
-                      <div class="button"><div class="buy-3 roboto-normal-mandy-15-3px">Buy</div></div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-          <div class="search">
-            <div class="search-1">
-              <div class="diva-xob-on">
-                <a href="search.html"><img class="svg" src="img/svg-13.svg" alt="SVG" /> </a>
-                <div class="divn-nn3mc">
-                  <div class="divl-yhw1-a">
-                    <div class="input-find-universit">
-                      <p class="find-universities-t valign-text-middle montserrat-normal-black-7-7px">
-                        Find universities, teams, coaches and more.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a href="login.html">
-            <div class="button-1">
-              <img class="svg-1" src="img/svg-16.svg" alt="SVG" />
+        <header class="header">
+          <a href="connect.html"
+            ><p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-20px">
+              <span
+                ><span class="span0 montserrat-bold-christine-20px">HighLytr</span
+                ><span class="span1 montserrat-normal-christine-14px"
+                  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Explore&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Resources&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Connect</span
+                >
+              </span>
+            </p> </a
+          ><a href="login-1.html" class="align-self-flex-end">
+            <div class="button-1 button-2">
+              <img class="svg" src="img/svg.svg" alt="SVG" />
               <div class="sign-in valign-text-middle montserrat-normal-christine-16px">Sign In</div>
             </div></a
           >
           <div class="cart">
-            <div class="overlap-group2">
-              <img class="vector" src="img/vector-5.svg" alt="Vector" />
-              <img class="vector-1" src="img/vector-10.svg" alt="Vector" />
-              <div class="number-1 inter-normal-blue-16-6px">0</div>
-            </div>
+            <img class="vector" src="img/vector.svg" alt="Vector" />
+            <img class="vector-1" src="img/vector-1.svg" alt="Vector" />
+            <div class="number number-2 inter-normal-blue-16-6px">0</div>
           </div>
-          <a href="home.html">
-            <div class="item-link-home item-link">
-              <div class="item-link-home-1 valign-text-middle montserrat-normal-christine-14px">Home</div>
-            </div></a
-          ><a href="explore.html">
-            <div class="item-link-explore item-link">
-              <div class="item-link-explore-1 valign-text-middle montserrat-normal-black-14px">Explore</div>
-            </div></a
-          ><a href="resources.html">
-            <div class="item-link-resources item-link">
-              <div class="item-link-resources-1 valign-text-middle item-link-resources-3 montserrat-normal-black-14px">
-                Resources
-              </div>
-            </div></a
-          >
-          <div class="item-link-resources-2 valign-text-middle item-link-resources-3 montserrat-normal-black-14px">
-            Connect
-          </div>
-          <div class="heading-2-link-high-lytr">
-            <div class="heading-2-link-high-lytr-1 valign-text-middle inter-normal-christine-25px">HighLytr</div>
-          </div>
+        </header>
+        <div class="overlap-group1">
           <p class="high-lytr-is-a-ground valign-text-middle inter-normal-black-24px">
-            HighLytr is a groundbreaking platform designed to empower high school athletes, with a focus on those<br />
-            outside the United States, by providing them with a global platform to showcase their talents, connect
-            <br />with college coaches, and secure scholarships to pursue their athletic and academic dreams. We<br />believe
-            that talent knows no boundaries, and HighLytr seeks to level the playing field by connecting<br />athletes
-            from diverse backgrounds with college opportunities.<br /><br />We are a team of five graduate students from
-            the Master of Science in Entrepreneurship and Innovation <br />(MSEI) program at the University of San
-            Francisco. Our backgrounds and experiences span various <br />disciplines, bringing a diverse set of skills
-            to the table. Together, we are passionate about innovation<br />and making a positive impact.
+            &nbsp;&nbsp;&nbsp;&nbsp;HighLytr is a groundbreaking platform designed to empower high school athletes, with
+            a focus on those outside the United States, by providing them with a global platform to showcase their
+            talents, connect with college coaches, and secure scholarships to pursue their athletic and academic
+            dreams.<br />
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;We believe that talent knows no boundaries, and HighLytr seeks to level the
+            playing field by connecting athletes from diverse backgrounds with college opportunities.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;We
+            are a team of five graduate students from the Master of Science in Entrepreneurship and Innovation (MSEI)
+            program at the University of San Francisco. Our backgrounds and experiences span various disciplines,
+            bringing a diverse set of skills to the table. Together, we are passionate about innovation and making a
+            positive impact.
           </p>
-        </div>
-        <div class="flex-row flex">
-          <div class="flex-col flex">
-            <img class="linkedin" src="img/linkedin.svg" alt="linkedin" />
-            <div class="flex-col-item"><img class="subtract" src="img/subtract-2.svg" alt="Subtract" /></div>
-            <div class="flex-col-item"><img class="subtract" src="img/subtract-3.svg" alt="Subtract" /></div>
-            <div class="flex-col-item"><img class="subtract" src="img/subtract.svg" alt="Subtract" /></div>
-            <div class="instagram"><img class="subtract-1" src="img/subtract-1.svg" alt="Subtract" /></div>
+          <h1 class="heading-2-connect valign-text-middle montserrat-normal-black-56px">About us</h1>
+          <div class="panels">
+            <article class="panel">
+              <div class="all all-2">
+                <div class="banner banner-2">
+                  <div class="price">
+                    <div class="type">Starter</div>
+                    <div class="frame-5">
+                      <div class="overlap-group">
+                        <div class="frame-4">
+                          <div class="price-1">$</div>
+                          <div class="number-1 number-2">99</div>
+                        </div>
+                        <div class="per-month">Per Year</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content content-2">
+                  <div class="features roboto-normal-black-russian-13-3px">
+                    <p class="plan-feature-first plan-feature-2">
+                      Everything included in the Pro <br />membership PLUS...
+                    </p>
+                    <p class="plan-feature">Unlimited uploads of highlights videos</p>
+                    <p class="plan-feature">Unlimited free direct messages to <br />scouts without prior connection</p>
+                    <p class="plan-feature">Free 1-on-1 30 min session with <br />one of our consultants</p>
+                  </div>
+                  <div class="button button-2"><div class="buy-2">Buy</div></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel">
+              <div class="all-1 all-2">
+                <div class="banner-1 banner-2">
+                  <div class="price">
+                    <div class="type">Basic</div>
+                    <div class="frame-5-1">
+                      <div class="overlap-group-1">
+                        <div class="frame-4">
+                          <div class="price-1">$</div>
+                          <div class="x30">9.9</div>
+                        </div>
+                        <div class="per-month-1">Per Month</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-1 content-2">
+                  <div class="features roboto-normal-black-russian-13-3px">
+                    <p class="plan-feature-first-1">Upload up to 10 highlights videos</p>
+                    <p class="plan-feature-2">Can see who visits your profile</p>
+                    <p class="plan-feature-2">5/month free direct messages to <br />scouts without prior connection</p>
+                    <p class="plan-feature">
+                      More options to personalise<br />
+                      vour profile
+                    </p>
+                    <div class="frame-3"></div>
+                  </div>
+                  <div class="button button-2"><div class="buy-2">Buy</div></div>
+                </div>
+              </div>
+            </article>
           </div>
-          <div class="https-container">
+        </div>
+        <div class="component-8">
+          <div class="link">
+            <img class="twitter" src="" alt="Twitter" />
+            <a href="https://twitter.com/High_Lytr" target="_blank"
+              ><div class="https valign-text-middle inter-normal-black-24px">https://twitter.com/High_Lytr</div>
+            </a>
+          </div>
+          <div class="link">
+            <img class="facebook" src="" alt="Facebook" />
+            <a href="https://www.instagram.com/high_lytr/" target="_blank"
+              ><div class="https valign-text-middle inter-normal-black-24px">https://www.facebook.com/HighLytr/</div>
+            </a>
+          </div>
+          <div class="link">
+            <div class="instagram"><img class="vector-2" src="" alt="Vector" /></div>
+            <a href="https://www.youtube.com/channel/UCta-xzGDGhrFUkyTeL__Ylg" target="_blank"
+              ><div class="https valign-text-middle inter-normal-black-24px">https://www.instagram.com/high_lytr/</div>
+            </a>
+          </div>
+          <div class="linklinkedin">
+            <img class="linkedin" src="" alt="linkedin" />
             <a href="https://www.youtube.com/channel/UCta-xzGDGhrFUkyTeL__Ylg" target="_blank"
               ><div class="httpswwwlinkedin valign-text-middle inter-normal-black-24px">
                 https://www.linkedin.com/company/highlytr/
-              </div> </a
-            ><a href="https://twitter.com/High_Lytr" target="_blank"
-              ><div class="httpswwwyoutube valign-text-middle inter-normal-black-24px">
-                https://www.youtube.com/channel/UCta-xzGDGhrFUkyTeL__Ylg
-              </div> </a
-            ><a href="https://www.instagram.com/high_lytr/" target="_blank"
-              ><div class="httpswwwfacebookcom-high-lytr valign-text-middle inter-normal-black-24px">
-                https://www.facebook.com/HighLytr/
-              </div> </a
-            ><a href="https://twitter.com/High_Lytr" target="_blank"
-              ><div class="httpstwittercom-high_-lytr valign-text-middle inter-normal-black-24px">
-                https://twitter.com/High_Lytr
-              </div> </a
-            ><a href="https://www.youtube.com/channel/UCta-xzGDGhrFUkyTeL__Ylg" target="_blank"
-              ><div class="httpswwwinstagramcomhigh_lytr valign-text-middle inter-normal-black-24px">
-                https://www.instagram.com/high_lytr/
               </div>
             </a>
           </div>
         </div>
+        <footer class="footer montserrat-normal-black-16px">
+          <div class="copyright valign-text-middle">© 2023 HighLytr</div>
+          <div class="list-social-bar">
+            <img
+              class="item-link-wow-image"
+              src="img/item---link---wow-image---40898a93cfff4578b1779073137eb1b4-png@2x.png"
+              alt="Item  Link  wow-image  40898a93cfff4578b1779073137eb1b4.png"
+            />
+            <img
+              class="item-link-wow-image"
+              src="img/item---link---wow-image---aebe5b6fd55f471a936c72ff2c8289d7-png@2x.png"
+              alt="Item  Link  wow-image  aebe5b6fd55f471a936c72ff2c8289d7.png"
+            />
+            <img
+              class="item-link-wow-image"
+              src="img/item---link---wow-image---aeb686ff41244d85bc1232fcf7325ec0-png@2x.png"
+              alt="Item  Link  wow-image  aeb686ff41244d85bc1232fcf7325ec0.png"
+            />
+            <img
+              class="item-link-wow-image"
+              src="img/item---link---wow-image---fcfebdfae12a44f993a94aeed8e2e66b-png@2x.png"
+              alt="Item  Link  wow-image  fcfebdfae12a44f993a94aeed8e2e66b.png"
+            />
+            <img
+              class="item-link-wow-image"
+              src="img/item---link---wow-image---a1fed5f687844a6e8f42e017f71dfcb4-png@2x.png"
+              alt="Item  Link  wow-image  a1fed5f687844a6e8f42e017f71dfcb4.png"
+            />
+          </div>
+          <div class="link-privacy-policy valign-text-middle">Privacy Policy</div>
+          <div class="link-terms-of-use valign-text-middle">Terms of Use</div>
+        </footer>
       </div>
     </div>
   </body>
