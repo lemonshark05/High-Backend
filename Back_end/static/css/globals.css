@@ -1,5 +1,5 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,600|Roboto:900,600,300,500,400|Inter:400,700|Open+Sans:400|Molengo:400|Source+Sans+Pro:700|Comfortaa:700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700,600,400|Inter:400,700|Roboto:900,700,600,300,500,400|Source+Sans+Pro:700|Molengo:400|Comfortaa:700|Open+Sans:400");
 /* The following line is used to measure usage of this code. You can remove it if you want. */
 @import url("https://px.animaapp.com/649e87c3b0d28fb8f43a8760.649e87c4f8544d5e7e06621d.CaFbfxT.hcp.png");
 
@@ -29,12 +29,12 @@
   pointer-events: auto;
 }
 
-.align-self-flex-start {
-  align-self: flex-start;
-}
-
 .align-self-flex-end {
   align-self: flex-end;
+}
+
+.align-self-flex-center {
+  align-self: flex-center;
 }
 
 .valign-text-middle {
@@ -47,105 +47,109 @@
   box-sizing: border-box;
 }
 
-.heading-2-link-high-lytr-1 {
-  height: 41px;
-  letter-spacing: 0.32px;
-  line-height: normal;
-  margin-top: -1px;
-  width: 105px;
-}
-
-.item-link-home-1 {
-  height: 18px;
-  letter-spacing: 0.70px;
-  line-height: normal;
-  margin-top: -1px;
-  width: 47px;
-}
-
-.item-link-explore-1 {
-  height: 18px;
-  letter-spacing: 0.70px;
-  line-height: normal;
-  margin-top: -1px;
-  width: 58px;
-}
-
-.item-link-connect-1 {
-  height: 18px;
-  letter-spacing: 0.70px;
-  line-height: normal;
-  margin-top: -1px;
-  width: 65px;
-}
-
-.diva-xob-on {
-  align-items: center;
-  background-color: var(--white);
-  display: flex;
-  gap: 6.25px;
-  padding: 0px 21.88px 0px 6.25px;
-  position: relative;
-  width: fit-content;
-}
-
-.svg {
+.high-lytr-home-explore-resources-connect {
   cursor: pointer;
-  height: 7.29px;
-  min-width: 7.29px;
-  position: relative;
+  height: 30px;
+  line-height: 20px;
+  width: 544px;
 }
 
-.divn-nn3mc {
-  align-items: flex-start;
-  display: flex;
+.get-started-1 {
+  color: var(--white);
+  font-family: var(--font-family-inter);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.10px;
+  line-height: normal;
+  margin-top: -2.00px;
   position: relative;
-  width: 164.06px;
-}
-
-.input-find-universit {
-  align-items: flex-start;
-  display: flex;
-  padding: 0px 34.7px 0px 0px;
-  position: relative;
+  text-align: center;
   width: fit-content;
 }
 
-.find-universities-t {
+.copyright {
+  height: 19px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-bottom: 4.0px;
+  text-align: center;
+  white-space: nowrap;
+  width: 129px;
+}
+
+.list-social-bar {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  margin-left: 235px;
+  min-width: 235px;
+}
+
+.item-link-wow-image {
+  height: 39px;
+  width: 39px;
+}
+
+.link-privacy-policy {
+  height: 19px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-bottom: 4.0px;
+  margin-left: 144px;
+  text-align: center;
+  white-space: nowrap;
+  width: 109px;
+}
+
+.link-terms-of-use {
+  height: 19px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-bottom: 4.0px;
+  margin-left: 15px;
+  text-align: center;
+  white-space: nowrap;
+  width: 103px;
+}
+
+.information {
+  align-items: flex-start;
+  display: flex;
+  gap: 17px;
+  height: 281px;
+  min-width: 415px;
+}
+
+.flex-col-item {
+  height: 35px;
+  letter-spacing: 0.52px;
+  line-height: normal;
+  text-align: center;
+  width: 148px;
+}
+
+.frame-container {
+  align-self: flex-end;
+  flex-direction: column;
+  gap: 54px;
+  min-height: 274px;
+}
+
+.frame-85 {
+  border: 1px solid;
+  border-color: var(--black-2);
+  border-radius: 10px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.user-name {
+  height: 30px;
   letter-spacing: 0;
   line-height: normal;
-  margin-top: -0.64px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.svg-1 {
-  align-self: center;
-  height: 26px;
-  margin-bottom: 0.02px;
-  width: 26px;
-}
-
-.sign-in {
-  height: 29px;
-  letter-spacing: 0;
-  line-height: 28.8px;
-  min-width: 56px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.u {
-  color: var(--white);
-  font-family: var(--font-family-montserrat);
-  font-size: 128px;
-  font-weight: 700;
-  height: 103px;
-  letter-spacing: 0;
-  line-height: 28.8px;
-  text-align: center;
-  width: 116px;
+  margin-left: 50px;
+  margin-top: -3px;
+  width: 300px;
 }
 
 .divrc-anchor-logo-img {
@@ -168,4 +172,9 @@
 
 .link-terms {
   width: 23px;
+}
+
+.footer-2 {
+  display: flex;
+  min-width: 1440px;
 }
