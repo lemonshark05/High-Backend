@@ -7,7 +7,6 @@ from sqlalchemy.orm import relationship
 from flask import jsonify
 from sqlalchemy import inspect
 from datetime import datetime
-from sqlalchemy.orm import RelationshipProperty
 
 db = SQLAlchemy()
 
@@ -107,6 +106,9 @@ class User(Base):
     interested_in_athletes = db.Column(JSONB)
 
     role = relationship('UserRole', backref='users')
+
+    def get_password(self):
+        return self.password
 
 class UserExperience(Base):
     __tablename__ = 'UserExperiences'
