@@ -1,79 +1,136 @@
 /* screen - connect */
 
 .connect {
-  align-items: flex-end;
+  align-items: center;
+  background-color: var(--white);
   border: 1px none;
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  min-height: 810px;
+  min-height: 1778px;
   overflow-x: hidden;
   width: 1440px;
 }
 
-.connect .overlap-group3 {
-  height: 701px;
-  margin-right: -22px;
-  margin-top: -27px;
-  position: relative;
-  width: 1438px;
+.connect .header {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 67px;
+  justify-content: flex-start;
+  margin-right: 4.0px;
+  min-width: 1440px;
+  mix-blend-mode: normal;
+  padding: 14px 118px;
+  width: auto;
 }
 
-.connect .admissions {
-  align-items: flex-end;
+.connect .span0 {
+  letter-spacing: 1.00px;
+  line-height: 30px;
+}
+
+.connect .span1 {
+  letter-spacing: 0.70px;
+}
+
+.connect .button-1 {
+  align-self: flex-end;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 0.66px;
+  margin-left: 493px;
+  padding: 2px 0px;
+  width: fit-content;
+}
+
+.connect .svg {
+  height: 26px;
+  min-width: 38px;
+  position: relative;
+}
+
+.connect .sign-in {
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: 56px;
+}
+
+.connect .cart {
+  align-items: center;
+  align-self: center;
   display: flex;
-  height: 701px;
-  left: 0;
-  min-width: 1438px;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 39px;
+  margin-top: 0;
+  position: relative;
+  width: fit-content;
+}
+
+.connect .vector {
+  height: 8.19px;
+  min-width: 16.05px;
+  position: relative;
+}
+
+.connect .vector-1 {
+  height: 28.46px;
+  min-width: 33.34px;
+  position: relative;
+}
+
+.connect .number {
+  left: 12px;
+  letter-spacing: 0;
   position: absolute;
-  top: 0;
+  text-align: center;
+  top: 12px;
+  width: 10px;
 }
 
 .connect .overlap-group1 {
-  height: 1029px;
-  margin-bottom: -353px;
-  margin-left: -22px;
+  height: 1183px;
+  margin-top: 14px;
   position: relative;
-  width: 1438px;
+  width: 1178px;
 }
 
-.connect .divl-wb-aav {
-  background-color: var(--white);
-  height: 701px;
+.connect .high-lytr-is-a-ground {
+  height: 608px;
   left: 0;
+  letter-spacing: 0;
+  line-height: normal;
   position: absolute;
-  top: 0;
-  width: 1438px;
+  top: 81px;
+  width: 1178px;
 }
 
 .connect .heading-2-connect {
-  height: 90px;
-  left: 558px;
+  height: 198px;
+  left: 393px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
   text-align: center;
-  top: 68px;
+  top: 0;
   width: 391px;
-}
-
-.connect .rectangle {
-  height: 119px;
-  left: 647px;
-  position: absolute;
-  top: 557px;
-  width: 379px;
 }
 
 .connect .panels {
   align-items: center;
   display: flex;
   gap: 25.23px;
-  height: 482px;
+  height: 619px;
   justify-content: center;
-  left: 256px;
+  left: 81px;
   position: absolute;
-  top: 547px;
+  top: 564px;
   width: 1017px;
 }
 
@@ -84,11 +141,11 @@
 }
 
 .connect .all {
-  gap: 31px;
+  gap: 15px;
 }
 
 .connect .banner {
-  padding: 62.6px 96.0px;
+  padding: 36.1px 79.5px;
 }
 
 .connect .price {
@@ -103,6 +160,10 @@
 }
 
 .connect .type {
+  color: var(--white);
+  font-family: var(--font-family-roboto);
+  font-size: 29.2px;
+  font-weight: 400;
   letter-spacing: 0.58px;
   line-height: normal;
   margin-top: -1.33px;
@@ -112,102 +173,9 @@
 }
 
 .connect .frame-5 {
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  width: fit-content;
-}
-
-.connect .per-month {
-  letter-spacing: 0.27px;
-  line-height: normal;
-  margin-top: -1.33px;
-  position: relative;
-  width: fit-content;
-}
-
-.connect .content {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 23.9px;
-  justify-content: center;
-  margin-left: 1.33px;
-  position: relative;
-  width: fit-content;
-}
-
-.connect .features {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 14.61px;
-  justify-content: center;
-  position: relative;
-  width: fit-content;
-}
-
-.connect .plan-feature-first {
-  margin-top: -1.33px;
-}
-
-.connect .plan-feature {
-  letter-spacing: 0.27px;
-  line-height: normal;
-  position: relative;
-  text-align: center;
-  width: fit-content;
-}
-
-.connect .plan-feature-2 {
-  color: var(--dark-gray);
-  font-family: var(--font-family-roboto);
-  font-size: var(--font-size-xxs);
-  font-weight: 400;
-}
-
-.connect .frame-3 {
-  align-self: stretch;
-  position: relative;
-}
-
-.connect .previous-plan {
-  color: var(--dark-gray);
-  flex: 1;
-  font-family: var(--font-family-roboto);
-  font-size: var(--font-size-xxs);
-  font-weight: 400;
-  letter-spacing: 0.27px;
-  line-height: normal;
-  margin-top: -1.33px;
-  position: relative;
-  text-align: right;
-}
-
-.connect .button {
-  align-items: center;
-  border: 1.59px solid;
-  border-color: var(--red);
-  border-radius: 82.34px;
-  display: flex;
-  gap: 13.28px;
-  height: 38.51px;
-  justify-content: center;
-  padding: 10.62px 66.4px;
-  position: relative;
-  width: 158.04px;
-}
-
-.connect .all-1 {
-  gap: 15px;
-}
-
-.connect .banner-1 {
-  padding: 36.1px 79.5px;
-}
-
-.connect .frame-5-1 {
+  height: 69px;
   min-width: 72.92px;
+  position: relative;
 }
 
 .connect .overlap-group {
@@ -217,6 +185,8 @@
 }
 
 .connect .frame-4 {
+  align-items: center;
+  display: flex;
   gap: 6.64px;
   justify-content: center;
   left: 0;
@@ -238,37 +208,78 @@
   width: 13.28px;
 }
 
-.connect .number {
+.connect .number-1 {
   color: var(--white);
   font-family: var(--font-family-roboto);
   font-size: 45.2px;
   font-weight: 500;
   letter-spacing: 0.90px;
-  line-height: normal;
   margin-top: -1.33px;
   position: relative;
-  white-space: nowrap;
   width: fit-content;
 }
 
-.connect .per-month-1 {
+.connect .per-month {
+  color: var(--white);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-xxxs);
+  font-weight: 400;
   left: 10px;
+  letter-spacing: 0.27px;
+  line-height: normal;
+  position: absolute;
+  top: 52px;
 }
 
-.connect .plan-feature-first-1 {
+.connect .content {
+  gap: 23.9px;
+}
+
+.connect .features {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14.61px;
+  justify-content: center;
+  position: relative;
+  width: fit-content;
+}
+
+.connect .plan-feature-first {
+  margin-top: -1.33px;
   text-align: center;
 }
 
-.connect .all-2 {
-  gap: 8px;
+.connect .plan-feature {
+  letter-spacing: 0.27px;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+  width: fit-content;
 }
 
-.connect .banner-2 {
+.connect .button {
+  border: 1.59px solid;
+  border-color: var(--red);
+  border-radius: 82.34px;
+  gap: 13.28px;
+  height: 38.51px;
+  padding: 10.62px 66.4px;
+  width: 158.04px;
+}
+
+.connect .all-1 {
+  gap: 18px;
+}
+
+.connect .banner-1 {
   padding: 36.1px 82.5px;
 }
 
-.connect .frame-5-2 {
+.connect .frame-5-1 {
+  height: 69px;
   min-width: 85.92px;
+  position: relative;
 }
 
 .connect .overlap-group-1 {
@@ -290,258 +301,135 @@
   width: fit-content;
 }
 
-.connect .per-month-2 {
+.connect .per-month-1 {
+  color: var(--white);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-xxxs);
+  font-weight: 400;
   left: 11px;
-}
-
-.connect .search {
-  align-items: flex-end;
-  border: 0.52px solid;
-  border-color: var(--black-3);
-  border-radius: 5.21px;
-  display: flex;
-  height: 25px;
-  left: 978px;
-  overflow: hidden;
+  letter-spacing: 0.27px;
+  line-height: normal;
   position: absolute;
   top: 52px;
-  width: 207px;
 }
 
-.connect .search-1 {
-  align-items: flex-start;
-  display: flex;
-  height: 24px;
-  margin-bottom: 0;
-  margin-left: 1px;
-  width: 206px;
+.connect .content-1 {
+  gap: 3px;
 }
 
-.connect .divl-yhw1-a {
-  align-items: flex-start;
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  padding: 6.83px 0px 7.76px;
+.connect .plan-feature-first-1 {
+  letter-spacing: 0.27px;
+  line-height: normal;
+  margin-top: -1.33px;
   position: relative;
+  width: fit-content;
 }
 
-.connect .button-1 {
-  align-items: flex-start;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  gap: 14px;
-  height: 41px;
-  justify-content: flex-end;
-  left: 1194px;
-  min-width: 120px;
-  padding: 4px 10px;
-  position: absolute;
-  top: 43px;
-}
-
-.connect .cart {
+.connect .frame-3 {
   align-items: center;
+  align-self: stretch;
   display: flex;
-  height: 42px;
-  justify-content: flex-end;
-  left: 1314px;
-  min-width: 35px;
-  padding: 0 0.8px;
-  position: absolute;
-  top: 42px;
-}
-
-.connect .overlap-group2 {
-  height: 42px;
   position: relative;
-  width: 33px;
 }
 
-.connect .vector {
-  height: 33px;
-  left: 0;
-  position: absolute;
-  top: 9px;
-  width: 33px;
+.connect .component-8 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-right: 5.0px;
+  margin-top: 18px;
+  position: relative;
+  width: fit-content;
 }
 
-.connect .vector-1 {
-  height: 10px;
+.connect .link {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  width: fit-content;
+}
+
+.connect .twitter {
+  height: 40px;
+  min-width: 40px;
+  position: relative;
+}
+
+.connect .https {
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 31.9px;
+  margin-top: -1.00px;
+  position: relative;
+  text-decoration: underline;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.connect .facebook {
+  height: 40px;
+  min-width: 40px;
+  position: relative;
+}
+
+.connect .instagram {
+  background: linear-gradient(180deg, rgb(254, 194, 96) 3.65%, rgb(243, 100, 66) 19.79%, rgb(208, 46, 131) 34.38%, rgb(192, 48, 145) 52.6%, rgb(159, 58, 164) 75.52%, rgb(87, 100, 192) 97.92%);
+  border-radius: 5px;
+  height: 40px;
+  min-width: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.connect .vector-2 {
+  height: 22px;
   left: 9px;
   position: absolute;
-  top: 0;
-  width: 16px;
+  top: 9px;
+  width: 22px;
 }
 
-.connect .number-1 {
-  left: 11px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 14px;
-  width: 11px;
-}
-
-.connect .item-link-home {
-  left: 215px;
-  min-width: 47px;
-}
-
-.connect .item-link-explore {
-  left: 280px;
-  min-width: 58px;
-}
-
-.connect .item-link-resources {
-  left: 356px;
-  min-width: 79px;
-}
-
-.connect .item-link-resources-1 {
-  margin-top: -1px;
-}
-
-.connect .item-link-resources-2 {
-  left: 452px;
-  position: absolute;
-  top: 54px;
-}
-
-.connect .heading-2-link-high-lytr {
-  align-items: flex-start;
+.connect .linklinkedin {
+  align-items: center;
   display: flex;
-  height: 41px;
-  left: 71px;
-  min-width: 105px;
-  position: absolute;
-  top: 42px;
-}
-
-.connect .high-lytr-is-a-ground {
-  height: 290px;
-  left: 143px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 205px;
-}
-
-.connect .flex-row {
-  background-color: var(--white);
-  gap: 35px;
-  height: 950px;
-  justify-content: flex-end;
-  margin-right: -2px;
-  min-width: 1440px;
-  padding: 364px 262px;
-}
-
-.connect .flex-col {
-  flex-direction: column;
-  gap: 4px;
-  min-height: 216px;
-  width: 40px;
+  gap: 10px;
+  position: relative;
+  width: fit-content;
 }
 
 .connect .linkedin {
   height: 40px;
-  width: 40px;
-}
-
-.connect .flex-col-item {
-  align-items: flex-end;
-  background-color: var(--white);
-  border-radius: 5px;
-  display: flex;
-  height: 40px;
-  overflow: hidden;
-  width: 40px;
-}
-
-.connect .subtract {
-  height: 88px;
-  margin-bottom: -47.52px;
-  width: 88px;
-}
-
-.connect .instagram {
-  align-items: flex-start;
-  background-color: var(--white);
-  border-radius: 5px;
-  display: flex;
-  overflow: hidden;
-  width: 40px;
-}
-
-.connect .subtract-1 {
-  height: 40px;
-  width: 40px;
-}
-
-.connect .https-container {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  min-height: 210px;
-  width: 728px;
+  min-width: 40px;
+  position: relative;
 }
 
 .connect .httpswwwlinkedin {
   cursor: pointer;
-  height: 32px;
   letter-spacing: 0;
   line-height: 31.9px;
-  margin-left: 4px;
+  position: relative;
   text-decoration: underline;
   white-space: nowrap;
+  width: fit-content;
 }
 
-.connect .httpswwwyoutube {
-  cursor: pointer;
-  height: 32px;
-  letter-spacing: 0;
-  line-height: 31.9px;
-  margin-left: 1px;
-  margin-top: 15px;
-  text-decoration: underline;
-  white-space: nowrap;
+.connect .footer {
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 69px;
+  justify-content: flex-start;
+  margin-top: 222px;
+  min-width: 1440px;
+  padding: 0 231.1px;
+  width: auto;
 }
 
-.connect .httpswwwfacebookcom-high-lytr {
-  cursor: pointer;
-  height: 32px;
-  letter-spacing: 0;
-  line-height: 31.9px;
-  margin-top: 12px;
-  text-decoration: underline;
-  white-space: nowrap;
-}
-
-.connect .httpstwittercom-high_-lytr {
-  cursor: pointer;
-  height: 32px;
-  letter-spacing: 0;
-  line-height: 31.9px;
-  margin-top: 16px;
-  text-decoration: underline;
-  white-space: nowrap;
-}
-
-.connect .httpswwwinstagramcomhigh_lytr {
-  cursor: pointer;
-  height: 32px;
-  letter-spacing: 0;
-  line-height: 31.9px;
-  margin-left: 1px;
-  margin-top: 7px;
-  text-decoration: underline;
-  white-space: nowrap;
-}
-
-.connect .all-3 {
+.connect .all-2 {
   align-items: center;
   background-color: var(--white);
   border-radius: 5.31px 5.31px 0px 0px;
@@ -553,7 +441,7 @@
   width: 252px;
 }
 
-.connect .banner-3 {
+.connect .banner-2 {
   align-items: flex-end;
   background: linear-gradient(180deg, rgb(100.94, 116.34, 255) 0%, rgb(148.75, 159.38, 255) 100%);
   border-radius: 5.31px 5.31px 0px 0px;
@@ -563,7 +451,18 @@
   width: 252px;
 }
 
-.connect .buy-3 {
+.connect .button-2 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.connect .buy-2 {
+  color: var(--red);
+  font-family: var(--font-family-roboto);
+  font-size: 15.3px;
+  font-weight: 400;
   letter-spacing: 0.31px;
   line-height: normal;
   margin-left: -0.38px;
@@ -574,55 +473,24 @@
   width: fit-content;
 }
 
-.connect .flex {
-  align-items: flex-start;
-  display: flex;
-}
-
-.connect .frame {
+.connect .content-2 {
   align-items: center;
   display: flex;
-}
-
-.connect .frame-5-3 {
-  height: 69px;
-  position: relative;
-}
-
-.connect .item-link {
-  align-items: flex-start;
-  cursor: pointer;
-  display: flex;
-  height: 18px;
-  position: absolute;
-  top: 54px;
-}
-
-.connect .item-link-resources-3 {
-  height: 18px;
-  letter-spacing: 0.70px;
-  line-height: normal;
-  width: 79px;
-}
-
-.connect .per-month-3 {
-  letter-spacing: 0.27px;
-  line-height: normal;
-  position: absolute;
-  top: 52px;
-}
-
-.connect .plan-feature-3 {
-  letter-spacing: 0.27px;
-  line-height: normal;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1.33px;
   position: relative;
   width: fit-content;
 }
 
-.connect .plan-feature-first-3 {
+.connect .number-2 {
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.connect .plan-feature-2 {
   letter-spacing: 0.27px;
   line-height: normal;
-  margin-top: -1.33px;
   position: relative;
   width: fit-content;
 }

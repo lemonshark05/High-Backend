@@ -1,0 +1,175 @@
+/* screen - login-1 */
+
+.login-1 {
+  align-items: center;
+  background-color: var(--white);
+  border: 1px none;
+  display: flex;
+  flex-direction: column;
+  height: 810px;
+  width: 1440px;
+}
+
+.login-1 .vector {
+  align-self: flex-end;
+  height: 17px;
+  margin-right: 64.17px;
+  margin-top: 64px;
+  width: 17px;
+}
+
+.login-1 .heading-1-log-in {
+  color: var(--black-2);
+  font-family: var(--font-family-inter);
+  font-size: 48px;
+  font-weight: 400;
+  height: 48px;
+  letter-spacing: 0;
+  line-height: 48px;
+  margin-right: 0.04px;
+  margin-top: 103px;
+  min-width: 140px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.login-1 .component-1 {
+  align-items: flex-start;
+  display: flex;
+  gap: 5px;
+  margin-left: 3.36px;
+  margin-top: 24px;
+  min-width: 225px;
+}
+
+.login-1 .new-to-this-site {
+  color: var(--black-2);
+  font-family: var(--font-family-montserrat);
+  font-size: 18px;
+  font-weight: 400;
+  height: 33px;
+  letter-spacing: 0;
+  line-height: 32.4px;
+  margin-top: -1px;
+  min-width: 148px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.login-1 .button-sign-up {
+  color: var(--christine);
+  font-family: var(--font-family-montserrat);
+  font-size: 18px;
+  font-weight: 400;
+  height: 33px;
+  letter-spacing: 0;
+  line-height: 32.4px;
+  margin-top: -1px;
+  white-space: nowrap;
+}
+
+.login-1 .button {
+  align-items: flex-start;
+  background-color: #1878f2;
+  border-radius: 10px;
+  display: flex;
+  margin-top: 96px;
+  padding: 15px 83.61px 15px 84.39px;
+  position: relative;
+  width: fit-content;
+}
+
+.login-1 .log-in-with-facebook {
+  color: var(--white);
+}
+
+.login-1 .or {
+  align-items: flex-end;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #c7c7c7;
+  display: flex;
+  height: 12px;
+  margin-top: 16px;
+  min-width: 320px;
+  padding: 0 138.8px;
+}
+
+.login-1 .span {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -11px;
+  min-width: 42px;
+  padding: 0 12.8px;
+}
+
+.login-1 .or-1 {
+  height: 19px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1px;
+  text-align: center;
+  white-space: nowrap;
+  width: 17px;
+}
+
+.login-1 .button-1 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: #c7c7c7;
+  border-radius: 10px;
+  display: flex;
+  margin-top: 24px;
+  padding: 11px 98.48px 11px 99.52px;
+  position: relative;
+  width: fit-content;
+}
+
+.login-1 .log-in-with-email {
+  color: var(--black-2);
+}
+
+.login-1 .privacy {
+  align-items: center;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 211px;
+  min-height: 74px;
+  padding: 5px 0;
+  width: 70px;
+}
+
+.login-1 .text-2 {
+  height: 9px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  text-align: center;
+  white-space: nowrap;
+  width: 6px;
+}
+
+.login-1 .link {
+  height: 9px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.login-1 .log-in-with {
+  font-family: var(--font-family-arial-regular);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}

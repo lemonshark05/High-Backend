@@ -1,281 +1,200 @@
 /* screen - register */
 
 .register {
-  align-items: flex-start;
-  background-color: var(--white);
+  align-items: center;
+  background-color: #faf9f8;
   border: 1px none;
   display: flex;
-  height: 810px;
+  flex-direction: column;
+  min-height: 1678px;
+  width: 1440px;
+}
+
+.register .header {
+  align-items: flex-start;
+  background-color: #f1f0ef;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 67px;
+  justify-content: flex-start;
   min-width: 1440px;
+  mix-blend-mode: normal;
+  padding: 14px 118px;
+  width: auto;
 }
 
-.register .overlap-group7 {
-  height: 1608px;
+.register .span0 {
+  letter-spacing: 1.00px;
+  line-height: 30px;
+}
+
+.register .span1 {
+  letter-spacing: 0.70px;
+}
+
+.register .button {
+  align-self: flex-end;
+  border-radius: 10px;
+  justify-content: center;
+  margin-bottom: 0.66px;
+  margin-left: 493px;
+  padding: 2px 0px;
   position: relative;
-  width: 1440px;
+  width: fit-content;
 }
 
-.register .divl-wb-aav {
-  background-color: #f0efee;
-  height: 1597px;
-  left: 0;
+.register .svg {
+  height: 26px;
+  min-width: 38px;
+  position: relative;
+}
+
+.register .sign-in {
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: 56px;
+}
+
+.register .cart {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 39px;
+  margin-top: 0;
+  position: relative;
+  width: fit-content;
+}
+
+.register .vector {
+  height: 8.19px;
+  min-width: 16.05px;
+  position: relative;
+}
+
+.register .vector-1 {
+  height: 28.46px;
+  min-width: 33.34px;
+  position: relative;
+}
+
+.register .number {
+  left: 12px;
+  letter-spacing: 0;
+  line-height: normal;
   position: absolute;
-  top: 11px;
-  width: 1440px;
+  text-align: center;
+  top: 12px;
+  white-space: nowrap;
+  width: 10px;
 }
 
-.register .divl-wb-aav-1 {
-  background-color: var(--white);
-  height: 82px;
-  top: 0;
-}
-
-.register .rectangle-9 {
-  background-color: var(--white);
-  border-radius: 50px;
-  height: 473px;
-  left: 51px;
-  position: absolute;
-  top: 944px;
-  width: 1353px;
-}
-
-.register .divl-wb-aav-2 {
+.register .component-12 {
+  align-items: center;
   background-color: var(--coffee);
+  border-radius: 24px;
+  display: flex;
+  gap: 23px;
   height: 312px;
-  top: 82px;
+  margin-right: 19.0px;
+  margin-top: 53px;
+  min-width: 1203px;
+  padding: 12px 48px;
 }
 
-.register .rectangle-4 {
-  background-color: var(--white);
-  border-radius: 50px;
-  height: 473px;
-  left: 43px;
-  position: absolute;
-  top: 433px;
-  width: 1353px;
+.register .flex-col-1 {
+  align-self: flex-end;
+  gap: 16px;
+  min-height: 267px;
+  width: 283px;
+}
+
+.register .user-icon {
+  align-items: flex-start;
+  background-color: var(--sand-dune);
+  border-radius: 111px;
+  display: flex;
+  height: 222px;
+  margin-left: 1.0px;
+  min-width: 222px;
+  padding: 58px 53px;
+}
+
+.register .u {
+  height: 103px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  text-align: center;
+  width: 116px;
+}
+
+.register .followers-0-following-0 {
+  height: 29px;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  min-width: 283px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.register .name {
+  height: 29px;
+  line-height: 28.8px;
+  margin-bottom: 27.0px;
+  min-width: 173px;
+  white-space: nowrap;
+}
+
+.register .add-schools {
+  gap: 55px;
+  margin-top: 29px;
+  min-height: 378px;
+}
+
+.register .add-interested-universities {
+  color: #161414;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.register .jpg-container {
+  align-items: flex-end;
+  display: flex;
+  min-width: 1020px;
 }
 
 .register .usfcajpg {
   height: 264px;
-  left: 175px;
-  position: absolute;
-  top: 536px;
   width: 259px;
-}
-
-.register .title {
-  left: 91px;
-  letter-spacing: 0;
-  line-height: 64.8px;
-  position: absolute;
-  top: 949px;
-  white-space: nowrap;
-  width: 594px;
 }
 
 .register .stanfordjpg {
   height: 268px;
-  left: 589px;
-  position: absolute;
-  top: 532px;
+  margin-left: 105px;
   width: 263px;
 }
 
 .register .berkeleyjpg {
   height: 268px;
-  left: 986px;
-  position: absolute;
-  top: 532px;
+  margin-left: 121px;
   width: 272px;
 }
 
-.register .add-interested-universities {
-  left: 83px;
-  letter-spacing: 0;
-  line-height: 64.8px;
-  position: absolute;
-  top: 438px;
-  white-space: nowrap;
-  width: 594px;
+.register .pages {
+  margin-top: 37px;
 }
 
-.register .followers-0-following-0 {
-  color: var(--white);
-  font-family: var(--font-family-montserrat);
-  font-size: var(--font-size-m);
-  font-weight: 400;
-  height: 29px;
-  left: 325px;
-  letter-spacing: 0;
-  line-height: 28.8px;
-  position: absolute;
-  text-align: center;
-  top: 273px;
-  white-space: nowrap;
-}
-
-.register .name {
-  color: var(--white);
-  font-family: var(--font-family-montserrat);
-  font-size: var(--font-size-xl);
-  font-weight: 400;
-  height: 29px;
-  left: 333px;
-  line-height: 28.8px;
-  top: 222px;
-  white-space: nowrap;
-}
-
-.register .search {
+.register .overlap-group3 {
   align-items: flex-end;
-  border: 0.52px solid;
-  border-color: var(--black-3);
-  border-radius: 5.21px;
+  background-image: url(../img/diamond-3.svg);
   display: flex;
-  height: 25px;
-  left: 1001px;
-  overflow: hidden;
-  position: absolute;
-  top: 25px;
-  width: 207px;
-}
-
-.register .search-1 {
-  align-items: flex-start;
-  display: flex;
-  height: 24px;
-  margin-bottom: 0;
-  margin-left: 1px;
-  width: 206px;
-}
-
-.register .divl-yhw1-a {
-  align-items: flex-start;
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  padding: 6.83px 0px 7.76px;
-  position: relative;
-}
-
-.register .button {
-  align-items: flex-start;
-  border-radius: 10px;
-  gap: 14px;
-  height: 41px;
-  justify-content: flex-end;
-  left: 1218px;
-  min-width: 120px;
-  padding: 4px 10px;
-  top: 16px;
-}
-
-.register .cart {
-  align-items: center;
-  display: flex;
-  height: 42px;
-  justify-content: flex-end;
-  left: 1338px;
-  min-width: 35px;
-  padding: 0 0.8px;
-  position: absolute;
-  top: 15px;
-}
-
-.register .overlap-group-1 {
-  height: 42px;
-  position: relative;
-  width: 33px;
-}
-
-.register .vector {
-  height: 33px;
-  left: 0;
-  position: absolute;
-  top: 9px;
-  width: 33px;
-}
-
-.register .vector-1 {
-  height: 10px;
-  left: 9px;
-  position: absolute;
-  top: 0;
-  width: 16px;
-}
-
-.register .number {
-  left: 11px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 14px;
-  width: 11px;
-}
-
-.register .item-link-home {
-  left: 239px;
-  min-width: 47px;
-}
-
-.register .item-link-explore {
-  left: 304px;
-  min-width: 58px;
-}
-
-.register .item-link-resources {
-  left: 380px;
-  min-width: 79px;
-}
-
-.register .item-link-resources-1 {
-  height: 18px;
-  letter-spacing: 0.70px;
-  line-height: normal;
-  margin-top: -1px;
-  width: 79px;
-}
-
-.register .item-link-connect {
-  left: 476px;
-  min-width: 65px;
-}
-
-.register .heading-2-link-high-lytr {
-  align-items: flex-start;
-  display: flex;
-  height: 41px;
-  left: 95px;
-  min-width: 105px;
-  position: absolute;
-  top: 15px;
-}
-
-.register .component-5 {
-  background-color: #866f65;
-  border-radius: 111px;
-  height: 222px;
-  left: 64px;
-  min-width: 222px;
-  padding: 58px 53px;
-  top: 127px;
-}
-
-.register .component-6 {
-  gap: 8px;
-  height: 32px;
-  left: 613px;
-  min-width: 155px;
-  top: 852px;
-}
-
-.register .overlap-group {
-  align-items: flex-end;
-  background-size: 100% 100%;
-  display: flex;
-  height: 32px;
   min-width: 32px;
   padding: 7.0px 7px;
 }
@@ -285,10 +204,9 @@
   width: 18px;
 }
 
-.register .overlap-group1 {
+.register .overlap-group {
   align-self: flex-end;
-  background-size: 100% 100%;
-  height: 32px;
+  background-image: url(../img/rectangle.svg);
   position: relative;
   width: 33px;
 }
@@ -304,7 +222,7 @@
 .register .placeholder {
   color: var(--primary);
   font-family: var(--font-family-open_sans);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xxs);
   font-weight: 400;
   left: 12px;
   letter-spacing: 0.25px;
@@ -321,19 +239,121 @@
 }
 
 .register .content-1 {
-  color: #00062b;
+  color: var(--black);
   width: 17px;
 }
 
-.register .button-1 {
+.register .overlap-group4 {
+  align-items: flex-end;
+  background-image: url(../img/diamond-2.svg);
+  display: flex;
+  min-width: 32px;
+  padding: 7.0px 7px;
+}
+
+.register .add-coach {
+  gap: 72px;
+  margin-top: 37px;
+  min-height: 392px;
+}
+
+.register .flex-row {
+  align-items: flex-start;
+  display: flex;
+  gap: 54px;
+  height: 264px;
+  min-width: 1020px;
+}
+
+.register .flex-col-2 {
+  gap: 31px;
+  min-height: 263px;
+  width: 214px;
+}
+
+.register .ellipse {
+  width: 214px;
+}
+
+.register .name-1 {
+  line-height: normal;
+  margin-left: 0.38px;
+  min-height: 29px;
+  min-width: 105px;
+}
+
+.register .flex-col {
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+  min-height: 263px;
+  width: 215px;
+}
+
+.register .ellipse-1 {
+  width: 215px;
+}
+
+.register .jing-wu {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: 0.17px;
+  min-height: 29px;
+  min-width: 91px;
+  text-align: center;
+}
+
+.register .name-2 {
+  line-height: normal;
+  margin-right: 1.66px;
+  min-height: 29px;
+  min-width: 106px;
+}
+
+.register .flex-col-3 {
+  gap: 30px;
+  min-height: 264px;
+  width: 214px;
+}
+
+.register .name-3 {
+  line-height: normal;
+  margin-right: 0;
+  min-height: 31px;
+  width: 86px;
+}
+
+.register .pages-1 {
+  margin-top: 13px;
+}
+
+.register .overlap-group2 {
+  align-items: flex-end;
+  background-image: url(../img/diamond-1.svg);
+  display: flex;
+  min-width: 32px;
+  padding: 7.0px 7px;
+}
+
+.register .overlap-group-1 {
+  align-items: flex-end;
+  background-image: url(../img/diamond.svg);
+  background-size: 100% 100%;
+  display: flex;
+  height: 32px;
+  min-width: 32px;
+  padding: 7.0px 7px;
+}
+
+.register .button-1 {
   background-color: var(--sunset-pearl);
   border-radius: 6px;
   height: 52px;
-  left: 556px;
+  margin-left: 1.0px;
+  margin-top: 37px;
   min-width: 343px;
   padding: 0 17.3px;
-  top: 1512px;
 }
 
 .register .next {
@@ -345,109 +365,46 @@
   white-space: nowrap;
 }
 
-.register .john-johnson {
-  left: 227px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 1265px;
-}
-
-.register .jing-wu {
-  left: 533px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 1271px;
-}
-
-.register .name-1 {
-  left: 824px;
-  line-height: normal;
-  top: 1273px;
-}
-
-.register .name-2 {
-  left: 1142px;
-  line-height: normal;
-  top: 1267px;
-}
-
-.register .component-7 {
-  gap: 8px;
-  height: 32px;
-  left: 642px;
-  min-width: 155px;
-  top: 1355px;
-}
-
-.register .overlap-group6 {
-  align-items: flex-end;
-  background-image: url(../img/diamond-3.svg);
-  background-size: 100% 100%;
+.register .footer {
+  align-items: center;
+  background-color: transparent;
   display: flex;
-  height: 32px;
-  min-width: 32px;
-  padding: 7.0px 7px;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 69px;
+  justify-content: flex-start;
+  margin-top: 138px;
+  min-width: 1440px;
+  padding: 0 231.1px;
+  width: auto;
 }
 
-.register .overlap-group5 {
-  align-self: flex-end;
-  background-image: url(../img/rectangle.svg);
-  background-size: 100% 100%;
-  height: 32px;
-  position: relative;
-  width: 33px;
-}
-
-.register .overlap-group4 {
-  align-items: flex-end;
-  background-image: url(../img/diamond-2.svg);
-  background-size: 100% 100%;
+.register .add {
+  align-items: flex-start;
   display: flex;
-  height: 32px;
-  min-width: 32px;
-  padding: 7.0px 7px;
+  flex-direction: column;
+  margin-right: 12.0px;
+  width: 1020px;
 }
 
-.register .ellipse {
-  left: 176px;
-  width: 207px;
-}
-
-.register .ellipse-1 {
-  left: 1074px;
-  width: 207px;
-}
-
-.register .ellipse-2 {
-  left: 774px;
-  width: 208px;
-}
-
-.register .ellipse-3 {
-  left: 475px;
-  width: 208px;
+.register .add-interested {
+  letter-spacing: 0;
+  line-height: 64.8px;
+  margin-top: -1px;
+  min-height: 56px;
+  white-space: nowrap;
 }
 
 .register .button-2 {
+  align-items: center;
   cursor: pointer;
   display: flex;
-  position: absolute;
-}
-
-.register .component {
-  align-items: flex-start;
-  display: flex;
-  position: absolute;
 }
 
 .register .content-2 {
   align-self: center;
   font-family: var(--font-family-open_sans);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xxs);
   font-weight: 400;
   letter-spacing: 0.25px;
   line-height: 20px;
@@ -455,30 +412,31 @@
   white-space: nowrap;
 }
 
-.register .divl-wb-aav-3 {
-  left: 0;
-  position: absolute;
-  width: 1440px;
-}
-
-.register .ellipse-4 {
+.register .ellipse-2 {
   height: 203px;
   object-fit: cover;
-  position: absolute;
-  top: 1038px;
 }
 
-.register .item-link {
-  align-items: flex-start;
-  cursor: pointer;
+.register .flex-col-4 {
+  align-items: center;
   display: flex;
-  height: 18px;
-  position: absolute;
-  top: 27px;
+  flex-direction: column;
 }
 
-.register .name-3 {
+.register .name-4 {
   letter-spacing: 0;
-  position: absolute;
   text-align: center;
+}
+
+.register .overlap {
+  background-size: 100% 100%;
+  height: 32px;
+}
+
+.register .pages-2 {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+  margin-left: 1.0px;
+  min-width: 155px;
 }

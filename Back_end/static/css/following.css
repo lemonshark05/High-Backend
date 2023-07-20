@@ -1,0 +1,575 @@
+/* screen - following */
+
+.following {
+  align-items: flex-start;
+  background-color: var(--white);
+  border: 1px none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 1320px;
+  width: 1440px;
+}
+
+.following .header {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 67px;
+  justify-content: flex-start;
+  min-width: 1440px;
+  mix-blend-mode: normal;
+  padding: 14px 118px;
+  width: auto;
+}
+
+.following .high-lytr-home-explore-resources-connect {
+  color: var(--christine);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-s);
+  font-weight: 400;
+  height: 30px;
+  line-height: 20px;
+  width: 544px;
+}
+
+.following .span0 {
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 30px;
+}
+
+.following .span1 {
+  font-size: var(--font-size-xxxs);
+  letter-spacing: 0.70px;
+}
+
+.following .button-1 {
+  align-items: center;
+  align-self: flex-end;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  margin-bottom: 0.66px;
+  margin-left: 493px;
+  padding: 2px 0px;
+  position: relative;
+}
+
+.following .svg {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.following .sign-in {
+  color: var(--christine);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-xxs);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: 56px;
+}
+
+.following .cart {
+  align-items: center;
+  align-self: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 39px;
+  margin-top: 0;
+  position: relative;
+}
+
+.following .vector {
+  height: 8.19px;
+  position: relative;
+  width: 16.05px;
+}
+
+.following .vector-1 {
+  height: 28.46px;
+  position: relative;
+  width: 33.34px;
+}
+
+.following .number {
+  color: #0000ee;
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  left: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 12px;
+  white-space: nowrap;
+  width: 10px;
+}
+
+.following .overlap-group-container {
+  align-items: flex-start;
+  background-color: #f2f1f0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-height: 1248px;
+  padding: 24px 37px;
+  width: 1440px;
+}
+
+.following .overlap-group2 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-height: 319px;
+  padding: 14px 42px;
+  width: 1363px;
+}
+
+.following .title {
+  height: 35px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.following .flex-row {
+  height: 187px;
+  margin-left: 25px;
+  min-width: 942px;
+}
+
+.following .ellipse-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  min-height: 187px;
+  width: 80px;
+}
+
+.following .ellipse {
+  height: 76px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.following .name-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 76px;
+  margin-left: 31px;
+  margin-top: 5.16px;
+  min-height: 148px;
+  width: 163px;
+}
+
+.following .name {
+  letter-spacing: 0;
+  line-height: normal;
+  min-height: 36px;
+  white-space: nowrap;
+}
+
+.following .name-1 {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 1px;
+  min-height: 36px;
+  white-space: nowrap;
+}
+
+.following .flex-col {
+  flex-direction: column;
+  gap: 87px;
+  margin-left: 24px;
+  margin-top: 3.16px;
+  min-height: 148px;
+  width: 151px;
+}
+
+.following .coach {
+  margin-right: 5.0px;
+}
+
+.following .athlete {
+  height: 31px;
+  letter-spacing: 3.80px;
+  line-height: normal;
+  text-align: center;
+  width: 151px;
+}
+
+.following .component-container {
+  flex-direction: column;
+  gap: 68px;
+  margin-left: 70px;
+  margin-top: 13.16px;
+  min-height: 156px;
+  width: 170px;
+}
+
+.following .component-23 {
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  cursor: pointer;
+  height: 44px;
+  min-width: 170px;
+  padding: 7px 26px;
+}
+
+.following .delete {
+  min-width: 117px;
+}
+
+.following .component-24 {
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  height: 44px;
+  min-width: 170px;
+  padding: 7px 26px;
+}
+
+.following .component-container-1 {
+  gap: 67px;
+  margin-left: 82px;
+  margin-top: 12.16px;
+  min-height: 155px;
+  width: 171px;
+}
+
+.following .component-21 {
+  background-color: var(--sunglo);
+  border-radius: 6px;
+  height: 44px;
+  min-width: 170px;
+  padding: 7px 23px;
+}
+
+.following .delete-1 {
+  min-width: 122px;
+}
+
+.following .component-22 {
+  background-color: var(--sunglo);
+  border-radius: 6px;
+  height: 44px;
+  margin-left: 1px;
+  min-width: 170px;
+  padding: 7px 23px;
+}
+
+.following .flex-row-1 {
+  align-items: center;
+  align-self: center;
+  background-image: url(../img/rectangle-24.svg);
+  background-size: 100% 100%;
+  display: flex;
+  height: 501px;
+  margin-right: 1.0px;
+  min-width: 1363px;
+  padding: 17px 41px;
+}
+
+.following .flex-col-1 {
+  align-items: center;
+  align-self: flex-start;
+  min-height: 407px;
+  width: 130px;
+}
+
+.following .following-1 {
+  height: 35px;
+  letter-spacing: 0;
+  line-height: normal;
+  min-width: 130px;
+  white-space: nowrap;
+}
+
+.following .ellipse-1 {
+  height: 76px;
+  margin-left: 20.0px;
+  margin-top: 42px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.following .ellipse-2 {
+  height: 76px;
+  margin-left: 20.0px;
+  margin-top: 47px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.following .ellipse-3 {
+  height: 76px;
+  margin-left: 20.0px;
+  margin-top: 55px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.following .name-container-1 {
+  gap: 87px;
+  margin-left: 18px;
+  margin-top: 13.0px;
+  min-height: 282px;
+  width: 136px;
+}
+
+.following .name-2 {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 2px;
+  min-height: 36px;
+  white-space: nowrap;
+}
+
+.following .flex-row-2 {
+  align-items: flex-start;
+  display: flex;
+  height: 301px;
+  margin-left: 36px;
+  margin-top: 26.0px;
+  min-width: 647px;
+}
+
+.following .flex-col-2 {
+  align-items: center;
+  align-self: center;
+  margin-bottom: 8.0px;
+  min-height: 277px;
+  width: 151px;
+}
+
+.following .coach-1 {
+  margin-left: 1.0px;
+}
+
+.following .coach-2 {
+  margin-left: 1.0px;
+  margin-top: 99px;
+}
+
+.following .athlete-1 {
+  height: 31px;
+  letter-spacing: 3.80px;
+  line-height: normal;
+  margin-top: 87px;
+  text-align: center;
+  width: 151px;
+}
+
+.following .button-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-left: 107px;
+  min-height: 300px;
+  width: 119px;
+}
+
+.following .button {
+  align-items: flex-end;
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  display: flex;
+  height: 44px;
+  min-width: 117px;
+  padding: 7.9px 22.7px;
+}
+
+.following .next {
+  height: 28px;
+  letter-spacing: 0.96px;
+  line-height: normal;
+  min-width: 71px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.following .button-2 {
+  align-items: flex-end;
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  display: flex;
+  height: 44px;
+  margin-left: 2px;
+  margin-top: 81px;
+  min-width: 117px;
+  padding: 7.9px 22.7px;
+}
+
+.following .button-3 {
+  align-items: flex-end;
+  background-color: var(--sunset-pearl);
+  border-radius: 6px;
+  display: flex;
+  height: 44px;
+  margin-left: 1px;
+  margin-top: 87px;
+  min-width: 117px;
+  padding: 7.9px 22.7px;
+}
+
+.following .component-container-2 {
+  margin-left: 98px;
+  min-height: 301px;
+  width: 172px;
+}
+
+.following .component-25 {
+  background-color: var(--sunglo);
+  border-radius: 6px;
+  height: 44px;
+  margin-left: 2px;
+  min-width: 170px;
+  padding: 7px 23px;
+}
+
+.following .component-26 {
+  background-color: var(--sunglo);
+  border-radius: 6px;
+  height: 44px;
+  margin-left: 1px;
+  margin-top: 83px;
+  min-width: 170px;
+  padding: 7px 23px;
+}
+
+.following .component-27 {
+  background-color: var(--sunglo);
+  border-radius: 6px;
+  height: 44px;
+  margin-top: 86px;
+  min-width: 170px;
+  padding: 7px 23px;
+}
+
+.following .flex-row-3 {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  height: 319px;
+  min-width: 1363px;
+  padding: 17px 42px;
+}
+
+.following .flex-col-3 {
+  align-items: flex-end;
+  align-self: flex-start;
+  min-height: 257px;
+  width: 119px;
+}
+
+.following .follower {
+  height: 35px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: 4px;
+  min-width: 115px;
+  white-space: nowrap;
+}
+
+.following .ellipse-4 {
+  height: 76px;
+  margin-top: 38px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.following .ellipse-5 {
+  height: 76px;
+  margin-top: 32px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.following .name-container-2 {
+  gap: 66px;
+  margin-left: 34px;
+  margin-top: 45.0px;
+  min-height: 138px;
+  width: 134px;
+}
+
+.following .athlete-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 71px;
+  margin-left: 33px;
+  margin-top: 38.0px;
+  min-height: 133px;
+  width: 151px;
+}
+
+.following .button-container-1 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+  margin-left: 109px;
+  margin-top: 53.0px;
+  min-height: 146px;
+  width: 117px;
+}
+
+.following .coach-3 {
+  height: 30px;
+  letter-spacing: 3.80px;
+  line-height: normal;
+  text-align: center;
+  width: 132px;
+}
+
+.following .component {
+  align-items: flex-start;
+  display: flex;
+}
+
+.following .component-container-3 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.following .delete-2 {
+  height: 28px;
+  letter-spacing: 0.96px;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.following .flex {
+  align-items: center;
+  display: flex;
+}
+
+.following .flex-col-4 {
+  display: flex;
+  flex-direction: column;
+}
+
+.following .name-container-3 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
