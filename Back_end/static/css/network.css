@@ -1,0 +1,344 @@
+/* screen - network */
+
+.network {
+  align-items: flex-start;
+  background-color: var(--white);
+  border: 1px none;
+  display: flex;
+  flex-direction: column;
+  min-height: 1000px;
+  overflow-x: hidden;
+  width: 1440px;
+}
+
+.network .header {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: 67px;
+  justify-content: flex-start;
+  margin-left: -2px;
+  min-width: 1440px;
+  mix-blend-mode: normal;
+  padding: 14px 118px;
+  width: auto;
+}
+
+.network .high-lytr-home-explore-resources-connect {
+  color: var(--christine);
+  cursor: pointer;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-s);
+  font-weight: 400;
+  height: 30px;
+  line-height: 20px;
+  width: 544px;
+}
+
+.network .span0 {
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 30px;
+}
+
+.network .span1 {
+  font-size: var(--font-size-xxxs);
+  letter-spacing: 0.70px;
+}
+
+.network .button {
+  align-items: center;
+  align-self: flex-end;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  margin-bottom: 0.66px;
+  margin-left: 493px;
+  padding: 2px 0px;
+  position: relative;
+}
+
+.network .svg {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.network .sign-in {
+  color: var(--christine);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-xxs);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 28.8px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: 56px;
+}
+
+.network .cart {
+  align-items: center;
+  align-self: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 39px;
+  margin-top: 0;
+  position: relative;
+}
+
+.network .vector {
+  height: 8.19px;
+  position: relative;
+  width: 16.05px;
+}
+
+.network .vector-1 {
+  height: 28.46px;
+  position: relative;
+  width: 33.34px;
+}
+
+.network .number {
+  color: #0000ee;
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  left: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 12px;
+  white-space: nowrap;
+  width: 10px;
+}
+
+.network .overlap-group5 {
+  align-items: flex-end;
+  background-color: #fdc979;
+  display: flex;
+  height: 75px;
+  justify-content: flex-end;
+  min-width: 1440px;
+  padding: 16px 636px;
+}
+
+.network .name {
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  min-height: 36px;
+  min-width: 136px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.network .flex-col {
+  align-items: flex-start;
+  background-color: #fdf2e0;
+  display: flex;
+  flex-direction: column;
+  margin-left: -1px;
+  min-height: 858px;
+  padding: 24px 21px;
+  width: 1440px;
+}
+
+.network .flex-row {
+  align-items: center;
+  display: flex;
+  margin-left: 13px;
+  min-width: 708px;
+}
+
+.network .ellipse {
+  height: 80px;
+  object-fit: cover;
+  width: 83px;
+}
+
+.network .component-1 {
+  margin-bottom: 1.0px;
+  min-width: 625px;
+}
+
+.network .overlap-group {
+  height: 69px;
+  position: relative;
+  width: 625px;
+}
+
+.network .rectangle-20 {
+  height: 69px;
+  left: 28px;
+  position: absolute;
+  top: 0;
+  width: 572px;
+}
+
+.network .hello-i-am-john-doe-how-are-you {
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 16px;
+  width: 625px;
+}
+
+.network .flex-row-1 {
+  align-items: center;
+  align-self: flex-end;
+  display: flex;
+  gap: 31px;
+  margin-right: 5.22px;
+  margin-top: 47px;
+  min-width: 753px;
+}
+
+.network .component-20 {
+  background-color: #e2cab4;
+  border-radius: 10px;
+  height: 162px;
+  justify-content: flex-end;
+  min-width: 647px;
+  padding: 22px 21px;
+}
+
+.network .its-a-pleasure-to-m {
+  letter-spacing: 0;
+  line-height: normal;
+  min-height: 113px;
+  width: 595px;
+}
+
+.network .ellipse-1 {
+  height: 80px;
+  margin-bottom: 2.0px;
+  object-fit: cover;
+  width: 75px;
+}
+
+.network .flex-row-2 {
+  align-items: center;
+  display: flex;
+  gap: 1px;
+  margin-left: 13px;
+  margin-top: 45px;
+  min-width: 709px;
+}
+
+.network .flex-row-3 {
+  align-items: flex-end;
+  display: flex;
+  gap: 1px;
+  margin-left: 13px;
+  margin-top: 62px;
+  min-width: 709px;
+}
+
+.network .component-17 {
+  min-width: 625px;
+}
+
+.network .flex-row-4 {
+  align-items: flex-end;
+  align-self: flex-end;
+  display: flex;
+  gap: 11px;
+  margin-top: 34px;
+  min-width: 663px;
+}
+
+.network .component-19 {
+  margin-bottom: 0.33px;
+  min-width: 572px;
+}
+
+.network .overlap-group3 {
+  height: 69px;
+  position: relative;
+  width: 572px;
+}
+
+.network .rectangle-20-1 {
+  background-color: #e2cab4;
+  border-radius: 10px;
+  height: 69px;
+  left: 26px;
+  position: absolute;
+  top: 0;
+  width: 523px;
+}
+
+.network .hello-i-am-john-doe-how-are-you-1 {
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 16px;
+  width: 572px;
+}
+
+.network .ellipse-2 {
+  height: 85px;
+  object-fit: cover;
+  width: 80px;
+}
+
+.network .flex-row-5 {
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
+  gap: 11px;
+  margin-left: 2.0px;
+  margin-top: 45px;
+  min-width: 1328px;
+}
+
+.network .rectangle-18 {
+  border: 2px solid;
+  border-color: var(--christine);
+  height: 80px;
+  width: 1163px;
+}
+
+.network .component-14 {
+  background-color: var(--christine);
+  border-radius: 10px;
+  height: 80px;
+  min-width: 154px;
+  padding: 21px 35px;
+}
+
+.network .place {
+  color: var(--white);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  min-height: 36px;
+  min-width: 76px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.network .component {
+  align-items: flex-start;
+  display: flex;
+}
+
+.network .rectangle {
+  background-color: var(--white);
+  border-radius: 10px;
+}
