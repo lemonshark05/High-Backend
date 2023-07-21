@@ -1,16 +1,16 @@
 import json
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file
+from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file, session, flash, send_from_directory
 from data import db, Comment, User, Blog, UserRole, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
-from werkzeug.utils import secure_filename
 import os
 import pdfkit
 from sqlalchemy import or_
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
+from flask_socketio import SocketIO, emit
+from flask_login import LoginManager, login_user
+from uuid import uuid4
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
 app = Flask(__name__, static_folder='static', template_folder='.')
@@ -25,7 +25,9 @@ google_blueprint = make_google_blueprint(
 )
 app.register_blueprint(google_blueprint, url_prefix="/google_login")
 # initialize
+app.config['UPLOAD_FOLDER'] = os.path.realpath('.') + '/uploads'
 db.init_app(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 @app.route("/home")
 def home_page():
@@ -37,11 +39,11 @@ def home():
 
 @app.route("/login")
 def login_html():
-    return render_template('front/login.html')
+    return render_template('front/login-1.html')
 
 @app.route("/login_email")
 def login_email_html():
-    return render_template('front/login-email.html')
+    return render_template('front/login-2.html')
 
 @app.route("/register")
 def register_html():
@@ -87,11 +89,26 @@ def google_login():
     try:
         resp = google.get("/oauth2/v2/userinfo")
         assert resp.ok, resp.text
-        return "You are {email} on Google".format(email=resp.json()["email"])
+        email = resp.json()["email"]
+
+        # Check if user exists in your database
+        user = User.query.filter_by(email=email).first()
+
+        # If user exists, log them in
+        if user:
+            login_user(user)
+            flash('Logged in successfully.', 'success')
+            return redirect(url_for('home'))
+
+        # If user does not exist, redirect to sign up page with user email
+        else:
+            session['email'] = email
+            return redirect(url_for('register'))
+
     except TokenExpiredError:
         return redirect(url_for("google.login"))
 
-@app.route("/login")
+@app.route("/logininfo", methods=['POST'])
 def login():
     data = request.get_json()
     username = data.get('username')
@@ -104,9 +121,15 @@ def login():
     if not records:
         return jsonify({'error': 'user not found'}), 404
 
-    record_dict = records[0].to_dict()
+    records = Crud.read(User, filters={'username': username})
+    if not records:
+        return jsonify({'error': 'user not found'}), 404
 
-    if not check_password_hash(record_dict['password'], password):
+    user = records[0]
+    password_hash = user.get_password()
+    if password_hash is None:
+        return jsonify({'error': 'User has no password'}), 404
+    if not check_password_hash(password_hash, password):
         return jsonify({'error': 'wrong password'}), 401
 
     return jsonify({'message': 'login successfully'}), 200
@@ -510,44 +533,47 @@ def generate_pdf(id):
 
     return response
 
-# Save images to Google Drive
-gauth = GoogleAuth(settings_file='client_secret.json')
-gauth.scope = [
-    'https://www.googleapis.com/auth/drive',
-    'https://www.googleapis.com/auth/drive.file'
-]
-
-drive = GoogleDrive(gauth)
+# Save images to local folder
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     file = request.files['file']
 
-    # check if the file is one of the allowed types/extensions
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
+        # Get only the file extension
+        _, ext = os.path.splitext(file.filename)
 
-        # Save file to disk
-        local_file_path = os.path.join("/tmp", filename)
-        file.save(local_file_path)
+        # Generate a unique name using a UUID
+        unique_filename = f"{uuid4()}{ext}"
 
-        # Create & upload a file
-        uploaded_file = drive.CreateFile({'title': filename})
-        uploaded_file.SetContentFile(local_file_path)
-        uploaded_file.Upload()
+        # Make directory if it doesn't exist
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
 
-        # The ID of the file on Google Drive
-        file_id = uploaded_file['id']
+        # Save file to the upload folder
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+        file.save(file_path)
 
-        # The URL where the image is stored on Google Drive
-        file_url = f"https://drive.google.com/uc?export=view&id={file_id}"
+        # Get the URL of the uploaded image for front-end display
+        file_url = request.host_url + 'uploads/' + unique_filename
 
         return jsonify({'file_url': file_url}), 200
+    else:
+        return jsonify({'error': 'Invalid file format'}), 400
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@socketio.on('join')
+def on_join(data):
+    user_id = data['user_id']
+    socketio.join_room(user_id)
 
 @app.route('/messages', methods=['POST'])
 @handle_error
@@ -557,6 +583,11 @@ def send_message():
     result = Crud.create(message, check_foreign_keys={"Users": data["sender_id"], "Users": data["receiver_id"]})
     if 'error' in result:
         return result
+    # Emit the message to the receiver
+    socketio.emit('message', {'data': message.to_dict()}, room=data['receiver_id'])
+    # Emit a response to the sender
+    socketio.emit('message', {'data': message.to_dict(), 'status': 'sent'}, room=data['sender_id'])
+
     return jsonify({'message': 'Message sent successfully'}), 200
 
 @app.route('/messages/<int:user_id>/<int:other_user_id>', methods=['GET'])
@@ -589,3 +620,4 @@ def get_conversations(user_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+    socketio.run(app)
