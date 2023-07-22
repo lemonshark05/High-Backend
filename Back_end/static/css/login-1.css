@@ -20,11 +20,11 @@
 
 .login-1 .heading-1-log-in {
   color: var(--black-2);
-  font-family: var(--font-family-inter);
-  font-size: 48px;
-  font-weight: 400;
-  height: 48px;
-  letter-spacing: 0;
+  font-family: var(--font-family-roboto);
+  font-size: 50px;
+  font-weight: 700;
+  height: 59px;
+  letter-spacing: 2px;
   line-height: 48px;
   margin-right: 0.04px;
   margin-top: 103px;
