@@ -150,7 +150,7 @@
 
 .resources .divgallery-item-content {
   align-items: flex-start;
-  background-image: url(../img/11062b-7d55e1e8df604f728456a7d503a0d8f2-mv2-jpg@2x.png);
+  background-image: url(../static/img/11062b-7d55e1e8df604f728456a7d503a0d8f2-mv2-jpg@2x.png);
   background-position: 50% 50%;
   background-size: cover;
   display: flex;
@@ -158,7 +158,7 @@
 }
 
 .resources .x11062b_7d55e1e8df604 {
-  background-image: url(../img/11062b-7d55e1e8df604f728456a7d503a0d8f2-mv2-jpg-1@2x.png);
+  background-image: url(../static/img/11062b-7d55e1e8df604f728456a7d503a0d8f2-mv2-jpg-1@2x.png);
   background-position: 50% 50%;
   background-size: cover;
   height: 340px;

@@ -36,13 +36,11 @@
 }
 
 .following .span0 {
-  font-weight: 700;
   letter-spacing: 1.00px;
   line-height: 30px;
 }
 
 .following .span1 {
-  font-size: var(--font-size-xxxs);
   letter-spacing: 0.70px;
 }
 
