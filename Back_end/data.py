@@ -19,17 +19,7 @@ class Base(db.Model):
             if attr.key != 'password':
                 output_dict[attr.key] = getattr(self, attr.key)
 
-        # Handle UserRole specifically
-        if isinstance(self, User):
-            output_dict['role'] = self.role.to_dict(depth - 1)
-
         return output_dict
-
-class UserRole(Base):
-    __tablename__ = 'UserRoles'
-
-    id = db.Column(db.Integer, primary_key=True)
-    role = db.Column(db.String(255), nullable=False)
 
 class Blog(Base):
     __tablename__ = 'Blogs'
@@ -88,9 +78,9 @@ class User(Base):
     username = db.Column(db.String(255), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(255), nullable=False)
     phone = db.Column(db.String(255))
     avatar_url = db.Column(db.String(255))
-    role_id = db.Column(db.Integer, ForeignKey('UserRoles.id'))
     profile_image = db.Column(db.String(255))
     community_page_url = db.Column(db.String(255))
     profile_visibility = db.Column(db.Boolean, default=False)
@@ -104,8 +94,6 @@ class User(Base):
     about_me = db.Column(db.Text)
     interested_in_coaches = db.Column(JSONB)
     interested_in_athletes = db.Column(JSONB)
-
-    role = relationship('UserRole', backref='users')
 
     def get_password(self):
         return self.password
@@ -177,12 +165,6 @@ class Message(Base):
 
     sender = relationship('User', backref='sent_messages', foreign_keys=[sender_id])
     receiver = relationship('User', backref='received_messages', foreign_keys=[receiver_id])
-
-class AthleteType(Base):
-    __tablename__ = 'AthleteTypes'
-
-    id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(255), nullable=False)
 
 def handle_error(func):
     def wrapper(*args, **kwargs):

@@ -2,7 +2,7 @@ import json
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file, session, flash, send_from_directory
-from data import db, Comment, User, Blog, UserRole, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
+from data import db, Comment, User, Blog, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
 import os
 import pdfkit
 from sqlalchemy import or_
@@ -29,57 +29,24 @@ app.config['UPLOAD_FOLDER'] = os.path.realpath('.') + '/uploads'
 db.init_app(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-@app.route("/home")
-def home_page():
-    return render_template('front/home.html')
+pages = {
+    "/home": "front/home.html",
+    "/": "front/home.html",
+    "/login": "front/login.html",
+    "/login_email": "front/login-2.html",
+    "/register": "front/register.html",
+    "/more-info": "front/more-info.html",
+    "/connect": "front/connect.html",
+    "/explore": "front/explore.html",
+    "/resources": "front/resources.html",
+    "/scholarship": "front/scholarship.html",
+    "/university": "front/university.html",
+    "/search": "front/search.html",
+    "/signup": "front/signup.html",
+}
 
-@app.route("/")
-def home():
-    return render_template('front/home.html')
-
-@app.route("/login")
-def login_html():
-    return render_template('front/login-1.html')
-
-@app.route("/login_email")
-def login_email_html():
-    return render_template('front/login-2.html')
-
-@app.route("/register")
-def register_html():
-    return render_template('front/register.html')
-
-@app.route("/more-info")
-def more_info_html():
-    return render_template('front/more-info.html')
-
-@app.route("/connect")
-def connect_html():
-    return render_template('front/connect.html')
-
-@app.route("/explore")
-def explore_html():
-    return render_template('front/explore.html')
-
-@app.route("/resources")
-def resources_html():
-    return render_template('front/resources.html')
-
-@app.route("/scholarship")
-def scholarship_html():
-    return render_template('front/scholarship.html')
-
-@app.route("/university")
-def university_html():
-    return render_template('front/university.html')
-
-@app.route("/search")
-def search_html():
-    return render_template('front/search.html')
-
-@app.route("/signup")
-def signup_html():
-    return render_template('front/signup.html')
+for url, template in pages.items():
+    app.add_url_rule(url, view_func=lambda template=template: render_template(template), endpoint=str(uuid4()))
 
 # Google mail login API
 @app.route("/google_login")
@@ -184,9 +151,6 @@ def get_user(user_id):
     user = users[0]
     user_dict = user.to_dict()
 
-    # Get user's role
-    role = Crud.read(UserRole, filters={"id": user.role_id})
-
     # Get user's images
     user_images = Crud.read(UserImage, filters={"user_id": user_id})
 
@@ -197,13 +161,17 @@ def get_user(user_id):
     user_experiences = Crud.read(UserExperience, filters={"user_id": user_id})
 
     # Add related data to the user_dict
-    user_dict["role"] = role[0].to_dict() if role else None
     user_dict["images"] = [image.to_dict() for image in user_images]
     user_dict["videos"] = [video.to_dict() for video in user_videos]
     user_dict["experiences"] = [experience.to_dict() for experience in user_experiences]
 
     # Return the user_dict which includes user data and related data
     return jsonify(user_dict)
+
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    users = Crud.read(User, order_by=['-id'])  # Use '-id' for reverse order
+    return jsonify([user.to_dict() for user in users])
 
 # Blog
 @app.route('/blogs', methods=['POST'])
@@ -512,11 +480,10 @@ def generate_pdf(id):
         return jsonify({'error': 'User not found'}), 404
 
     user = users[0]
-    user_role = Crud.read(UserRole, filters={"id": user.role_id})[0]
     user_experiences = Crud.read(UserExperience, filters={"user_id": id})
 
     # Render template and generate pdf
-    html = render_template('template/profile.html', user=user, role=user_role, experiences=user_experiences)
+    html = render_template('template/profile.html', user=user, experiences=user_experiences)
 
     # Save pdf to a file
     pdf_path = f"profile_{id}.pdf"

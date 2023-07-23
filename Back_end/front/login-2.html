@@ -6,9 +6,9 @@
     <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="../static/css/login-2.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login-2.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
   </head>
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="login-2" />
@@ -23,9 +23,9 @@
           <div class="label valign-text-middle">Password</div>
           <div class="field"><div class="find-university valign-text-middle">click and start typing</div></div>
         </div>
-        <a href="profile.html" class="align-self-flex-center">
-          <div class="button"><div class="log-in valign-text-middle">LOG IN</div></div></a
-        >
+        <a href="profile" class="align-self-flex-center">
+          <div class="button"><div class="log-in valign-text-middle">LOG IN</div></div>
+        </a>
       </div>
     </div>
   </body>

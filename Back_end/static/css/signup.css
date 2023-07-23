@@ -1,4 +1,43 @@
 /* screen - signup */
+.signup .component,
+.signup .component-1,
+.signup .component-2,
+.signup .component-3{
+  align-items: center;
+  background-color: var(--white);
+  border: 2px solid var(--saddle);
+  display: flex;
+  height: 40px;
+  width: 300px;  /* set a fixed width */
+  padding: 10px;  /* consistent padding */
+  position: relative;
+}
+
+/* target the inputs directly for more specific styles */
+.signup .component input,
+.signup .component-1 input,
+.signup .component-2 input,
+.signup .component-3 input  {
+  border: none;  /* remove individual borders */
+  width: 100%;  /* take the full width of the parent */
+  outline: none;  /* remove focus outline */
+}
+
+/* Add some hover effect */
+.signup .component:hover,
+.signup .component-1:hover,
+.signup .component-2:hover,
+.signup .component-3:hover {
+  border-color: var(--christine);  /* change border color on hover */
+}
+
+/* Add some focus effect */
+.signup .component:focus-within,
+.signup .component-1:focus-within,
+.signup .component-2:focus-within,
+.signup .component-3:focus-within {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);  /* add box shadow on focus */
+}
 
 .signup {
   align-items: flex-start;
@@ -43,7 +82,35 @@
   width: 148px;
 }
 
-.signup .overlap-group {
+/* CSS for the role tabs */
+.signup .role-selection {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  height: 40px;
+  width: 300px;  /* set a fixed width */
+  padding: 10px;  /* consistent padding */
+  position: relative;
+  margin-top: 20px; /* add some space above the role selection */
+}
+
+.signup .role-label {
+  cursor: pointer;
+  font-family: var(--font-family-source_sans_pro);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-align: center;
+}
+
+.signup .slide {
+  align-items: flex-end;
+  display: flex;
+  height: 32px;
+  margin-top: 61px;
+  min-width: 269px;
+}
+
+.slide .overlap-group {
   align-items: flex-start;
   align-self: flex-end;
   background-image: url(../img/slide@2x.png);
@@ -57,28 +124,58 @@
   padding: 5px 37px;
 }
 
-.signup .coach {
-  color: var(--christine);
-  font-family: var(--font-family-source_sans_pro);
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  height: 30px;
-  letter-spacing: 2.66px;
-  line-height: normal;
-  text-align: center;
-  width: 71px;
+.signup .role-selection {
+  display: flex;
+  justify-content: space-between;
 }
 
-.signup .athlete {
-  color: #111111;
+.signup .role-option {
+  align-items: center;
+  background-color: var(--white);
+  display: flex;
+  height: 40px;
+  width: 140px;  /* set a fixed width */
+  padding: 10px;  /* consistent padding */
+  position: relative;
+}
+
+.signup .role-option input[type="radio"] {
+  display: none;
+}
+
+.signup .role-option label {
+  width: 100%;  /* take the full width of the parent */
+  text-align: center;
   font-family: var(--font-family-source_sans_pro);
   font-size: var(--font-size-xs);
   font-weight: 700;
-  height: 31px;
   letter-spacing: 2.66px;
   line-height: normal;
-  text-align: center;
-  width: 74px;
+}
+
+.signup .role-option.coach label {
+  color: var(--christine);
+}
+
+.signup .role-option.athlete label {
+  color: #111111;
+}
+
+/* change color when selected */
+.signup .role-option input[type="radio"]:checked + label {
+  background-color: var(--saddle);
+  color: var(--white);
+}
+
+.signup .slide {
+  align-items: flex-start;
+  top: 422px;
+  display: flex;
+  height: 40px;
+  left: 529px;
+  min-width: 343px;
+  padding: 11.1px 15px;
+  position: absolute;
 }
 
 .signup .privacy {
@@ -92,13 +189,6 @@
   position: absolute;
   top: 736px;
   width: 70px;
-}
-
-.signup .text-3 {
-  height: 9px;
-  margin-top: -1px;
-  text-align: center;
-  width: 6px;
 }
 
 .signup .vector {
@@ -134,15 +224,7 @@
   top: 253px;
 }
 
-.signup .johndoeexamplecom {
-  height: 14px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-
 .signup .component-1 {
-  box-shadow: 0px 4px 4px #00000040;
   top: 171px;
 }
 
@@ -157,22 +239,13 @@
   top: 335px;
 }
 
-.signup .text-4 {
-  height: 14px;
-}
-
 .signup .component-3 {
   top: 417px;
-}
-
-.signup .text-5 {
-  height: 14px;
 }
 
 .signup .button {
   align-items: center;
   background-color: var(--sunset-pearl);
-  border-radius: 6px;
   cursor: pointer;
   display: flex;
   height: 52px;
@@ -181,18 +254,21 @@
   padding: 0 138.3px;
   position: absolute;
   top: 587px;
+  border: none;
+  outline: none;
 }
 
-.signup .next {
-  height: 28px;
-  letter-spacing: 0.96px;
-  line-height: normal;
-  min-width: 64px;
-  text-align: center;
-  white-space: nowrap;
+.signup .button button {
+  color: #964B00; /* This is a brown color - adjust to the exact color you want */
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  background: none;
+  border: none; /* removes button border */
+  cursor: pointer;
 }
 
-.signup .component-4 {
+.signup .componentend {
   align-items: flex-start;
   background-color: var(--white);
   border: 2px solid;
@@ -203,19 +279,4 @@
   min-width: 343px;
   padding: 11.1px 15px;
   position: absolute;
-}
-
-.signup .link {
-  height: 9px;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-top: -1px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.signup .text {
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
 }

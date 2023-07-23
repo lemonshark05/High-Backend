@@ -6,9 +6,9 @@
     <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="../static/css/login-1.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login-1.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
   </head>
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="login-1" />
@@ -21,7 +21,7 @@
           <a href="signup.html"><div class="button-sign-up valign-text-middle">Sign Up</div></a>
         </div>
         <div class="button">
-          <div class="log-in-with-facebook valign-text-middle log-in-with">Log in with Facebook</div>
+          <div class="log-in-with-facebook valign-text-middle log-in-with">Log in with Google</div>
         </div>
         <div class="or">
           <div class="span"><div class="or-1 valign-text-middle montserrat-normal-black-16px">or</div></div>

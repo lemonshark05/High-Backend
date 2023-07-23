@@ -1,6 +1,73 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#signup-form').on('submit', function(event) {
+          event.preventDefault(); // Prevents the form from being submitted normally
+          var data = {
+            username: $('#username').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+            repassword: $('#confirm-password').val(),
+            role: $("input[name='role']:checked").val() // Gets the value of the selected radio button
+          };
+
+          // Check if all fields are filled
+          for (var prop in data) {
+            if (!data[prop]) {
+              alert('Please fill out all fields.');
+              return false;
+            }
+          }
+
+          if(data.password != data.repassword) {
+            alert('Password does not match');
+            return false;
+          }
+
+          $.ajax({
+            url: '/register/account',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(response) {
+              // Redirect to the register interest page on success
+              if(response.error){
+                alert(response.error);
+              }else{
+                window.location.href = "/register_interest";
+              }
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+        });
+      });
+      $.ajax({
+        url: '/register/account',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function(response) {
+            // Redirect to the register interest page on success
+            if(response.error){
+                alert(response.error);
+            } else {
+                // redirect after successful form submission
+                window.location.href = "/register";
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
+    </script>
     <meta charset="utf-8" />
     <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
     <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
@@ -8,9 +75,9 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="../static/css/signup.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signup.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
   </head>
   <body style="margin: 0">
     <input type="hidden" id="anPageName" name="page" value="signup" />
@@ -25,10 +92,6 @@
               <div class="flex-col-item valign-text-middle">COMFRIM PASSWORD</div>
               <div class="flex-col-item valign-text-middle">ROLE</div>
             </div>
-            <div class="overlap-group">
-              <div class="coach valign-text-middle">COACH</div>
-              <div class="athlete valign-text-middle">ATHLETE</div>
-            </div>
           </div>
           <div class="privacy">
             <img class="divrc-anchor-logo-img" src="img/div-rc-anchor-logo-img@2x.png" alt="div.rc-anchor-logo-img" />
@@ -40,21 +103,35 @@
           </div>
           <img class="vector" src="img/vector-8.svg" alt="Vector" />
           <div class="register"><h1 class="title valign-text-middle">Sign up</h1></div>
-          <div class="component component-4">
-            <div class="johndoeexamplecom valign-text-middle roboto-normal-saddle-15px">johndoe@example.com</div>
+          <form id="signup-form">
+          <div class="component-1 componentend">
+            <input type="text" id="username" name="username" placeholder="Enter your username" />
           </div>
-          <div class="component-1 component-4">
-            <div class="username valign-text-middle roboto-normal-saddle-15px">John Doe</div>
+
+          <div class="component componentend">
+            <input type="email" id="email" name="email" placeholder="Enter your email" />
           </div>
-          <div class="component-2 component-4">
-            <div class="text-4 valign-text-middle roboto-normal-saddle-15px">••••••••••••</div>
+
+          <div class="component-2 componentend">
+            <input type="password" id="password" name="password" placeholder="Enter your password" />
           </div>
-          <div class="component-3 component-4">
-            <div class="text-5 valign-text-middle roboto-normal-saddle-15px">••••••••••••</div>
+
+          <div class="component-3 componentend">
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" />
           </div>
-          <a href="register.html">
-            <div class="button"><div class="next valign-text-middle roboto-black-coffee-24px">NEXT</div></div></a
-          >
+
+            <div class="role-selection slide">
+              <div class="role-option coach">
+                <input type="radio" id="coach" name="role" value="coach" />
+                <label for="coach">Coach</label>
+              </div>
+              <div class="role-option athlete">
+                <input type="radio" id="athlete" name="role" value="athlete" />
+                <label for="athlete">Athlete</label>
+              </div>
+            </div>
+            <div class="button"><button type="submit" class="next valign-text-middle roboto-black-coffee-24px">NEXT</button></div>
+          </form>
         </div>
       </div>
     </div>
