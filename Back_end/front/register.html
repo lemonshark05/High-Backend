@@ -6,9 +6,9 @@
     <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="../static/css/register.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
   </head>
   <body style="margin: 0; background: #faf9f8">
     <input type="hidden" id="anPageName" name="page" value="register" />
@@ -17,16 +17,16 @@
         <header class="header">
           <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-20px">
               <span>
-              <a href="home.html"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
+              <a href="home"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
               <span class="span1 montserrat-normal-christine-14px">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home.html"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore.html"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resources.html"><span class="span1 montserrat-normal-christine-14px">Resources</span></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="connect.html"><span class="span1 montserrat-normal-christine-14px">Connect</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resources"><span class="span1 montserrat-normal-christine-14px">Resources</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="connect"><span class="span1 montserrat-normal-christine-14px">Connect</span></a>
               </span>
             </span>
             </p>
-          <a href="login-1.html" onclick="window.event.stopPropagation()" class="align-self-flex-end">
+          <a href="login" onclick="window.event.stopPropagation()" class="align-self-flex-end">
             <div class="button button-2">
               <img class="svg" src="../static/img/svg-1.svg" alt="SVG" />
               <div class="sign-in valign-text-middle montserrat-normal-christine-16px">Sign In</div>
@@ -40,32 +40,13 @@
         </header>
         <div class="component-12">
           <div class="flex-col-1 flex-col-4">
-            <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
-            <div class="followers-0-following-0 valign-text-middle montserrat-normal-white-24px">
-              Followers 0 Following 0
+            <div class="user-icon">
+                <!-- Hidden file input to handle file uploads -->
+                <input type="file" id="image-upload" style="display: none;" accept="image/png, image/jpeg">
+                <div class="u valign-text-middle montserrat-bold-white-128px">U</div>
             </div>
           </div>
-          <h1 class="name valign-text-middle name-4 montserrat-normal-white-36px">John Doe</h1>
-        </div>
-        <div class="add-schools add">
-          <div class="add-interested-universities add-interested">Add interested universities</div>
-          <div class="jpg-container">
-            <img class="usfcajpg" src="../static/img/usfca-jpg-1@2x.png" alt="usfca.jpg" />
-            <img class="stanfordjpg" src="../static/img/stanford-jpg@2x.png" alt="stanford.jpg" />
-            <img class="berkeleyjpg" src="../static/img/berkeley-jpg@2x.png" alt="berkeley.jpg" />
-          </div>
-        </div>
-        <div class="pages pages-2">
-          <div class="overlap-group3 overlap">
-            <img class="icons8" src="../static/img/icons8-back-filled.svg" alt="icons8-back_filled" />
-          </div>
-          <div class="overlap-group overlap">
-            <img class="rectangle" src="../static/img/rectangle-1.svg" alt="Rectangle" />
-            <div class="placeholder">1</div>
-          </div>
-          <div class="content content-2">/</div>
-          <div class="content-1 content-2">2</div>
-          <div class="overlap-group4 overlap"><img class="icons8" src="../static/img/icons8-right.svg" alt="icons8-right" /></div>
+          <h1 class="name valign-text-middle name-4 montserrat-normal-white-36px">Username</h1>
         </div>
         <div class="add-coach add">
           <div class="add-interested montserrat-bold-black-36px">Add interested coaches</div>
@@ -100,11 +81,9 @@
           <div class="content-1 content-2">2</div>
           <div class="overlap-group-1"><img class="icons8" src="../static/img/icons8-right.svg" alt="icons8-right" /></div>
         </div>
-        <a href="more-info.html">
-          <div class="button-1 button-2">
-            <div class="next valign-text-middle roboto-black-coffee-24px">ADD MORE INFORMATION</div>
-          </div></a
-        >
+        <div class="button">
+          <button type="submit"  class="next valign-text-middle roboto-black-coffee-24px">ADD MORE INFORMATION</button>
+          </div>
         <footer class="footer montserrat-normal-black-16px">
           <div class="copyright valign-text-middle">© 2023 HighLytr</div>
           <div class="list-social-bar">

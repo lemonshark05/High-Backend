@@ -1,5 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#loginForm').on('submit', function(event) {
+        event.preventDefault(); // Prevents the form from being submitted normally
+
+        var data = {
+          email: $('#email').val(),
+          password: $('#password').val(),
+        };
+
+        $.ajax({
+          url: '/logininfo',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          dataType: 'json',
+          success: function(response) {
+            // Check the status code from the response
+            if(response.user_id){
+              // If login was successful, redirect to the profile page
+              window.location.href = "/profile";
+            } else {
+              // If there was an error, show it to the user
+              alert(response.error);
+            }
+          },
+          error: function(error) {
+            // If there was an error, log it to the console
+            console.log(error);
+          }
+        });
+      });
+    });
+  </script>
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
@@ -15,17 +51,23 @@
     <div class="container-center-horizontal">
       <div class="login-2 screen">
         <h1 class="title valign-text-middle">LOG IN</h1>
+        <form id="loginForm">
         <div class="form-filed-component">
           <div class="email-adress valign-text-middle">Email Adress</div>
-          <div class="field"><div class="find-university valign-text-middle">click and start typing</div></div>
+            <div class="component componentend">
+              <input type="email" id="email" name="email" placeholder="Enter your email" />
+            </div>
         </div>
         <div class="form-filed-component-1">
-          <div class="label valign-text-middle">Password</div>
-          <div class="field"><div class="find-university valign-text-middle">click and start typing</div></div>
+          <div class="email-adress valign-text-middle">Password</div>
+            <div class="component-1 componentend">
+              <input type="password" id="password" name="password" placeholder="Enter your password" />
+            </div>
         </div>
-        <a href="profile" class="align-self-flex-center">
-          <div class="button"><div class="log-in valign-text-middle">LOG IN</div></div>
-        </a>
+        <button type="submit" class="button">
+          <div class="log-in valign-text-middle">LOG IN</div>
+        </button>
+        </form>
       </div>
     </div>
   </body>

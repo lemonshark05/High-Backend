@@ -6,7 +6,7 @@
   border: 1px none;
   display: flex;
   flex-direction: column;
-  min-height: 1678px;
+  min-height: 1000px;
   width: 1440px;
 }
 
@@ -34,14 +34,29 @@
 }
 
 .register .button {
-  align-self: flex-end;
-  border-radius: 10px;
-  justify-content: center;
-  margin-bottom: 0.66px;
-  margin-left: 493px;
-  padding: 2px 0px;
-  position: relative;
-  width: fit-content;
+  align-items: center;
+  background-color: var(--sunset-pearl);
+  cursor: pointer;
+  display: flex;
+  height: 52px;
+  min-width: 250px;
+  padding: 0 138.3px;
+  position: absolute;
+  top: 950px;
+  border: none;
+  outline: none;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.register .button button {
+  color: #964B00; /* This is a brown color - adjust to the exact color you want */
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  background: none;
+  border: none; /* removes button border */
+  cursor: pointer;
 }
 
 .register .svg {
@@ -98,13 +113,12 @@
 .register .component-12 {
   align-items: center;
   background-color: var(--coffee);
-  border-radius: 24px;
   display: flex;
   gap: 23px;
   height: 312px;
   margin-right: 19.0px;
   margin-top: 53px;
-  min-width: 1203px;
+  min-width: 1440px;
   padding: 12px 48px;
 }
 
@@ -121,7 +135,7 @@
   border-radius: 111px;
   display: flex;
   height: 222px;
-  margin-left: 1.0px;
+  margin-left: 80px;
   min-width: 222px;
   padding: 58px 53px;
 }
@@ -132,15 +146,6 @@
   line-height: 28.8px;
   text-align: center;
   width: 116px;
-}
-
-.register .followers-0-following-0 {
-  height: 29px;
-  letter-spacing: 0;
-  line-height: 28.8px;
-  min-width: 283px;
-  text-align: center;
-  white-space: nowrap;
 }
 
 .register .name {

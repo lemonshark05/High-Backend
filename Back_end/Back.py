@@ -34,12 +34,12 @@ pages = {
     "/": "front/home.html",
     "/login": "front/login.html",
     "/login_email": "front/login-2.html",
-    "/register": "front/register.html",
-    "/more-info": "front/more-info.html",
+    "/register_interest": "front/register.html",
+    "/register_moreinfo": "front/more-info.html",
+    "/profile": "front/profile.html",
     "/connect": "front/connect.html",
     "/explore": "front/explore.html",
     "/resources": "front/resources.html",
-    "/scholarship": "front/scholarship.html",
     "/university": "front/university.html",
     "/search": "front/search.html",
     "/signup": "front/signup.html",
@@ -78,19 +78,15 @@ def google_login():
 @app.route("/logininfo", methods=['POST'])
 def login():
     data = request.get_json()
-    username = data.get('username')
+    email = data.get('email')
     password = data.get('password')
 
-    if not username or not password:
-        return jsonify({'error': 'username and password required'}), 400
+    if not email or not password:
+        return jsonify({'error': 'email and password required'}), 400
 
-    records = Crud.read(User, filters={'username': username})
+    records = Crud.read(User, filters={'email': email})
     if not records:
-        return jsonify({'error': 'user not found'}), 404
-
-    records = Crud.read(User, filters={'username': username})
-    if not records:
-        return jsonify({'error': 'user not found'}), 404
+        return jsonify({'error': 'email not found'}), 404
 
     user = records[0]
     password_hash = user.get_password()
@@ -99,24 +95,23 @@ def login():
     if not check_password_hash(password_hash, password):
         return jsonify({'error': 'wrong password'}), 401
 
-    return jsonify({'message': 'login successfully'}), 200
+    return jsonify({'message': 'login successfully', 'user_id': user.id}), 200
 
 @app.route("/register/account", methods=["POST"])
 def register():
-    data = request.get_json()
-    pwd = generate_password_hash(data['password'])  # hash the password
-    repwd = generate_password_hash(data['repassword'])  # hash the repassword
-    if pwd != repwd:
+    data = request.get_json(force=True)
+    if data['password'] != data['repassword']:
         return jsonify({'error': 'password not matched'}), 400
-    user = User(username=data['username'], email=data['email'], password=pwd)
+    pwd = generate_password_hash(data['password'])  # hash the password
+    user = User(username=data['username'], email=data['email'], password=pwd, role=data['role'])
     try:
         Crud.create(user)
     except IntegrityError:
         db.session.rollback()  # necessary to continue using the session
         return jsonify({'error': 'username or email already in use'}), 400
-    return redirect(url_for('register_interest'))
+    return jsonify({'message':'User created', 'redirect': url_for('register_interest')})
 
-@app.route("/register/interest")
+@app.route("/register/interest", methods=["POST"])
 def register_interest():
     data = request.get_json()
     users = Crud.read(User, filters={"username": data['username']})
@@ -126,9 +121,9 @@ def register_interest():
     coaches = data['coaches']
     coach_json = json.dumps(coaches)
     Crud.update(user, interested_in_coaches=coach_json)
-    return redirect(url_for('register/moreinfo'))
+    return redirect(url_for('register_moreinfo'))
 
-@app.route("/register/moreinfo")
+@app.route("/register/moreinfo", methods=["POST"])
 def register_moreinfo():
     data = request.get_json()
     users = Crud.read(User, filters={"username": data['username']})
@@ -168,10 +163,29 @@ def get_user(user_id):
     # Return the user_dict which includes user data and related data
     return jsonify(user_dict)
 
-@app.route('/users', methods=['GET'])
+@app.route('/users/all', methods=['GET'])
 def get_all_users():
     users = Crud.read(User, order_by=['-id'])  # Use '-id' for reverse order
     return jsonify([user.to_dict() for user in users])
+
+@app.route('/users', methods=['GET'])
+def get_users():
+    # Get the page number (default None if not supplied)
+    page = request.args.get('page', type=int, default=None)
+
+    # Get the number of results per page (default None if not supplied)
+    per_page = request.args.get('per_page', type=int, default=8)
+
+    # Get filters if any
+    filters = {}
+    role = request.args.get('role')  # Get the role from query parameters
+    if role:
+        filters['role'] = role
+
+    users = Crud.read(User, filters=filters, page=page, per_page=per_page)
+    users_dict = [user.to_dict() for user in users]
+    return jsonify(users_dict)
+
 
 # Blog
 @app.route('/blogs', methods=['POST'])
