@@ -34,8 +34,8 @@ pages = {
     "/": "front/home.html",
     "/login": "front/login.html",
     "/login_email": "front/login-2.html",
-    "/register_interest": "front/register.html",
-    "/register/moreinfo": "front/more-info.html",
+    "/interest": "front/register.html",
+    "/moreinfo": "front/more-info.html",
     "/profile": "front/profile.html",
     "/connect": "front/connect.html",
     "/explore": "front/explore-1.html",
@@ -99,7 +99,7 @@ def login():
 
     return jsonify({'message': 'login successfully', 'user_id': user.id}), 200
 
-@app.route("/register/account", methods=["POST"])
+@app.route("/register", methods=["POST"])
 def register():
     data = request.get_json(force=True)
     if data['password'] != data['repassword']:
@@ -116,7 +116,7 @@ def register():
     Crud.create(user)
     return jsonify({'message':'User created', 'redirect': url_for('register_interest'), 'userId': user.id, 'role': user.role, 'username': user.username})
 
-@app.route("/register/interest", methods=["POST"])
+@app.route("/interest", methods=["POST"])
 def register_interest():
     data = request.get_json(force=True)
     users = Crud.read(User, filters={"id": data['userId']})
@@ -131,7 +131,7 @@ def register_interest():
         Crud.create(follow)
     return jsonify({'message':'Interests registered', 'redirect': url_for('register_moreinfo'), 'userId': user.id, 'role': user.role, 'username': user.username})
 
-@app.route("/register/moreinfo", methods=["POST"])
+@app.route("/moreinfo", methods=["POST"])
 def register_moreinfo():
     data = request.get_json(force=True)
     users = Crud.read(User, filters={"id": data['userId']})

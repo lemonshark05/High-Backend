@@ -28,7 +28,7 @@
           }
 
           $.ajax({
-            url: '/register/account',
+            url: '/register',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -37,7 +37,7 @@
                 localStorage.setItem('userId', response.userId);
                 localStorage.setItem('username', response.username);
                 localStorage.setItem('role', response.role);
-                window.location.href = "/register_interest";
+                window.location.href = response.redirect;
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 var jsonResponse = JSON.parse(jqXHR.responseText);
