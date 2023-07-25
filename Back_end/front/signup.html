@@ -38,6 +38,8 @@
               if(response.error){
                 alert(response.error);
               }else{
+                // Storing the user id in the local storage
+                localStorage.setItem('userId', response.userId);
                 window.location.href = "/register_interest";
               }
             },
@@ -47,26 +49,6 @@
           });
         });
       });
-      $.ajax({
-        url: '/register/account',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        success: function(response) {
-            // Redirect to the register interest page on success
-            if(response.error){
-                alert(response.error);
-            } else {
-                // redirect after successful form submission
-                window.location.href = "/register";
-            }
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-
     </script>
     <meta charset="utf-8" />
     <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->

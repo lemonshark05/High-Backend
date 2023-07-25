@@ -1,6 +1,77 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var userId = localStorage.getItem('userId');
+        var role = localStorage.getItem('role');
+        var page = 1;
+        var perPage = 8;
+        let selectedUsers = [];
+
+        function getUsers(page) {
+          $.ajax({
+            url: '/users',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+              page: page,
+              per_page: perPage,
+            },
+            success: function(response) {
+              let userList = $('#userList');
+              userList.empty();
+
+              response.forEach(user => {
+                let userBlock = `
+                  <div class="flex-col user-block" data-user-id="${user.id}">
+                    <img class="ellipse" src="${user.avatar_url}" alt="User Avatar" />
+                    <div class="name inter-normal-black-24px">${user.username}</div>
+                  </div>`;
+                userList.append(userBlock);
+              });
+            },
+            error: function(error) {
+              console.log(error);
+            },
+          });
+        }
+
+        getUsers(page);
+        $('body').on('click', '.user-block', function() {
+          let userId = $(this).data('user-id');
+          if (selectedUsers.includes(userId)) {
+            selectedUsers = selectedUsers.filter(id => id !== userId);
+            $(this).removeClass('selected');
+          } else {
+            selectedUsers.push(userId);
+            $(this).addClass('selected');
+          }
+        });
+        $('#submitButton').on('click', function() {
+          console.log('Submit button clicked');
+          console.log('Selected users:', selectedUsers);
+          $.ajax({
+            url: '/register/interest',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              userId: localStorage.getItem('userId'),
+              coaches: selectedUsers
+            }),
+            success: function(response) {
+              console.log('AJAX success:', response);
+              window.location.href = response.redirect;
+            },
+            error: function(error) {
+              console.log('AJAX error:', error);
+            }
+          });
+        });
+      });
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
@@ -50,40 +121,14 @@
         </div>
         <div class="add-coach add">
           <div class="add-interested montserrat-bold-black-36px">Add interested coaches</div>
-          <div class="flex-row">
-            <div class="flex-col-2 flex-col-4">
-              <img class="ellipse ellipse-2" src="../static/img/ellipse-8@2x.png" alt="Ellipse" />
-              <div class="name-1 name-4 inter-normal-black-24px">John Tim</div>
-            </div>
-            <div class="flex-col">
-              <img class="ellipse-1 ellipse-2" src="../static/img/ellipse-7@2x.png" alt="Ellipse" />
-              <div class="jing-wu inter-normal-black-24px">Jing Wu</div>
-            </div>
-            <div class="flex-col">
-              <img class="ellipse-1 ellipse-2" src="../static/img/ellipse-6@2x.png" alt="Ellipse" />
-              <div class="name-2 name-4 inter-normal-black-24px">Jack Doe</div>
-            </div>
-            <div class="flex-col-3 flex-col-4">
-              <img class="ellipse ellipse-2" src="../static/img/ellipse-5@2x.png" alt="Ellipse" />
-              <div class="name-3 name-4 inter-normal-black-24px">Tommy</div>
-            </div>
+          <div class="flex-row" id="userList">
+            <!-- Users will be populated here -->
+
           </div>
         </div>
-        <div class="pages-1 pages-2">
-          <div class="overlap-group2 overlap">
-            <img class="icons8" src="../static/img/icons8-back-filled.svg" alt="icons8-back_filled" />
-          </div>
-          <div class="overlap-group overlap">
-            <img class="rectangle" src="../static/img/rectangle-1.svg" alt="Rectangle" />
-            <div class="placeholder">1</div>
-          </div>
-          <div class="content content-2">/</div>
-          <div class="content-1 content-2">2</div>
-          <div class="overlap-group-1"><img class="icons8" src="../static/img/icons8-right.svg" alt="icons8-right" /></div>
+        <div class="button1">
+          <button type="submit" id="submitButton" class="next">ADD MORE INFORMATION</button>
         </div>
-        <div class="button">
-          <button type="submit"  class="next valign-text-middle roboto-black-coffee-24px">ADD MORE INFORMATION</button>
-          </div>
         <footer class="footer montserrat-normal-black-16px">
           <div class="copyright valign-text-middle">© 2023 HighLytr</div>
           <div class="list-social-bar">

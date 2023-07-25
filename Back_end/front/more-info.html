@@ -1,14 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var userId = localStorage.getItem('userId');
+        $('.user-icon').on('click', function() {
+            $('#image-upload').click(); // Trigger the hidden file input on click
+        });
+
+        $('#image-upload').on('change', function() {
+            var file = this.files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                $.ajax({
+                    url: '/upload_image',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,  // Important!
+                    contentType: false,  // Important!
+                    success: function(response) {
+                        if (response.error) {
+                            alert(response.error);
+                        } else {
+                            // Do something with the uploaded image URL
+                            // e.g., replace the current user icon with the uploaded image
+                            $('.user-icon').html('<img src="' + response.file_url + '" alt="User Icon">');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    });
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="../static/css/more-info.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/more-info.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
   </head>
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="more-info" />

@@ -35,7 +35,7 @@ pages = {
     "/login": "front/login.html",
     "/login_email": "front/login-2.html",
     "/register_interest": "front/register.html",
-    "/register_moreinfo": "front/more-info.html",
+    "/register/moreinfo": "front/more-info.html",
     "/profile": "front/profile.html",
     "/connect": "front/connect.html",
     "/explore": "front/explore.html",
@@ -109,23 +109,26 @@ def register():
     except IntegrityError:
         db.session.rollback()  # necessary to continue using the session
         return jsonify({'error': 'username or email already in use'}), 400
-    return jsonify({'message':'User created', 'redirect': url_for('register_interest')})
+    return jsonify({'message':'User created', 'redirect': url_for('register_interest'), 'userId': user.id, 'role': user.role})
 
 @app.route("/register/interest", methods=["POST"])
 def register_interest():
-    data = request.get_json()
-    users = Crud.read(User, filters={"username": data['username']})
+    data = request.get_json(force=True)
+    users = Crud.read(User, filters={"id": data['userId']})
     if not users:
         return jsonify({'error': 'User not found'}), 404
     user = users[0]
     coaches = data['coaches']
     coach_json = json.dumps(coaches)
-    Crud.update(user, interested_in_coaches=coach_json)
-    return redirect(url_for('register_moreinfo'))
+    # Add follow relationships in Follower table
+    for coach in coaches:
+        follow = Follower(user_id=user.id, follower_id=coach)
+        Crud.create(follow)
+    return jsonify({'message':'Interests registered', 'redirect': url_for('register_moreinfo'), 'userId': user.id})
 
 @app.route("/register/moreinfo", methods=["POST"])
 def register_moreinfo():
-    data = request.get_json()
+    data = request.get_json(force=True)
     users = Crud.read(User, filters={"username": data['username']})
     if not users:
         return jsonify({'error': 'User not found'}), 404
@@ -181,11 +184,14 @@ def get_users():
     role = request.args.get('role')  # Get the role from query parameters
     if role:
         filters['role'] = role
+    # Exclude user id
+    user_id = request.args.get('userId', type=int)  # Get the user id from query parameters
+    if user_id:
+        filters['id'] = {'$ne': user_id}
 
-    users = Crud.read(User, filters=filters, page=page, per_page=per_page)
+    users = Crud.read(User, filters=filters, page=page, per_page=per_page, order_by=['-id'])
     users_dict = [user.to_dict() for user in users]
     return jsonify(users_dict)
-
 
 # Blog
 @app.route('/blogs', methods=['POST'])
@@ -478,12 +484,6 @@ def batch_add_followers():
     followers = [Follower(user_id=data["user_id"], follower_id=f_id) for f_id in data["follower_ids"]]
     Crud.create_batch(Follower, followers)
     return jsonify({'message': 'Followers added successfully'}), 201
-
-@app.route('/followers/batch/delete', methods=['POST'])
-def batch_delete_followers():
-    data = request.get_json()
-    Crud.delete_batch(Follower, filters={"user_id": data["user_id"], "follower_id": data["follower_ids"]})
-    return jsonify({'message': 'Followers deleted successfully'}), 204
 
 # Export user profile
 @app.route('/profile/<int:id>', methods=['GET'])
