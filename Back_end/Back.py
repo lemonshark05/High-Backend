@@ -38,10 +38,12 @@ pages = {
     "/register/moreinfo": "front/more-info.html",
     "/profile": "front/profile.html",
     "/connect": "front/connect.html",
-    "/explore": "front/explore.html",
+    "/explore": "front/explore-1.html",
     "/resources": "front/resources.html",
     "/university": "front/university.html",
     "/search": "front/search.html",
+    "/network": "front/network.html",
+    "/following": "front/following.html",
     "/signup": "front/signup.html",
 }
 
@@ -102,14 +104,17 @@ def register():
     data = request.get_json(force=True)
     if data['password'] != data['repassword']:
         return jsonify({'error': 'password not matched'}), 400
+
+    # Check if user already exists
+    existing_user = User.query.filter((User.username == data['username']) | (User.email == data['email'])).first()
+    if existing_user:
+        print('username or email already in use')
+        return jsonify({'error': 'username or email already in use'}), 400
+
     pwd = generate_password_hash(data['password'])  # hash the password
     user = User(username=data['username'], email=data['email'], password=pwd, role=data['role'])
-    try:
-        Crud.create(user)
-    except IntegrityError:
-        db.session.rollback()  # necessary to continue using the session
-        return jsonify({'error': 'username or email already in use'}), 400
-    return jsonify({'message':'User created', 'redirect': url_for('register_interest'), 'userId': user.id, 'role': user.role})
+    Crud.create(user)
+    return jsonify({'message':'User created', 'redirect': url_for('register_interest'), 'userId': user.id, 'role': user.role, 'username': user.username})
 
 @app.route("/register/interest", methods=["POST"])
 def register_interest():
@@ -124,17 +129,17 @@ def register_interest():
     for coach in coaches:
         follow = Follower(user_id=user.id, follower_id=coach)
         Crud.create(follow)
-    return jsonify({'message':'Interests registered', 'redirect': url_for('register_moreinfo'), 'userId': user.id})
+    return jsonify({'message':'Interests registered', 'redirect': url_for('register_moreinfo'), 'userId': user.id, 'role': user.role, 'username': user.username})
 
 @app.route("/register/moreinfo", methods=["POST"])
 def register_moreinfo():
     data = request.get_json(force=True)
-    users = Crud.read(User, filters={"username": data['username']})
+    users = Crud.read(User, filters={"id": data['userId']})
     if not users:
         return jsonify({'error': 'User not found'}), 404
     user = users[0]
-    Crud.update(user, display_name=data['display_name'], title=data['title'], about_me=data['about_me'])
-    return jsonify({'message':'Register successfully!'}), 204
+    Crud.update(user, display_name=data['display_name'], role=data['role'], about_me=data['about_me'])
+    return jsonify({'message':'Register successfully!', 'redirect': url_for('profile'), 'userId': user.id}), 204
 
 # User
 @app.route('/users/<int:user_id>', methods=['GET'])
@@ -173,6 +178,7 @@ def get_all_users():
 
 @app.route('/users', methods=['GET'])
 def get_users():
+    print(request.args)
     # Get the page number (default None if not supplied)
     page = request.args.get('page', type=int, default=None)
 
@@ -181,15 +187,14 @@ def get_users():
 
     # Get filters if any
     filters = {}
-    role = request.args.get('role')  # Get the role from query parameters
-    if role:
-        filters['role'] = role
+    # filters['role'] = 'coach'
     # Exclude user id
-    user_id = request.args.get('userId', type=int)  # Get the user id from query parameters
-    if user_id:
-        filters['id'] = {'$ne': user_id}
+    userId = request.args.get('userId', type=int)
+    if userId:
+        filters['id'] = {'op': '$ne', 'val': userId}
 
     users = Crud.read(User, filters=filters, page=page, per_page=per_page, order_by=['-id'])
+    print(users)
     users_dict = [user.to_dict() for user in users]
     return jsonify(users_dict)
 

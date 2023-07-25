@@ -2,10 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask import jsonify
-from sqlalchemy import inspect
+from sqlalchemy import ForeignKey, inspect, Date
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -76,6 +75,9 @@ class User(Base):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), nullable=False, unique=True)
+    firstname = db.Column(db.String(255))
+    lastname = db.Column(db.String(255))
+    birthday = db.Column(Date)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(255), nullable=False)
@@ -86,10 +88,8 @@ class User(Base):
     profile_visibility = db.Column(db.Boolean, default=False)
     time_zone = db.Column(db.String(255))
     display_name = db.Column(db.String(255))
-    title = db.Column(db.String(255))
-    personal_info = db.Column(db.Text)
+    education = db.Column(db.Text)
     is_visible_to_all_members = db.Column(db.Boolean, default=False)
-    linkedin_link = db.Column(db.String(255))
     other_links = db.Column(JSONB)
     about_me = db.Column(db.Text)
     interested_in_coaches = db.Column(JSONB)
@@ -200,7 +200,12 @@ class Crud:
 
             if filters:
                 for key, value in filters.items():
-                    if isinstance(value, list):
+                    if isinstance(value, dict):  # Check if value is a dictionary
+                        operator = value.get('op')  # Get operator from value dictionary
+                        val = value.get('val')  # Get actual value from value dictionary
+                        if operator == '$ne':  # If operator is 'not equal to'
+                            query = query.filter(getattr(model, key) != val)
+                    elif isinstance(value, list):
                         query = query.filter(getattr(model, key).in_(value))
                     else:
                         query = query.filter(getattr(model, key) == value)

@@ -5,6 +5,10 @@
     <script>
       $(document).ready(function() {
         var userId = localStorage.getItem('userId');
+        var username = localStorage.getItem('username');
+        $('h1.name').text(username);
+        var role = localStorage.getItem('role');
+<!--        alert("Username is: " + username +"UserId is "+userId+"User Role is "+role);-->
         $('.user-icon').on('click', function() {
             $('#image-upload').click(); // Trigger the hidden file input on click
         });
@@ -26,7 +30,6 @@
                             alert(response.error);
                         } else {
                             // Do something with the uploaded image URL
-                            // e.g., replace the current user icon with the uploaded image
                             $('.user-icon').html('<img src="' + response.file_url + '" alt="User Icon">');
                         }
                     },
@@ -36,6 +39,32 @@
                 });
             }
         });
+        $('#more-info-form').on('submit', function(e) {
+          e.preventDefault();
+
+          var formData = {
+            email: $('#email').val(),
+            display_name: $('#display-name').val(),
+            role: $('#role').val(),
+            about_me: $('#about-me').val()
+          };
+
+          // Send AJAX request
+          $.ajax({
+            url: '/register/moreinfo',
+            type: 'POST',
+            data: JSON.stringify(formData),
+            contentType: 'application/json',  // Sending JSON
+            success: function(response) {
+              // Handle success
+              console.log('Register successfully!');
+            },
+            error: function(error) {
+              // Handle error
+              console.log(error);
+            }
+        });
+      });
     });
     </script>
     <meta charset="utf-8" />
@@ -50,20 +79,20 @@
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="more-info" />
     <div class="container-center-horizontal">
-      <div class="more-info screen">
+      <fo class="more-info screen">
         <header class="header">
           <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-20px">
               <span>
               <a href="home.html"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
               <span class="span1 montserrat-normal-christine-14px">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home.html"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore.html"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resources.html"><span class="span1 montserrat-normal-christine-14px">Resources</span></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="connect.html"><span class="span1 montserrat-normal-christine-14px">Connect</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resources"><span class="span1 montserrat-normal-christine-14px">Resources</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="connect"><span class="span1 montserrat-normal-christine-14px">Connect</span></a>
               </span>
             </span>
             </p>
-            <a href="login-1.html" onclick="window.event.stopPropagation()" class="align-self-flex-end">
+            <a href="login" onclick="window.event.stopPropagation()" class="align-self-flex-end">
               <div class="button">
                 <img class="svg" src="../static/img/svg-1.svg" alt="SVG" />
                 <div class="sign-in valign-text-middle montserrat-normal-christine-16px">Sign In</div>
@@ -75,71 +104,44 @@
             </div>
         </header>
         <div class="overlap-group3">
-          <div class="followers-0-following-0 valign-text-middle montserrat-normal-white-24px">
-            Followers 0 Following 0
-          </div>
           <div class="name-1 valign-text-middle name-3 montserrat-normal-white-36px">John Doe</div>
           <div class="component-12">
             <div class="flex-col">
               <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
-              <div class="followers-0-following-0-1 valign-text-middle montserrat-normal-white-24px">
-                Followers 0 Following 0
-              </div>
             </div>
-            <div class="name-2 valign-text-middle name-3 montserrat-normal-white-36px">John Doe</div>
+            <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px">{{username}}</h1>
           </div>
         </div>
-        <div class="frame-856">
+        <form id="more-info-form" class="frame-856">
           <div class="flex-col-1 flex-col-7">
             <div class="flex-row">
               <div class="flex-col-2 flex-col-7">
-                <h1 class="title valign-text-middle">My Account</h1>
+                <h1 class="role montserrat-semi-bold-black-36px">My Account</h1>
                 <p class="view-and-edit-your-personal-info-below valign-text-middle">
                   View and edit your personal info below.
                 </p>
                 <p class="display-info-your-pr valign-text-middle montserrat-semi-bold-black-36px">
-                  <span
-                    ><span class="montserrat-semi-bold-black-36px">Display Info<br /></span
-                    ><span class="montserrat-normal-black-24px"
-                      >Your profile card is visible to all members of this site</span
-                    >
+                  <span><span class="montserrat-semi-bold-black-36px">Display Info<br /></span>
+<!--                    <span class="montserrat-normal-black-24px">Your profile card is visible to all members of this site</span>-->
                   </span>
                 </p>
                 <div class="display-name">
                   <div class="display-name-1 inter-normal-black-20px">Display name*</div>
-                  <div class="component-9"><div class="name inter-normal-black-30px">John Doe</div></div>
+                  <input class="inter-normal-black-30px" id="display_name" name="display_name" type="text">
                 </div>
                 <div class="about-me valign-text-middle montserrat-semi-bold-black-36px">About me</div>
               </div>
-              <div class="flex-col-3 flex-col-7">
-                <div class="component-container">
-                  <div class="component-10"><div class="update-info valign-text-middle">Update Info</div></div>
-                  <div class="component-11">
-                    <div class="overlap-group"><div class="discard valign-text-middle">Discard</div></div>
-                  </div>
-                </div>
-                <div class="title-1">
-                  <div class="title-2 inter-normal-black-20px">Title</div>
-                  <div class="component-9">
-                    <div class="athlete valign-text-middle inter-normal-black-30px">Athlete</div>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="overlap-group2">
-              <div class="rectangle-15"></div>
-              <p class="the-star-quarterback inter-normal-black-30px">
-                The star quarterback of XYZ High School, has an astonishing private stat: he once completed 100% of his
-                passes blindfolded, showcasing his remarkable intuitive skills and uncanny accuracy.
-              </p>
+              <textarea class="inter-normal-black-30px">
+              </textarea>
             </div>
           </div>
           <div class="flex-col-4 flex-col-7">
             <div class="account-setting valign-text-middle montserrat-semi-bold-black-36px">Account Setting</div>
             <div class="flex-container montserrat-normal-black-24px">
               <div class="text valign-text-middle">
-                <span
-                  ><span class="montserrat-normal-black-24px">Login Email:&nbsp;&nbsp;johndoe@example.com</span>
+                <span><span class="montserrat-normal-black-24px">Login Email:&nbsp;&nbsp;</span>
                 </span>
               </div>
               <div class="text valign-text-middle">
@@ -148,69 +150,48 @@
             </div>
             <div class="display-name-2">
               <div class="display-name-3 inter-normal-black-20px">First Name</div>
-              <div class="component-9"><div class="name inter-normal-black-30px">John Doe</div></div>
+              <input class="inter-normal-black-30px" id="firstname" name="firstname" type="text">
             </div>
             <div class="display-name-4">
-              <div class="display-name-5 inter-normal-black-20px">Email</div>
-              <div class="component-9"><div class="name inter-normal-black-30px">John Doe</div></div>
+              <div class="display-name-5 inter-normal-black-20px">Birthday</div>
+              <input class="inter-normal-black-30px" id="birthday" name="birthday" type="date">
             </div>
             <div class="other-links valign-text-middle montserrat-semi-bold-black-36px">Other links</div>
           </div>
           <div class="flex-col-5 flex-col-7">
             <div class="display-name-6">
               <div class="display-name-7 inter-normal-black-20px">Last Name</div>
-              <div class="component-9"><div class="name inter-normal-black-30px">John Doe</div></div>
+              <input class="inter-normal-black-30px" id="lastname" name="lastname" type="text">
             </div>
             <div class="display-name-container">
               <article class="display-name-8">
                 <div class="display-name-9 inter-normal-black-20px">Phone</div>
-                <div class="component-9"><div class="name inter-normal-black-30px">John Doe</div></div>
-              </article>
-              <article class="display-name-10">
-                <div class="display-name-11 inter-normal-black-20px"></div>
-                <div class="component-9-1"><div class="name inter-normal-black-30px">John Doe</div></div>
+                <input class="inter-normal-black-30px" id="phone" name="phone" type="text">
               </article>
             </div>
           </div>
           <div class="flex-col-6 flex-col-7">
-            <a href="https://www.linkedin.com/in/zhimin-meng/" target="_blank"
-              ><div class="httpswwwlinkedin inter-normal-black-30px">https://www.linkedin.com/in/zhimin-meng/5</div>
-            </a>
-            <div class="button-1 button-3"><div class="next valign-text-middle">SUBMIT</div></div>
+            <div class="httpswwwlinkedin inter-normal-black-30px">Such as: https://www.linkedin.com/in/example</div>
+            <button type="submit" class="button-1 button-3 next valign-text-middle">SUBMIT</button>
           </div>
           <div class="button-2 button-3">
-            <div class="next-1 valign-text-middle roboto-black-coffee-24px">+ ADD</div>
+            <button type="button" class="next-1 valign-text-middle roboto-black-coffee-24px">+ ADD</button>
           </div>
-        </div>
+        </form>
         <div class="footer">
           <div class="footer-1 montserrat-normal-black-16px">
             <div class="copyright valign-text-middle">© 2023 HighLytr</div>
             <div class="list-social-bar">
-              <img
-              class="item-link-wow-image"
-              src="../static/img/footer-ins.png"
-              alt="Item  Link  wow-image  40898a93cfff4578b1779073137eb1b4.png"
-            />
-            <img
-              class="item-link-wow-image"
-              src="../static/img/footer-fb.png"
-              alt="Item  Link  wow-image  aebe5b6fd55f471a936c72ff2c8289d7.png"
-            />
-            <img
-              class="item-link-wow-image"
-              src="../static/img/footer-tw.png"
-              alt="Item  Link  wow-image  aeb686ff41244d85bc1232fcf7325ec0.png"
-            />
-            <img
-              class="item-link-wow-image"
-              src="../static/img/footer-linked.png"
-              alt="Item  Link  wow-image  fcfebdfae12a44f993a94aeed8e2e66b.png"
-            />
-            <img
-              class="item-link-wow-image"
-              src="../static/img/footer-youtube.png"
-              alt="Item  Link  wow-image  a1fed5f687844a6e8f42e017f71dfcb4.png"
-            />
+              <img class="item-link-wow-image" src="../static/img/footer-ins.png"
+              alt="Item  Link  wow-image  40898a93cfff4578b1779073137eb1b4.png"/>
+            <img class="item-link-wow-image" src="../static/img/footer-fb.png"
+              alt="Item  Link  wow-image  aebe5b6fd55f471a936c72ff2c8289d7.png"/>
+            <img class="item-link-wow-image" src="../static/img/footer-tw.png"
+              alt="Item  Link  wow-image  aeb686ff41244d85bc1232fcf7325ec0.png"/>
+            <img class="item-link-wow-image" src="../static/img/footer-linked.png"
+              alt="Item  Link  wow-image  fcfebdfae12a44f993a94aeed8e2e66b.png"/>
+            <img class="item-link-wow-image" src="../static/img/footer-youtube.png"
+              alt="Item  Link  wow-image  a1fed5f687844a6e8f42e017f71dfcb4.png"/>
             <div class="link-privacy-policy valign-text-middle">Privacy Policy</div>
             <div class="link-terms-of-use valign-text-middle">Terms of Use</div>
           </div>

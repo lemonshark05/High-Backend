@@ -149,13 +149,12 @@
 .more-info .user-icon {
   align-items: flex-start;
   background-color: var(--sand-dune);
-  border-radius: 132.87px/111px;
+  border-radius: 50%;
   display: flex;
   height: 222px;
-  justify-content: flex-end;
-  margin-left: 0.95px;
-  min-width: 266px;
-  padding: 58px 63.4px;
+  margin-left: 80px;
+  min-width: 222px;
+  padding: 58px 53px;
 }
 
 .more-info .u {
@@ -380,6 +379,11 @@
   height: 189px;
   position: relative;
   width: 1200px;
+}
+
+.overlap-group2 textarea {
+  width: 1200px;
+  height: 200px;
 }
 
 .more-info .rectangle-15 {
@@ -638,7 +642,8 @@
 .more-info .button-3 {
   align-items: flex-end;
   background-color: var(--sunset-pearl);
-  border-radius: 6px;
+  border: none;
+  height: 40px;
   display: flex;
 }
 

@@ -7,9 +7,9 @@
   <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
   <meta name="og:type" content="website" />
   <meta name="twitter:card" content="photo" />
-  <link rel="stylesheet" type="text/css" href="../static/css/following.css" />
-  <link rel="stylesheet" type="text/css" href="../static/css/styleguide.css" />
-  <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/following.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styleguide.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/globals.css') }}" />
 </head>
 
 <body style="margin: 0; background: #ffffff">
@@ -18,13 +18,15 @@
     <div class="following screen">
       <header class="header">
         <p class="high-lytr-home-explore-resources-connect valign-text-middle">
-          <span><span class="span0">HighLytr</span>
-          <span class="span1 montserrat-normal-christine-14px">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home.html"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore.html"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resources.html"><span class="span1 montserrat-normal-christine-14px">Resources</span></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="connect.html"><span class="span1 montserrat-normal-christine-14px">Connect</span></a>
-          </span>
+          <span>
+            <span class="span0">HighLytr</span>
+            <span class="span1 montserrat-normal-christine-14px">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home.html"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore.html"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resources.html"><span class="span1 montserrat-normal-christine-14px">Resources</span></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="connect.html"><span class="span1 montserrat-normal-christine-14px">Connect</span></a>
+            </span>
+          </span> <!-- Added closing span tag -->
         </p>
         <div class="button-1">
           <img class="svg" src="../static/img/svg-4.svg" alt="SVG" />

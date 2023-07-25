@@ -34,18 +34,19 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function(response) {
-              // Redirect to the register interest page on success
-              if(response.error){
-                alert(response.error);
-              }else{
-                // Storing the user id in the local storage
                 localStorage.setItem('userId', response.userId);
+                localStorage.setItem('username', response.username);
+                localStorage.setItem('role', response.role);
                 window.location.href = "/register_interest";
-              }
             },
-            error: function(error) {
-              console.log(error);
-            }
+            error: function(jqXHR, textStatus, errorThrown) {
+                var jsonResponse = JSON.parse(jqXHR.responseText);
+                if(jsonResponse.error){
+                    alert(jsonResponse.error);
+                } else {
+                    console.log("Error: ", textStatus, errorThrown);
+                }
+              }
           });
         });
       });
@@ -76,14 +77,14 @@
             </div>
           </div>
           <div class="privacy">
-            <img class="divrc-anchor-logo-img" src="img/div-rc-anchor-logo-img@2x.png" alt="div.rc-anchor-logo-img" />
+            <img class="divrc-anchor-logo-img" src="../static/img/div-rc-anchor-logo-img@2x.png" alt="div.rc-anchor-logo-img" />
             <div class="divrc-anchor-pt">
               <div class="link-privacy valign-text-middle link roboto-normal-fuscous-gray-8px">Privacy</div>
               <div class="text-3 valign-text-middle roboto-normal-black-8px">-</div>
               <div class="link-terms valign-text-middle link roboto-normal-fuscous-gray-8px">Terms</div>
             </div>
           </div>
-          <img class="vector" src="img/vector-8.svg" alt="Vector" />
+          <img class="vector" src="../static/img/vector-8.svg" alt="Vector" />
           <div class="register"><h1 class="title valign-text-middle">Sign up</h1></div>
           <form id="signup-form">
           <div class="component-1 componentend">
@@ -112,7 +113,7 @@
                 <label for="athlete">Athlete</label>
               </div>
             </div>
-            <div class="button"><button type="submit" class="next valign-text-middle roboto-black-coffee-24px">NEXT</button></div>
+           <button type="submit" class="button next valign-text-middle roboto-black-coffee-24px">NEXT</button>
           </form>
         </div>
       </div>
