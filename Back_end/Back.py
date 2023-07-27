@@ -1,5 +1,4 @@
 import json
-from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, redirect, url_for, request, jsonify, render_template, send_file, session, flash, send_from_directory
 from data import db, Comment, User, Blog, Message, UserExperience, University, UserImage, UserVideo, Scholarship, handle_error, Crud, Follower
@@ -134,12 +133,27 @@ def register_interest():
 @app.route("/moreinfo", methods=["POST"])
 def register_moreinfo():
     data = request.get_json(force=True)
+    # Check if user already exists
+    existing_user = User.query.filter(User.username == data['username']).first()
+    if existing_user:
+        print('username already in use')
+        return jsonify({'error': 'username or email already in use'}), 400
+
     users = Crud.read(User, filters={"id": data['userId']})
     if not users:
         return jsonify({'error': 'User not found'}), 404
     user = users[0]
-    Crud.update(user, display_name=data['display_name'], role=data['role'], about_me=data['about_me'])
-    return jsonify({'message':'Register successfully!', 'redirect': url_for('profile'), 'userId': user.id}), 204
+    Crud.update(user, username=data['username'], role=data['role'], about_me=data['about_me'])
+    for experience_data in data['experience']:
+        experience = UserExperience(
+            user_id=user.id,
+            title=experience_data['title'],
+            description=experience_data['description'],
+            start_date=experience_data['start_date'],
+            end_date=experience_data['end_date'],
+        )
+        Crud.create(experience)
+    return jsonify({'message': 'Register successfully!', 'redirect': url_for('profile'), 'userId': user.id}), 204
 
 # User
 @app.route('/users/<int:user_id>', methods=['GET'])
@@ -456,13 +470,30 @@ def create_follower_relationship():
     Crud.create(follower, check_foreign_keys={"User": follower.user_id, "User": follower.follower_id})
     return jsonify(follower.to_dict()), 201
 
-@app.route('/followers/<int:id>', methods=['GET'])
-def get_follower_relationship(id):
-    followers = Crud.read(Follower, filters={"id": id})
-    if not followers:
-        return jsonify({'error': 'Follower relationship not found'}), 404
-    follower = followers[0]
-    return jsonify(follower.to_dict())
+@app.route('/followers/<int:userId>', methods=['GET'])
+def get_all_relationships(userId):
+    # Get all following connections for this user
+    following = Crud.read(Follower, order_by=['-id'], filters={'user_id': userId})
+    following_ids = [f.follower_id for f in following]
+
+    # Get all follower connections for this user
+    followers = Crud.read(Follower, order_by=['-id'], filters={'follower_id': userId})
+    follower_ids = [f.user_id for f in followers]
+
+    # Calculate connect, following, and follower ids
+    connect_ids = set(following_ids) & set(follower_ids)
+    following_ids = set(following_ids) - connect_ids
+    follower_ids = set(follower_ids) - connect_ids
+
+    # Create dictionaries for each type of relationship
+    connect = [{'id': user.id, 'username': user.username, 'avatar_url': user.avatar_url, 'role': user.role}
+        for user in Crud.read(User, filters={'id': {'op': '$in', 'val': list(connect_ids)}})]
+    following = [{'id': user.id, 'username': user.username, 'avatar_url': user.avatar_url, 'role': user.role}
+        for user in Crud.read(User, filters={'id': {'op': '$in', 'val': list(following_ids)}})]
+    follower = [{'id': user.id, 'username': user.username, 'avatar_url': user.avatar_url, 'role': user.role}
+        for user in Crud.read(User, filters={'id': {'op': '$in', 'val': list(follower_ids)}})]
+    # Return the relationships
+    return jsonify(connect=connect, following=following, follower=follower), 200
 
 @app.route('/followers/<int:id>', methods=['DELETE'])
 def delete_follower_relationship(id):
@@ -473,25 +504,19 @@ def delete_follower_relationship(id):
     Crud.delete(follower)
     return jsonify({'message': 'Follower relationship deleted successfully'}), 204
 
-@app.route('/followers/user/<int:user_id>', methods=['GET'])
-def get_all_followers(user_id):
-    followers = Crud.read(Follower, filters={"user_id": user_id})
-    return jsonify([follower.to_dict() for follower in followers])
+# Get user profile
+@app.route('/profile/<int:id>', methods=['GET'])
+def get_profile(id):
+    users = Crud.read(User, filters={"id": id})
+    if not users:
+        return jsonify({'error': 'User not found'}), 404
+    user = users[0]
+    user_experiences = Crud.read(UserExperience, filters={"user_id": id})
 
-@app.route('/followers/follows/<int:user_id>', methods=['GET'])
-def get_all_follows(user_id):
-    follows = Crud.read(Follower, filters={"follower_id": user_id})
-    return jsonify([follow.to_dict() for follow in follows])
-
-@app.route('/followers/batch/add', methods=['POST'])
-def batch_add_followers():
-    data = request.get_json()
-    followers = [Follower(user_id=data["user_id"], follower_id=f_id) for f_id in data["follower_ids"]]
-    Crud.create_batch(Follower, followers)
-    return jsonify({'message': 'Followers added successfully'}), 201
+    return jsonify(user,user_experiences), 200
 
 # Export user profile
-@app.route('/profile/<int:id>', methods=['GET'])
+@app.route('/profile_download/<int:id>', methods=['GET'])
 def generate_pdf(id):
     users = Crud.read(User, filters={"id": id})
 

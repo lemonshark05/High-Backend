@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       $(document).ready(function() {
         var userId = localStorage.getItem('userId');
@@ -12,40 +12,141 @@
         $('.user-icon').on('click', function() {
             $('#image-upload').click(); // Trigger the hidden file input on click
         });
+        var modal = document.getElementById('expModal');
+        var addBtn = document.getElementById('addExpBtn');
+        var closeBtn = document.getElementsByClassName('close')[0];
+        var hintField = document.getElementById('hint');
 
-        $('#image-upload').on('change', function() {
-            var file = this.files[0];
-            if (file) {
-                var formData = new FormData();
-                formData.append('file', file);
+        // When the user clicks on the button, open the modal
+        addBtn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-                $.ajax({
-                    url: '/upload_image',
-                    type: 'POST',
-                    data: formData,
-                    processData: false,  // Important!
-                    contentType: false,  // Important!
-                    success: function(response) {
-                        if (response.error) {
-                            alert(response.error);
-                        } else {
-                            // Do something with the uploaded image URL
-                            $('.user-icon').html('<img src="' + response.file_url + '" alt="User Icon">');
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        document.getElementById('addmore').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var title = document.getElementById('title').value;
+            var startDate = document.getElementById('start_date').value;
+            var endDate = document.getElementById('end_date').value;
+            var description = document.getElementById('description').value;
+            // Check if all fields are filled
+            if (!title || !startDate || !endDate || !description) {
+                hintField.innerText = 'Please fill in all fields.';
+                return;
             }
+
+            // Check if start date is less than or equal to end date
+            if (new Date(startDate) > new Date(endDate)) {
+                hintField.innerText = 'Start date should be less than or equal to end date.';
+                return;
+            }
+            var expDiv = document.createElement('div');
+            expDiv.innerHTML = `<div class="experience-item">
+                <h3 class="experience-title inter-normal-black-24px">${title}</h3>
+                <div class="experience-dates">
+                    <span class="experience-start-date">${startDate}</span> -
+                    <span class="experience-end-date">${endDate}</span>
+                </div>
+                <p class="experience-description inter-normal-black-20px">${description}</p>
+                <button class="delete experience-delete-btn">Delete</button>
+            </div>`;
+
+            // Delete button functionality
+            expDiv.querySelector('.delete').addEventListener('click', function() {
+                expDiv.remove();
+            });
+
+            document.getElementById('experiences').appendChild(expDiv);
+
+            // Clear form
+            document.getElementById('title').value = '';
+            document.getElementById('start_date').value = '';
+            document.getElementById('end_date').value = '';
+            document.getElementById('description').value = '';
+            modal.style.display = "none";
         });
+
+        var links = [];
+        document.getElementById('addLinkBtn').addEventListener('click', function() {
+            // Show the input field when the button is clicked
+            document.getElementById('linkInput').classList.remove('hidden');
+        });
+
+        document.getElementById('addLink').addEventListener('click', function() {
+          var newLink = document.getElementById('newLink').value;
+
+          // Check if the link input is empty
+          if (!newLink) {
+                alert('Please enter a link.');
+              return;
+          }
+          var link = { url: newLink};
+          links.push(link);
+          // Create a new div for the link and the delete button
+          var linkDiv = document.createElement('div');
+          linkDiv.innerHTML = `
+              <a href="${newLink}" target="_blank" class="inter-normal-black-24px">${newLink}</a>
+              <button class="delete-link experience-delete-btn">Delete</button>
+          `;
+
+          // Add event listener to the delete button
+          linkDiv.querySelector('.delete-link').addEventListener('click', function() {
+            // Find the index of the link in the array
+            var index = links.indexOf(link);
+            // If the link is found, remove it from the array
+            if (index !== -1) {
+                links.splice(index, 1);
+            }
+            linkDiv.remove();
+          });
+
+          // Add the new link to the links div
+          document.getElementById('links').appendChild(linkDiv);
+
+          // Clear the input field and hide it
+          document.getElementById('newLink').value = '';
+          document.getElementById('linkInput').classList.add('hidden');
+      });
+<!--        $('#image-upload').on('change', function() {-->
+<!--            var file = this.files[0];-->
+<!--            if (file) {-->
+<!--                var formData = new FormData();-->
+<!--                formData.append('file', file);-->
+
+<!--                $.ajax({-->
+<!--                    url: '/upload_image',-->
+<!--                    type: 'POST',-->
+<!--                    data: formData,-->
+<!--                    processData: false,  // Important!-->
+<!--                    contentType: false,  // Important!-->
+<!--                    success: function(response) {-->
+<!--                        if (response.error) {-->
+<!--                            alert(response.error);-->
+<!--                        } else {-->
+<!--                            // Do something with the uploaded image URL-->
+<!--                            $('.user-icon').html('<img src="' + response.file_url + '" alt="User Icon">');-->
+<!--                        }-->
+<!--                    },-->
+<!--                    error: function(error) {-->
+<!--                        console.log(error);-->
+<!--                    }-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
+
         $('#more-info-form').on('submit', function(e) {
           e.preventDefault();
 
           var formData = {
-            email: $('#email').val(),
-            display_name: $('#display-name').val(),
-            role: $('#role').val(),
+            firstname: $('#firstname').val(),
+            lastname: $('#lastname').val(),
+            birthday: $('#birthday').val(),
+            username: $('#username').val(),
             about_me: $('#about-me').val()
           };
 
@@ -79,11 +180,11 @@
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="more-info" />
     <div class="container-center-horizontal">
-      <fo class="more-info screen">
+      <div class="more-info screen">
         <header class="header">
           <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-20px">
               <span>
-              <a href="home.html"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
+              <a href="home"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
               <span class="span1 montserrat-normal-christine-14px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
@@ -104,7 +205,6 @@
             </div>
         </header>
         <div class="overlap-group3">
-          <div class="name-1 valign-text-middle name-3 montserrat-normal-white-36px">John Doe</div>
           <div class="component-12">
             <div class="flex-col">
               <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
@@ -112,70 +212,110 @@
             <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px">{{username}}</h1>
           </div>
         </div>
-        <form id="more-info-form" class="frame-856">
-          <div class="flex-col-1 flex-col-7">
-            <div class="flex-row">
-              <div class="flex-col-2 flex-col-7">
-                <h1 class="role montserrat-semi-bold-black-36px">My Account</h1>
-                <p class="view-and-edit-your-personal-info-below valign-text-middle">
-                  View and edit your personal info below.
-                </p>
-                <p class="display-info-your-pr valign-text-middle montserrat-semi-bold-black-36px">
-                  <span><span class="montserrat-semi-bold-black-36px">Display Info<br /></span>
-<!--                    <span class="montserrat-normal-black-24px">Your profile card is visible to all members of this site</span>-->
-                  </span>
-                </p>
-                <div class="display-name">
-                  <div class="display-name-1 inter-normal-black-20px">Display name*</div>
-                  <input class="inter-normal-black-30px" id="display_name" name="display_name" type="text">
+        <form id="more-info-form" class="account-form">
+          <div class="account-section">
+            <span class="section-title">My Account</span>
+            <p class="section-description">View and edit your personal info below.</p>
+
+            <div class="input-group">
+              <label for="username" class="input-label">Username*</label><br>
+              <input class="input-field inter-normal-black-20px" id="username" name="username" type="text">
+            </div>
+            <label for="about_me" class="input-label">About me</label><br>
+            <textarea class="text-field inter-normal-black-20px" id="about_me" name="about_me"></textarea>
+          </div>
+
+          <div class="account-section">
+            <span class="section-title">Account Setting</span>
+            <p class="section-description">Your Login email can't be changed.</p><br>
+            <div class="form-row">
+              <div class="input-group">
+                  <label for="firstname" class="input-label">First Name</label><br>
+                  <input class="input-field inter-normal-black-20px" id="firstname" name="firstname" type="text">
+              </div>
+
+              <div class="input-group">
+                  <label for="lastname" class="input-label">Last Name</label><br>
+                  <input class="input-field inter-normal-black-20px" id="lastname" name="lastname" type="text">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                  <label for="birthday" class="input-label">Birthday</label><br>
+                  <input class="input-field inter-normal-black-20px" id="birthday" name="birthday" type="date">
+              </div>
+
+              <div class="input-group">
+                  <label for="phone" class="input-label">Phone</label><br>
+                  <input class="input-field inter-normal-black-20px" id="phone" name="phone" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="account-section">
+            <span class="section-title">Education</span>
+            <textarea class="text-field inter-normal-black-20px" id="education" name="education"></textarea>
+          </div>
+          <div class="account-section">
+            <span class="section-title">Experiences</span>
+              <div class="form-row">
+                <div id="experiences">
+
                 </div>
-                <div class="about-me valign-text-middle montserrat-semi-bold-black-36px">About me</div>
+              </div>
+            <!-- Button to open the modal -->
+            <div class="form-row">
+              <button id="addExpBtn" class="add-button">Add Experience</button>
+            </div>
+            <!-- The Modal -->
+            <div id="expModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="expForm" >
+                  <div class="input-row">
+                    <div class="input-group">
+                      <label for="title">Title:</label><br>
+                      <input class="input-field inter-normal-black-20px" type="text" id="title" name="title">
+                    </div>
+                    <div class="input-group">
+                      <label for="start_date">Start Date:</label><br>
+                      <input class="input-field inter-normal-black-20px" type="date" id="start_date" name="start_date">
+                    </div>
+                    <div class="input-group">
+                      <label for="end_date">End Date:</label><br>
+                      <input class="input-field inter-normal-black-20px" type="date" id="end_date" name="end_date">
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label for="description">Description:</label><br>
+                    <textarea class="text-field inter-normal-black-20px" id="description" name="description"></textarea><br>
+                  </div>
+                  <div id="hint" class="hint-field inter-normal-red-16px"></div>
+                  <div class="button-wrapper">
+                    <button id="addmore" type="add" value="Add" class="valign-text-middle roboto-black-coffee-24px">Add</button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="overlap-group2">
-              <textarea class="inter-normal-black-30px">
-              </textarea>
+          </div>
+          <div class="account-section">
+            <span class="section-title">Other links</span>
+            <p class="section-description">Such as: https://www.linkedin.com/in/example</p>
+            <div class="form-row">
+                <div id="links"></div>
+            </div>
+            <div class="form-row">
+                <button id="addLinkBtn" class="add-button">Add Another Link</button>
+            </div>
+            <div id="linkInput" class="link-input hidden">
+                <input type="text" id="newLink" class="input-field inter-normal-black-20px">
+                <button id="addLink" class="add-button">Add</button>
             </div>
           </div>
-          <div class="flex-col-4 flex-col-7">
-            <div class="account-setting valign-text-middle montserrat-semi-bold-black-36px">Account Setting</div>
-            <div class="flex-container montserrat-normal-black-24px">
-              <div class="text valign-text-middle">
-                <span><span class="montserrat-normal-black-24px">Login Email:&nbsp;&nbsp;</span>
-                </span>
-              </div>
-              <div class="text valign-text-middle">
-                <span><span class="montserrat-normal-black-24px">Your Login email can&#39;t be changed</span> </span>
-              </div>
-            </div>
-            <div class="display-name-2">
-              <div class="display-name-3 inter-normal-black-20px">First Name</div>
-              <input class="inter-normal-black-30px" id="firstname" name="firstname" type="text">
-            </div>
-            <div class="display-name-4">
-              <div class="display-name-5 inter-normal-black-20px">Birthday</div>
-              <input class="inter-normal-black-30px" id="birthday" name="birthday" type="date">
-            </div>
-            <div class="other-links valign-text-middle montserrat-semi-bold-black-36px">Other links</div>
-          </div>
-          <div class="flex-col-5 flex-col-7">
-            <div class="display-name-6">
-              <div class="display-name-7 inter-normal-black-20px">Last Name</div>
-              <input class="inter-normal-black-30px" id="lastname" name="lastname" type="text">
-            </div>
-            <div class="display-name-container">
-              <article class="display-name-8">
-                <div class="display-name-9 inter-normal-black-20px">Phone</div>
-                <input class="inter-normal-black-30px" id="phone" name="phone" type="text">
-              </article>
-            </div>
-          </div>
-          <div class="flex-col-6 flex-col-7">
-            <div class="httpswwwlinkedin inter-normal-black-30px">Such as: https://www.linkedin.com/in/example</div>
-            <button type="submit" class="button-1 button-3 next valign-text-middle">SUBMIT</button>
-          </div>
-          <div class="button-2 button-3">
-            <button type="button" class="next-1 valign-text-middle roboto-black-coffee-24px">+ ADD</button>
+
+          <div class="button-wrapper">
+            <button type="submit" class="submit-button">SUBMIT</button>
           </div>
         </form>
         <div class="footer">
@@ -197,6 +337,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </body>
 </html>

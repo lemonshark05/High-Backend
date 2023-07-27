@@ -4,7 +4,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import relationship
 from flask import jsonify
-from sqlalchemy import ForeignKey, inspect, Date
+from sqlalchemy import ForeignKey, inspect, Date, UniqueConstraint
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -119,9 +119,11 @@ class Follower(Base):
     user_id = db.Column(db.Integer, ForeignKey('Users.id'))
     follower_id = db.Column(db.Integer, ForeignKey('Users.id'))
 
+    # Add a unique constraint to user_id and follower_id columns
+    __table_args__ = (UniqueConstraint('user_id', 'follower_id', name='_user_follower_uc'),)
+
     user = relationship('User', backref='followers', foreign_keys=[user_id])
     follower = relationship('User', backref='following', foreign_keys=[follower_id])
-
 
 class UserImage(Base):
     __tablename__ = 'UserImages'
