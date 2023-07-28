@@ -278,10 +278,6 @@
     white-space: nowrap;
 }
 
-.more-info .submit-button:hover {
-    background-color: #444444;
-}
-
 .more-info .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -392,6 +388,8 @@
 
 #hint.hint-field {
     color: red;
+    display: flex;
+    justify-content: center;
     margin-bottom: 15px;
 }
 

@@ -8,10 +8,39 @@
         var username = localStorage.getItem('username');
         $('h1.name').text(username);
         var role = localStorage.getItem('role');
-<!--        alert("Username is: " + username +"UserId is "+userId+"User Role is "+role);-->
-        $('.user-icon').on('click', function() {
-            $('#image-upload').click(); // Trigger the hidden file input on click
-        });
+
+        window.onload = function() {
+          // get userId from somewhere (e.g. localStorage, URL)
+          var userId = localStorage.getItem('userId');
+          fetch('/users/' + userId)
+            .then(response => response.json())
+            .then(data => {
+<!--              alert("Username is: " + data.username +"Role is "+data.role);-->
+              // Populate form fields with user data
+              document.getElementById('username').value = data.username || '';
+              document.getElementById('role').value = data.role || '';
+              document.getElementById('email').textContent = data.email || '';
+              document.getElementById('about_me').value = data.about_me || '';
+              document.getElementById('firstname').value = data.firstname || '';
+              document.getElementById('lastname').value = data.lastname || '';
+              document.getElementById('birthday').value = data.birthday || '';
+              document.getElementById('phone').value = data.phone || '';
+              document.getElementById('education').value = data.education || '';
+
+              // Display user experiences
+              var experiencesContainer = document.getElementById('experiences');
+              if (data.experiences !== undefined && Array.isArray(data.experiences)) {
+                data.experiences.forEach(function(exp) {
+                  var expElement = document.createElement('p');
+                  expElement.textContent = exp.title + ": " + exp.description;
+                  experiencesContainer.appendChild(expElement);
+                });
+              }
+            })
+            .catch(error => {
+              console.error('There has been a problem with your fetch operation:', error);
+            });
+        };
         var modal = document.getElementById('expModal');
         var addBtn = document.getElementById('addExpBtn');
         var closeBtn = document.getElementsByClassName('close')[0];
@@ -141,13 +170,49 @@
 
         $('#more-info-form').on('submit', function(e) {
           e.preventDefault();
+          // Check if the required fields are filled out
+          var username = $('#username').val();
+          var role = $('#role').val();
+          var firstname = $('#firstname').val();
+          var lastname = $('#lastname').val();
+          var birthday = $('#birthday').val();
+
+          if (!username || !role || !firstname || !lastname || !birthday) {
+            // Display an error message or take appropriate action
+            var hintElement = document.getElementById("allhint");
+            hintElement.innerHTML = 'Please fill out all the required fields.';
+            hintElement.style.color = 'red';
+            return;
+          }
+          // Gather experiences data
+          var experiences = [];
+          $('#experiences .experience-item').each(function() {
+            var experience = {
+              title: $(this).find('.experience-title').text(),
+              start_date: $(this).find('.experience-start-date').text(),
+              end_date: $(this).find('.experience-end-date').text(),
+              description: $(this).find('.experience-description').text(),
+            };
+            experiences.push(experience);
+          });
+
+          // Gather links data
+          var links = [];
+          $('#links a').each(function() {
+            links.push($(this).attr('href'));
+          });
 
           var formData = {
+            userId: userId,
             firstname: $('#firstname').val(),
             lastname: $('#lastname').val(),
             birthday: $('#birthday').val(),
             username: $('#username').val(),
-            about_me: $('#about-me').val()
+            role: $('#role').val(),
+            about_me: $('#about_me').val(),
+            education: $('#education').val(),
+            experiences: experiences,
+            links: links
           };
 
           // Send AJAX request
@@ -216,10 +281,18 @@
           <div class="account-section">
             <span class="section-title">My Account</span>
             <p class="section-description">View and edit your personal info below.</p>
-
-            <div class="input-group">
-              <label for="username" class="input-label">Username*</label><br>
-              <input class="input-field inter-normal-black-20px" id="username" name="username" type="text">
+            <div class="form-row">
+              <div class="input-group">
+                <label for="username" class="input-label">Username*</label><br>
+                <input class="input-field inter-normal-black-20px" id="username" name="username" type="text">
+              </div>
+              <div class="input-group">
+                <label for="role" class="input-label">Role</label><br>
+                <select class="input-field inter-normal-black-20px" id="role" name="role">
+                  <option value="athlete">Athlete</option>
+                  <option value="coach">Coach</option>
+                </select>
+              </div>
             </div>
             <label for="about_me" class="input-label">About me</label><br>
             <textarea class="text-field inter-normal-black-20px" id="about_me" name="about_me"></textarea>
@@ -227,27 +300,28 @@
 
           <div class="account-section">
             <span class="section-title">Account Setting</span>
-            <p class="section-description">Your Login email can't be changed.</p><br>
+            <p class="section-description">Your Login email can't be changed: <span id="email"></span></p>
+            <br>
             <div class="form-row">
               <div class="input-group">
-                  <label for="firstname" class="input-label">First Name</label><br>
+                  <label for="firstname" class="input-label">First Name*</label><br>
                   <input class="input-field inter-normal-black-20px" id="firstname" name="firstname" type="text">
               </div>
 
               <div class="input-group">
-                  <label for="lastname" class="input-label">Last Name</label><br>
+                  <label for="lastname" class="input-label">Last Name*</label><br>
                   <input class="input-field inter-normal-black-20px" id="lastname" name="lastname" type="text">
               </div>
             </div>
 
             <div class="form-row">
               <div class="input-group">
-                  <label for="birthday" class="input-label">Birthday</label><br>
+                  <label for="birthday" class="input-label">Birthday*</label><br>
                   <input class="input-field inter-normal-black-20px" id="birthday" name="birthday" type="date">
               </div>
 
               <div class="input-group">
-                  <label for="phone" class="input-label">Phone</label><br>
+                  <label for="phone" class="input-label">Phone*</label><br>
                   <input class="input-field inter-normal-black-20px" id="phone" name="phone" type="text">
               </div>
             </div>
@@ -313,9 +387,11 @@
                 <button id="addLink" class="add-button">Add</button>
             </div>
           </div>
-
-          <div class="button-wrapper">
-            <button type="submit" class="submit-button">SUBMIT</button>
+          <div class="account-section">
+            <div id="allhint" class="hint-field inter-normal-red-16px"></div><br>
+            <div class="button-wrapper">
+              <button type="submit" class="submit-button">SUBMIT</button>
+            </div>
           </div>
         </form>
         <div class="footer">

@@ -20,18 +20,18 @@
           success: function(response) {
             // Check the status code from the response
             if(response.user_id){
-              // If login was successful, redirect to the profile page
               window.location.href = "/profile";
             } else {
-              // If there was an error, show it to the user
               alert(response.error);
             }
           },
           error: function(error) {
             // If there was an error, log it to the console
             console.log(error);
+            alert(error.responseJSON.error);
           }
         });
+
       });
     });
   </script>
@@ -52,20 +52,24 @@
       <div class="login-2 screen">
         <h1 class="title valign-text-middle">LOG IN</h1>
         <form id="loginForm">
-        <div class="form-filed-component">
-          <div class="email-adress valign-text-middle">Email Adress</div>
-            <div class="component componentend">
-              <input type="email" id="email" name="email" placeholder="Enter your email" />
-            </div>
-        </div>
-        <div class="form-filed-component-1">
-          <div class="email-adress valign-text-middle">Password</div>
-            <div class="component-1 componentend">
-              <input type="password" id="password" name="password" placeholder="Enter your password" />
-            </div>
-        </div>
-          <a href="profile" class="button"><div class="log-in valign-text-middle">LOG IN</div></a>
+          <div class="form-filed-component">
+            <div class="email-adress valign-text-middle">Email Adress</div>
+              <div class="component componentend">
+                <input type="email" id="email" name="email" placeholder="Enter your email" />
+              </div>
+          </div>
+          <div class="form-filed-component-1">
+            <div class="email-adress valign-text-middle">Password</div>
+              <div class="component-1 componentend">
+                <input type="password" id="password" name="password" placeholder="Enter your password" />
+              </div>
+          </div>
+          <!-- Replace the <a> tag with a <button> tag -->
+          <button type="submit" class="button">
+            <div class="log-in valign-text-middle">LOG IN</div>
+          </button>
         </form>
+
       </div>
     </div>
   </body>

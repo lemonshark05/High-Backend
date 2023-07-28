@@ -87,6 +87,7 @@ def login():
 
     records = Crud.read(User, filters={'email': email})
     if not records:
+
         return jsonify({'error': 'email not found'}), 404
 
     user = records[0]
@@ -134,9 +135,10 @@ def register_interest():
 def register_moreinfo():
     data = request.get_json(force=True)
     # Check if user already exists
-    existing_user = User.query.filter(User.username == data['username']).first()
+    existing_user = Crud.read(User, filters={"id": {"op": "$ne", "val": data['userId']}, "username": data['username']})
     if existing_user:
         print('username already in use')
+        print(existing_user[0])
         return jsonify({'error': 'username or email already in use'}), 400
 
     users = Crud.read(User, filters={"id": data['userId']})
@@ -144,6 +146,12 @@ def register_moreinfo():
         return jsonify({'error': 'User not found'}), 404
     user = users[0]
     Crud.update(user, username=data['username'], role=data['role'], about_me=data['about_me'])
+    user_experience_instance = Crud.read(UserExperience, filters={'user_id': data['userId']})
+    # Check if any user experience instance exists with the given user_id
+    if user_experience_instance:
+        for instance in user_experience_instance:
+            delete_result = Crud.delete(instance)
+            print(delete_result)
     for experience_data in data['experience']:
         experience = UserExperience(
             user_id=user.id,
@@ -160,7 +168,6 @@ def register_moreinfo():
 def get_user(user_id):
     # Get the user
     users = Crud.read(User, filters={"id": user_id})
-
     if not users:  # If the list is empty, the user was not found
         return jsonify({'error': 'User not found'}), 404
 
@@ -168,22 +175,14 @@ def get_user(user_id):
     user = users[0]
     user_dict = user.to_dict()
 
-    # Get user's images
-    user_images = Crud.read(UserImage, filters={"user_id": user_id})
-
-    # Get user's videos
-    user_videos = Crud.read(UserVideo, filters={"user_id": user_id})
-
     # Get user's experiences
     user_experiences = Crud.read(UserExperience, filters={"user_id": user_id})
 
     # Add related data to the user_dict
-    user_dict["images"] = [image.to_dict() for image in user_images]
-    user_dict["videos"] = [video.to_dict() for video in user_videos]
     user_dict["experiences"] = [experience.to_dict() for experience in user_experiences]
-
+    print(user_dict)
     # Return the user_dict which includes user data and related data
-    return jsonify(user_dict)
+    return jsonify(user_dict), 200
 
 @app.route('/users/all', methods=['GET'])
 def get_all_users():
@@ -192,7 +191,6 @@ def get_all_users():
 
 @app.route('/users', methods=['GET'])
 def get_users():
-    print(request.args)
     # Get the page number (default None if not supplied)
     page = request.args.get('page', type=int, default=None)
 
