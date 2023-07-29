@@ -207,6 +207,8 @@ class Crud:
                         val = value.get('val')  # Get actual value from value dictionary
                         if operator == '$ne':  # If operator is 'not equal to'
                             query = query.filter(getattr(model, key) != val)
+                        elif operator == '$in':  # If operator is 'in'
+                            query = query.filter(getattr(model, key).in_(val))
                     elif isinstance(value, list):
                         query = query.filter(getattr(model, key).in_(value))
                     else:

@@ -1,8 +1,98 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+      var userId = 31;
+      function getRelationship(){
+       $.ajax({
+          url: '/followers/' + userId,
+          type: 'GET',
+          success: function(data) {
+            // Iterate over the 'connect' array
+            $.each(data.connect, function(index, user) {
+              var userData = '<div class="flex-row flex">'+
+              '<div class="ellipse-container">'+
+                  '<img class="ellipse" src="'+user.avatar_url+'" alt="Ellipse" />'+
+              '</div>'+
+              '<div class="name-container inter-semi-bold-black-30px">'+
+                  '<div class="name">'+user.username+'</div>'+
+              '</div>'+
+              '<div class="flex-col flex">'+
+                  '<div class="'+(user.role.toLowerCase() === 'coach' ? 'coach' : 'athlete')+' valign-text-middle sourcesanspro-bold-christine-20px">'+user.role+'</div>'+
+              '</div>'+
+              '<div class="component-container component">'+
+                  '<article class="component-23 component">'+
+              '<div class="message valign-text-middle roboto-black-cod-gray-24px">MESSAGE</div>'+
+              '</article>'+
+              '</div>'+
+                  '<div class="component-container-1 component-container-3">'+
+                       '<article class="component-21 component">'+
+                           '<div class="valign-text-middle roboto-black-cod-gray-24px">— CANCEL</div>'+
+                       '</article>'+
+                  '</div>'+
+              '</div>';
+              $('#connectList').append(userData);
+            });
 
+            // Iterate over the 'following' array
+           $.each(data.following, function(index, user) {
+            var userData = '<div class="flex-row flex">'+
+              '<div class="ellipse-container">'+
+                  '<img class="ellipse" src="'+user.avatar_url+'" alt="Ellipse" />'+
+              '</div>'+
+              '<div class="name-container inter-semi-bold-black-30px">'+
+                  '<div class="name">'+user.username+'</div>'+
+              '</div>'+
+              '<div class="flex-col flex">'+
+                  '<div class="'+(user.role.toLowerCase() === 'coach' ? 'coach' : 'athlete')+' valign-text-middle sourcesanspro-bold-christine-20px">'+user.role+'</div>'+
+              '</div>'+
+              '<div class="button-container">' +
+                  '<article class="button">' +
+                       '<div class="valign-text-middle roboto-black-coffee-24px">+ ADD</div>' +
+                  '</article>' +
+              '</div>'+
+                  '<div class="component-container-1 component-container-3">'+
+                       '<article class="component-21 component">'+
+                           '<div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>'+
+                       '</article>'+
+                  '</div>'+
+              '</div>';
+            '</div>';
+            $('#followingList').append(userData);
+        });
+
+            // Iterate over the 'follower' array
+            $.each(data.follower, function(index, user) {
+              var userData = '<div class="flex-row flex">'+
+              '<div class="ellipse-container">'+
+                  '<img class="ellipse" src="'+user.avatar_url+'" alt="Ellipse" />'+
+              '</div>'+
+              '<div class="name-container inter-semi-bold-black-30px">'+
+                  '<div class="name">'+user.username+'</div>'+
+              '</div>'+
+              '<div class="flex-col flex">'+
+                  '<div class="'+(user.role.toLowerCase() === 'coach' ? 'coach' : 'athlete')+' valign-text-middle sourcesanspro-bold-christine-20px">'+user.role+'</div>'+
+              '</div>'+
+              '<div class="button-container">' +
+                  '<article class="button">' +
+                       '<div class="valign-text-middle roboto-black-coffee-24px">+ ADD</div>' +
+                  '</article>' +
+              '</div>'+
+              '</div>';
+            '</div>';
+              $('#followerList').append(userData);
+            });
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Failed to fetch data: ', errorThrown);
+          }
+        });
+      }
+      getRelationship();
+    });
+  </script>
 <head style=" width: 300px">
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=100, maximum-scale=1.0" />
   <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
@@ -41,101 +131,21 @@
       </header>
       <div class="overlap-group-container" >
         <div class="overlap-group2">
-          <h1 class="title valign-text-middle roboto-semi-bold-black-30px">Connection</h1>
-          <div class="flex-row flex" >
-            <div class="ellipse-container" >
-              <img class="ellipse" src="../static/img/ellipse-5@2x.png" alt="Ellipse" />
-              <img class="ellipse" src="../static/img/ellipse-8@2x.png" alt="Ellipse" />
-            </div>
-            <div class="name-container inter-semi-bold-black-30px" >
-              <div class="name">John Tim</div>
-              <div class="name-1">Linda Swift</div>
-            </div>
-            <div class="flex-col flex">
-              <div class="coach valign-text-middle coach-3 sourcesanspro-bold-christine-20px">COACH</div>
-              <div class="athlete valign-text-middle sourcesanspro-bold-licorice-20px">ATHLETE</div>
-            </div>
-            <div class="component-container component">
-              <article class="component-23 component">
-                <div class="delete valign-text-middle delete-2 roboto-black-cod-gray-24px">MESSAGE</div>
-              </article>
-              <article class="component-24 component">
-                <div class="delete valign-text-middle delete-2 roboto-black-cod-gray-24px">MESSAGE</div>
-              </article>
-            </div>
-            <div class="component-container-1 component-container-3">
-              <article class="component-21 component">
-                <div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>
-              </article>
-              <article class="component-22 component">
-                <div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>
-              </article>
-            </div>
+          <h1 class="title valign-text-middle roboto-semi-bold-black-30px">Connection</h1><br>
+          <div id="connectList">
+              <!-- Your JS will append the user data here -->
           </div>
         </div>
-        <div class="flex-row-1">
-          <div class="flex-col-1 flex-col-4">
-            <div class="following-1 valign-text-middle roboto-semi-bold-black-30px">Following</div>
-            <img class="ellipse-1" src="../static/img/ellipse-6@2x.png" alt="Ellipse" />
-            <img class="ellipse-2" src="../static/img/ellipse-9@2x.png" alt="Ellipse" />
-            <img class="ellipse-3" src="../static/img/ellipse-10@2x.png" alt="Ellipse" />
-          </div>
-          <div class="name-container-1 name-container-3 inter-semi-bold-black-30px">
-            <div class="name">John Tim</div>
-            <div class="name">John Tim</div>
-            <div class="name-2">John Tim</div>
-          </div>
-          <div class="flex-row-2">
-            <div class="flex-col-2 flex-col-4">
-              <div class="coach-1 valign-text-middle coach-3 sourcesanspro-bold-christine-20px">COACH</div>
-              <div class="coach-2 valign-text-middle coach-3 sourcesanspro-bold-christine-20px">COACH</div>
-              <div class="athlete-1 valign-text-middle sourcesanspro-bold-licorice-20px">ATHLETE</div>
-            </div>
-            <div class="button-container">
-              <article class="button">
-                <div class="next valign-text-middle roboto-black-coffee-24px">+ ADD</div>
-              </article>
-              <article class="button-2">
-                <div class="next valign-text-middle roboto-black-coffee-24px">+ ADD</div>
-              </article>
-              <article class="button-3">
-                <div class="next valign-text-middle roboto-black-coffee-24px">+ ADD</div>
-              </article>
-            </div>
-            <div class="component-container-2 component-container-3">
-              <article class="component-25 component">
-                <div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>
-              </article>
-              <article class="component-26 component">
-                <div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>
-              </article>
-              <article class="component-27 component">
-                <div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>
-              </article>
-            </div>
+        <div class="overlap-group2">
+          <h1 class="title valign-text-middle roboto-semi-bold-black-30px">Following</h1><br>
+          <div id="followingList">
+            <!-- Your JS will append the user data here -->
           </div>
         </div>
-        <div class="flex-row-3">
-          <div class="flex-col-3 flex-col-4">
-            <div class="follower valign-text-middle roboto-semi-bold-black-30px">Follower</div>
-            <img class="ellipse-4" src="../static/img/ellipse-11@2x.png" alt="Ellipse" />
-            <img class="ellipse-5" src="../static/img/ellipse-7@2x.png" alt="Ellipse" />
-          </div>
-          <div class="name-container-2 name-container-3 inter-semi-bold-black-30px">
-            <div class="name">John Tim</div>
-            <div class="name">John Tim</div>
-          </div>
-          <div class="athlete-container sourcesanspro-bold-licorice-20px">
-            <div class="athlete valign-text-middle">ATHLETE</div>
-            <div class="athlete valign-text-middle">ATHLETE</div>
-          </div>
-          <div class="button-container-1">
-            <article class="button">
-              <div class="next valign-text-middle roboto-black-coffee-24px">+ ADD</div>
-            </article>
-            <article class="button">
-              <div class="next valign-text-middle roboto-black-coffee-24px">+ ADD</div>
-            </article>
+        <div class="overlap-group2">
+          <h1 class="title valign-text-middle roboto-semi-bold-black-30px">Follower</h1><br>
+          <div id="followerList">
+              <!-- Your JS will append the user data here -->
           </div>
         </div>
       </div>

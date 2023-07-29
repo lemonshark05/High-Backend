@@ -8,13 +8,15 @@ from sqlalchemy import or_
 from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
 from flask_socketio import SocketIO, emit
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 from uuid import uuid4
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # (**deploy should delete this line)Solve the problem about http to https
 app = Flask(__name__, static_folder='static', template_folder='.')
 app.config.from_object('config.Config')
 app.secret_key = "mysecretkey"  # Replace with your secret key
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 # Configure the Google OAuth2.0
 google_blueprint = make_google_blueprint(
@@ -48,6 +50,10 @@ pages = {
 
 for url, template in pages.items():
     app.add_url_rule(url, view_func=lambda template=template: render_template(template), endpoint=str(uuid4()))
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
 # Google mail login API
 @app.route("/google_login")
@@ -112,7 +118,7 @@ def register():
         return jsonify({'error': 'username or email already in use'}), 400
 
     pwd = generate_password_hash(data['password'])  # hash the password
-    user = User(username=data['username'], email=data['email'], password=pwd, role=data['role'])
+    user = User(username=data['username'], email=data['email'], password=pwd, role=data['role'], avatar_url="uploads/defualt.jpg")
     Crud.create(user)
     return jsonify({'message':'User created', 'redirect': url_for('register_interest'), 'userId': user.id, 'role': user.role, 'username': user.username})
 
@@ -482,7 +488,9 @@ def get_all_relationships(userId):
     connect_ids = set(following_ids) & set(follower_ids)
     following_ids = set(following_ids) - connect_ids
     follower_ids = set(follower_ids) - connect_ids
-
+    print(connect_ids)
+    print(following_ids)
+    print(follower_ids)
     # Create dictionaries for each type of relationship
     connect = [{'id': user.id, 'username': user.username, 'avatar_url': user.avatar_url, 'role': user.role}
         for user in Crud.read(User, filters={'id': {'op': '$in', 'val': list(connect_ids)}})]
@@ -491,6 +499,9 @@ def get_all_relationships(userId):
     follower = [{'id': user.id, 'username': user.username, 'avatar_url': user.avatar_url, 'role': user.role}
         for user in Crud.read(User, filters={'id': {'op': '$in', 'val': list(follower_ids)}})]
     # Return the relationships
+    print(connect)
+    print(following)
+    print(follower)
     return jsonify(connect=connect, following=following, follower=follower), 200
 
 @app.route('/followers/<int:id>', methods=['DELETE'])

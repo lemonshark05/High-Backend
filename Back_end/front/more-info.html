@@ -8,14 +8,14 @@
         var username = localStorage.getItem('username');
         $('h1.name').text(username);
         var role = localStorage.getItem('role');
-
+        alert("1: Username is: " + data.username +"Role is "+data.role);
         window.onload = function() {
           // get userId from somewhere (e.g. localStorage, URL)
           var userId = localStorage.getItem('userId');
           fetch('/users/' + userId)
             .then(response => response.json())
             .then(data => {
-<!--              alert("Username is: " + data.username +"Role is "+data.role);-->
+              alert("2: Username is: " + data.username +"Role is "+data.role);
               // Populate form fields with user data
               document.getElementById('username').value = data.username || '';
               document.getElementById('role').value = data.role || '';
@@ -82,7 +82,7 @@
                     <span class="experience-end-date">${endDate}</span>
                 </div>
                 <p class="experience-description inter-normal-black-20px">${description}</p>
-                <button class="delete experience-delete-btn">Delete</button>
+                <button type="delete" class="delete experience-delete-btn">Delete</button>
             </div>`;
 
             // Delete button functionality
@@ -120,7 +120,7 @@
           var linkDiv = document.createElement('div');
           linkDiv.innerHTML = `
               <a href="${newLink}" target="_blank" class="inter-normal-black-24px">${newLink}</a>
-              <button class="delete-link experience-delete-btn">Delete</button>
+              <button type="delete" class="delete-link experience-delete-btn">Delete</button>
           `;
 
           // Add event listener to the delete button
@@ -177,12 +177,21 @@
           var lastname = $('#lastname').val();
           var birthday = $('#birthday').val();
 
-          if (!username || !role || !firstname || !lastname || !birthday) {
-            // Display an error message or take appropriate action
-            var hintElement = document.getElementById("allhint");
-            hintElement.innerHTML = 'Please fill out all the required fields.';
-            hintElement.style.color = 'red';
-            return;
+          var hintElement = document.getElementById("allhint");
+          hintElement.style.color = 'red';
+          if (!username) {
+              hintElement.innerHTML = 'Please fill out the username field.';
+          } else if (!role) {
+              hintElement.innerHTML = 'Please fill out the role field.';
+          } else if (!firstname) {
+              hintElement.innerHTML = 'Please fill out the firstname field.';
+          } else if (!lastname) {
+              hintElement.innerHTML = 'Please fill out the lastname field.';
+          } else if (!birthday) {
+              hintElement.innerHTML = 'Please fill out the birthday field.';
+          } else {
+              // All fields are filled out, continue with the rest of your function
+              return;
           }
           // Gather experiences data
           var experiences = [];
@@ -195,7 +204,7 @@
             };
             experiences.push(experience);
           });
-
+          alert(experience);
           // Gather links data
           var links = [];
           $('#links a').each(function() {
@@ -274,7 +283,7 @@
             <div class="flex-col">
               <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
             </div>
-            <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px">{{username}}</h1>
+            <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px" id="myUsername"></h1>
           </div>
         </div>
         <form id="more-info-form" class="account-form">
@@ -339,7 +348,7 @@
               </div>
             <!-- Button to open the modal -->
             <div class="form-row">
-              <button id="addExpBtn" class="add-button">Add Experience</button>
+              <button id="addExpBtn" type="button" class="add-button">Add Experience</button>
             </div>
             <!-- The Modal -->
             <div id="expModal" class="modal">
@@ -367,7 +376,7 @@
                   </div>
                   <div id="hint" class="hint-field inter-normal-red-16px"></div>
                   <div class="button-wrapper">
-                    <button id="addmore" type="add" value="Add" class="valign-text-middle roboto-black-coffee-24px">Add</button>
+                    <button id="addmore" type="button" value="Add" class="valign-text-middle roboto-black-coffee-24px">Add</button>
                   </div>
                 </div>
               </div>
@@ -380,17 +389,17 @@
                 <div id="links"></div>
             </div>
             <div class="form-row">
-                <button id="addLinkBtn" class="add-button">Add Another Link</button>
+                <button id="addLinkBtn" type="button" class="add-button">Add Another Link</button>
             </div>
             <div id="linkInput" class="link-input hidden">
                 <input type="text" id="newLink" class="input-field inter-normal-black-20px">
-                <button id="addLink" class="add-button">Add</button>
+                <button id="addLink" type="button" class="add-button">Add</button>
             </div>
           </div>
           <div class="account-section">
             <div id="allhint" class="hint-field inter-normal-red-16px"></div><br>
             <div class="button-wrapper">
-              <button type="submit" class="submit-button">SUBMIT</button>
+              <button id="submit-btn" type="submit" class="submit-button">SUBMIT</button>
             </div>
           </div>
         </form>
