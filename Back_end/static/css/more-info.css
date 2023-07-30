@@ -167,10 +167,11 @@
 }
 
 .more-info .followers-0-following-0-1 {
-  height: 29px;
+  padding-top: 30px;
+  height: 5px;
   letter-spacing: 0;
-  line-height: 28.8px;
-  min-width: 283px;
+  line-height: 15px;
+  min-width: 283frs px;
   text-align: center;
   white-space: nowrap;
 }

@@ -259,6 +259,14 @@
   font-weight: 400;
 }
 
+.montserrat-normal-white-10px {
+  color: var(--white);
+  font-family: var(--font-family-montserrat);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 200;
+}
+
 .montserrat-normal-black-20px {
   color: var(--black-2);
   font-family: var(--font-family-montserrat);
