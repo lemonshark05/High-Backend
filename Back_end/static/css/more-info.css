@@ -655,3 +655,8 @@
   text-align: center;
   white-space: nowrap;
 }
+
+.more-info .scale {
+  transform: scale(0.8); /* 缩小到原来的一半 */
+  transform-origin: top;
+}
