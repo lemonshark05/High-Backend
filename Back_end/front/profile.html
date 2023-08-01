@@ -54,7 +54,7 @@
               console.error('There has been a problem with your fetch operation:', error);
             });
           };
-          document.getElementById('update').addEventListener('click', function(e) {
+        document.getElementById('update').addEventListener('click', function(e) {
           e.preventDefault();
 
           var data = {
@@ -92,9 +92,9 @@
     <div class="container-center-horizontal">
       <div class="profile screen">
         <header class="header">
-          <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-24px">
+          <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-20px">
               <span>
-              <a href="home"><span class="span0 montserrat-bold-christine-24px">HighLytr</span></a>
+              <a href="home"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
               <span class="span1 montserrat-normal-christine-14px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
@@ -119,10 +119,12 @@
             <div class="flex-col">
               <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
             </div>
+            <div class="flex-col">
             <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px" id="username"></h1><br>
             <a id="followLink" href="/following">
               <h3 class="montserrat-normal-white-24px">followers:&nbsp;<span id="followers"></span>&nbsp;&nbsp;following:&nbsp;<span id="following"></span></h3>
             </a>
+            </div>
           </div>
         </div>
         <form id="profile-form" class="account-form">

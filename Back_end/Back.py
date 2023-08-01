@@ -160,21 +160,42 @@ def register_moreinfo():
             delete_result = Crud.delete(instance)
             print(delete_result)
 
-    for experience_data in data['experiences']:
-        experience = UserExperience(
-            user_id=user.id,
-            title=experience_data['title'],
-            description=experience_data['description'],
-            start_date=experience_data['start_date'],
-            end_date=experience_data['end_date'],
-        )
-        Crud.create(experience)
+    if 'experiences' in data:
+        for experience_data in data['experiences']:
+            experience = UserExperience(
+                user_id=user.id,
+                title=experience_data['title'],
+                description=experience_data['description'],
+                start_date=experience_data['start_date'],
+                end_date=experience_data['end_date'],
+            )
+            Crud.create(experience)
     return jsonify({'message': 'Update successfully!', 'redirect': url_for('get_profile'), 'userId': user.id})
 
 @app.route('/profile', methods=['POST'])
 def get_profile():
     data = request.get_json(force=True)
-    return 200
+    # Get the user
+    users = Crud.read(User, filters={"id": data['user_id']})
+    if not users:  # If the list is empty, the user was not found
+        return jsonify({'error': 'User not found'}), 404
+
+    # Since id is unique, the list should contain only one user
+    user = users[0]
+    user_dict = user.to_dict()
+    following_count = Crud.count_distinct(Follower, Follower.follower_id, filters={'user_id': data['user_id']})
+    followers_count = Crud.count_distinct(Follower, Follower.user_id, filters={'follower_id': data['user_id']})
+
+    # Get user's experiences
+    user_experiences = Crud.read(UserExperience, filters={"user_id": data['user_id']})
+
+    # Add related data to the user_dict
+    user_dict["experiences"] = [experience.to_dict() for experience in user_experiences]
+    user_dict["followers"] = followers_count
+    user_dict["following"] = following_count
+    print(user_dict)
+    # Return the user_dict which includes user data and related data
+    return jsonify(user_dict), 200
 
 # User
 @app.route('/users/<int:user_id>', methods=['GET'])
