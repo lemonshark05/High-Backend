@@ -117,142 +117,135 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
     * View and edit settings
 
 ## PostgreSQL
-
-![Untitled](https://github.com/lemonshark05/High-Backend/assets/100770743/1baf3fec-e60e-4baf-b590-bf25ce778503)
+<img width="655" alt="Screenshot 2023-07-30 at 12 32 13" src="https://github.com/lemonshark05/High-Backend/assets/100770743/ba3c5346-a8f6-4d80-9e35-623da8286dca">
 https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 
 ### Details
-
-**Table: UserRoles**
-
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the role                   |
-| role        | VARCHAR(255)      | Role name ("Athlete", "Coach", "Administrator") |
-
-
 **Table: Blogs**
 
-| Column Name | Type                     | Description                         |
-|-------------|--------------------------|-------------------------------------|
-| id          | SERIAL PRIMARY KEY       | Unique ID for the blog              |
-| title       | VARCHAR(255)             | Title of the blog                   |
-| content     | TEXT                     | Content of the blog                 |
-| author_id   | INT REFERENCES Users(id) | Author's User ID                    |
-| type        | VARCHAR(255)             | Type of the blog                    |
-| views_count | INT                      | views of this blog                  |
-| likes_count | INT                      | likes of this blog                  |
-| image_url   | VARCHAR(255)             | URL of the blog image               |
-| created_at  | TIMESTAMP                | Time when the blog was created      |
-| updated_at  | TIMESTAMP                | Time when the blog was last updated |
+| Column Name | Type                     | Description                             |
+|-------------|--------------------------|-----------------------------------------|
+| id          | SERIAL PRIMARY KEY       | Unique ID for the blog                  |
+| title       | VARCHAR(255)             | Title of the blog                       |
+| content     | TEXT                     | Content of the blog                     |
+| author_id   | INT REFERENCES Users(id) | Author's User ID                        |
+| type        | VARCHAR(255)             | Type of the blog                        |
+| image_url   | VARCHAR(255)             | URL of the blog image                   |
+| views_count | INT DEFAULT 0            | Views of this blog                      |
+| likes_count | INT DEFAULT 0            | Likes of this blog                      |
+| created_at  | TIMESTAMP DEFAULT now()  | Time when the blog was created          |
+| updated_at  | TIMESTAMP DEFAULT now()  | Time when the blog was last updated     |
 
 **Table: Comments**
 
-| Column Name | Type                  | Description                                |
-|-------------|-----------------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY    | Unique ID for the comment                  |
-| blog_id     | INT REFERENCES Blogs(id) | ID of the blog the comment belongs to |
-| user_id     | INT REFERENCES Users(id) | User ID of the comment's author      |
-| comment     | TEXT                  | The comment text                          |
-| created_at  | TIMESTAMP             | Time when the comment was created         |
-| updated_at  | TIMESTAMP             | Time when the comment was last updated    |
-
+| Column Name | Type                     | Description                         |
+|-------------|--------------------------|-------------------------------------|
+| id          | SERIAL PRIMARY KEY       | Unique ID for the comment           |
+| blog_id     | INT REFERENCES Blogs(id) | ID of the blog                      |
+| user_id     | INT REFERENCES Users(id) | ID of the user who commented        |
+| comment     | TEXT                     | Comment text                        |
+| created_at  | TIMESTAMP DEFAULT now()  | Time when the comment was created   |
+| updated_at  | TIMESTAMP DEFAULT now()  | Time when the comment was updated   |
 
 **Table: Scholarships**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the scholarship            |
-| university_id | INT REFERENCES Universities(id) | University ID           |
-| type        | VARCHAR(255)   | Type of scholarship (What kinds of athletes could apply) |
-| description | TEXT           | Description of the scholarship             |
-| application_link | VARCHAR(255) | URL of the application                   |
-| prize       | DECIMAL(10,2)  | Prize of the scholarship                   |
-| country     | VARCHAR(255)   | Country of the scholarship                 |
-| success_rate | DECIMAL(5,2)   | Success rate of the scholarship           |
-| image_url   | VARCHAR(255)   | URL of the scholarship image               |
-| video_url   | VARCHAR(255)   | URL of the scholarship video               |
-| created_by  | INT REFERENCES UserRoles(id) | Role ID of the creator (Admin or Coach) |
+| Column Name      | Type                     | Description                                      |
+|------------------|--------------------------|--------------------------------------------------|
+| id               | SERIAL PRIMARY KEY       | Unique ID for the scholarship                    |
+| university_id    | INT REFERENCES Universities(id) | ID of the university                      |
+| type             | VARCHAR(255)             | Type of the scholarship                          |
+| description      | TEXT                     | Description of the scholarship                   |
+| application_link | VARCHAR(255)             | Application link for the scholarship             |
+| prize            | DECIMAL(10,2)            | Prize amount for the scholarship                 |
+| country          | VARCHAR(255)             | Country of the scholarship                       |
+| success_rate     | DECIMAL(5,2)             | Success rate of the scholarship                  |
+| image_url        | VARCHAR(255)             | Image URL of the scholarship                     |
+| video_url        | VARCHAR(255)             | Video URL of the scholarship                     |
+| created_id       | INT REFERENCES Users(id) | ID of the user who created the scholarship record|
 
 **Table: Users**
 
-| Column Name | Type            | Description                                             |
-|-------------|-----------------|---------------------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the user                                  |
-| username    | VARCHAR(255)      | User's username                                         |
-| email       | VARCHAR(255)      | Unique user's email                                     |
-| loginemail  | VARCHAR(255)      | Login email created at registration                     |
-| phone       | VARCHAR(255)      | User's phone number                                     |
-| avatar_url  | VARCHAR(255)      | User's avater                                           |
-| role_id     | INT REFERENCES UserRoles(id) | Role ID                                                 |
-| profile_image | VARCHAR(255) | URL of profile image                                    |
-| community_page_url | VARCHAR(255) | URL of community page                                   |
-| profile_visibility | BOOLEAN | Visibility status of profile                            |
-| time_zone   | VARCHAR(255)   | User's time zone                                        |
-| display_name | VARCHAR(255)  | User's display name                                     |
-| title       | VARCHAR(255)   | User's title                                            |
-| personal_info | TEXT | User's personal info                                    |
-| is_visible_to_all_members | BOOLEAN | Visibility to all members                               |
-| linkedin_link | VARCHAR(255) | Linkedin profile link                                   |
-| other_links | JSONB | JSONB array of other social links (Twitter, Facebook, etc.) |
-| about_me    | TEXT | About me information                                    |
-| interested_in_coaches | JSONB | JSONB array of interested coach IDs                     |
-| interested_in_athletes | JSONB | JSONB array of interested athlete IDs                   |
+| Column Name                | Type              | Description                                  |
+|----------------------------|-------------------|----------------------------------------------|
+| id                         | SERIAL PRIMARY KEY| Unique ID for the user                       |
+| username                   | VARCHAR(255) UNIQUE NOT NULL | User's username                        |
+| password                   | VARCHAR(255) NOT NULL | User's password                          |
+| firstname                  | VARCHAR(255)      | User's first name                            |
+| lastname                   | VARCHAR(255)      | User's last name                             |
+| birthday                   | DATE              | User's birthday                              |
+| email                      | VARCHAR(255) UNIQUE NOT NULL | User's email                          |
+| role                       | VARCHAR(255) NOT NULL | User's role                               |
+| phone                      | VARCHAR(255)      | User's phone number                          |
+| avatar_url                 | VARCHAR(255)      | URL of the user's avatar                     |
+| profile_image              | VARCHAR(255)      | URL of the user's profile image               |
+| community_page_url         | VARCHAR(255)      | URL of the user's community page              |
+| profile_visibility         | BOOLEAN DEFAULT false | Whether the user's profile is visible     |
+| time_zone                  | VARCHAR(255)      | User's time zone                             |
+| display_name               | VARCHAR(255)      | User's display name                          |
+| education                  | TEXT              | User's education details                     |
+| is_visible_to_all_members  | BOOLEAN DEFAULT false | Whether the user is visible to all members|
+| other_links                | JSONB             | Other links related to the user               |
+| about_me                   | TEXT              | Information about the user                    |
+| interested_in_coaches      | JSONB             | Coaches the user is interested in            |
+| interested_in_athletes     | JSONB             | Athletes the user is interested in           |
 
 **Table: UserExperiences**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the user's experience   |
-| user_id     | INT REFERENCES Users(id) | User ID                            |
-| title       | VARCHAR(255)   | Title of the user's experience             |
-| description | TEXT           | Description of the user's experience       |
-| start_date  | DATE           | Start date of the user's experience        |
-| end_date    | DATE           | End date of the user's experience          |
-| is_current  | BOOLEAN        | If the experience is current               |
+| Column Name  | Type                     | Description                                    |
+|--------------|--------------------------|------------------------------------------------|
+| id           | SERIAL PRIMARY KEY       | Unique ID for the experience                   |
+| user_id      | INT REFERENCES Users(id) | ID of the user                                 |
+| title        | VARCHAR(255)             | Title of the experience                        |
+| description  | TEXT                     | Description of the experience                   |
+| start_date   | DATE                     | Start date of the experience                   |
+| end_date     | DATE                     | End date of the experience                     |
+| is_current   | BOOLEAN DEFAULT false    | Whether the experience is current              |
 
 **Table: Followers**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the follower relationship |
-| user_id     | INT REFERENCES Users(id) | User ID                           |
-| follower_id | INT REFERENCES Users(id) | Follower's user ID                 |
+| Column Name  | Type                     | Description                                |
+|--------------|--------------------------|--------------------------------------------|
+| id           | SERIAL PRIMARY KEY       | Unique ID for the follower                 |
+| user_id      | INT REFERENCES Users(id) | ID of the user                             |
+| follower_id  | INT REFERENCES Users(id) | ID of the follower                         |
 
 **Table: UserImages**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the user image             |
-| user_id     | INT REFERENCES Users(id) | User ID                           |
-| image_url   | VARCHAR(255) | URL of user's image                         |
+| Column Name  | Type                     | Description                                |
+|--------------|--------------------------|--------------------------------------------|
+| id           | SERIAL PRIMARY KEY       | Unique ID for the image                    |
+| user_id      | INT REFERENCES Users(id) | ID of the user                             |
+| image_url    | VARCHAR(255)             | URL of the image                           |
 
 **Table: UserVideos**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the user video             |
-| user_id     | INT REFERENCES Users(id) | User ID                           |
-| video_url   | VARCHAR(255) | URL of user's video                         |
+| Column Name  | Type                     | Description                                |
+|--------------|--------------------------|--------------------------------------------|
+| id           | SERIAL PRIMARY KEY       | Unique ID for the video                    |
+| user_id      | INT REFERENCES Users(id) | ID of the user                             |
+| video_url    | VARCHAR(255)             | URL of the video                           |
 
 **Table: Universities**
 
-| Column Name | Type            | Description                                  |
-|-------------|-----------------|----------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the university               |
-| name        | VARCHAR(255)   | University name                              |
-| details     | TEXT | University details                                    |
-| official_link | VARCHAR(255) | Official URL of the university               |
-| intro_image_url | VARCHAR(255) | URL of introduction image of the university |
-| thumbnail_url | VARCHAR(255) | URL of thumbnail image of the university     |
-| scholarships_link | VARCHAR(255) | Link to the scholarships of the university |
+| Column Name       | Type            | Description                                |
+|-------------------|-----------------|--------------------------------------------|
+| id                | SERIAL PRIMARY KEY | Unique ID for the university            |
+| name              | VARCHAR(255)      | Name of the university                    |
+| details           | TEXT              | Details about the university              |
+| official_link     | VARCHAR(255)      | Official link of the university           |
+| intro_image_url   | VARCHAR(255)      | URL of the university's introductory image|
+| thumbnail_url     | VARCHAR(255)      | URL of the university's thumbnail image   |
+| scholarships_link | VARCHAR(255)      | Link to university's scholarships page    |
 
-**Table: AthleteTypes**
+**Table: Messages**
 
-| Column Name | Type            | Description                                |
-|-------------|-----------------|--------------------------------------------|
-| id          | SERIAL PRIMARY KEY | Unique ID for the athlete type           |
-| type        | VARCHAR(255)   | Athlete type name                          |
+| Column Name  | Type                     | Description                                |
+|--------------|--------------------------|--------------------------------------------|
+| id           | SERIAL PRIMARY KEY       | Unique ID for the message                  |
+| sender_id    | INT REFERENCES Users(id) | ID of the message sender                   |
+| receiver_id  | INT REFERENCES Users(id) | ID of the message receiver                 |
+| content      | TEXT                     | Content of the message                     |
+| created_at   | TIMESTAMP DEFAULT now()  | Time when the message was created          |
 
 ###  Digital Wireframes & Mockups
 
