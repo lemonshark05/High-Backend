@@ -7,15 +7,12 @@
         var userId = localStorage.getItem('userId');
         var username = localStorage.getItem('username');
         $('h1.name').text(username);
-        var role = localStorage.getItem('role');
-        alert("1: Username is: " + data.username +"Role is "+data.role);
         window.onload = function() {
           // get userId from somewhere (e.g. localStorage, URL)
           var userId = localStorage.getItem('userId');
           fetch('/users/' + userId)
             .then(response => response.json())
             .then(data => {
-              alert("2: Username is: " + data.username +"Role is "+data.role);
               // Populate form fields with user data
               document.getElementById('username').value = data.username || '';
               document.getElementById('role').value = data.role || '';
@@ -30,12 +27,26 @@
               // Display user experiences
               var experiencesContainer = document.getElementById('experiences');
               if (data.experiences !== undefined && Array.isArray(data.experiences)) {
-                data.experiences.forEach(function(exp) {
-                  var expElement = document.createElement('p');
-                  expElement.textContent = exp.title + ": " + exp.description;
-                  experiencesContainer.appendChild(expElement);
-                });
-              }
+                  data.experiences.forEach(function(exp) {
+                      var expDiv = document.createElement('div');
+                      expDiv.innerHTML = `<div class="experience-item">
+                          <h3 class="experience-title inter-normal-black-24px">${exp.title}</h3>
+                          <div class="experience-dates">
+                              <span class="experience-start-date">${exp.start_date}</span> -
+                              <span class="experience-end-date">${exp.end_date}</span>
+                          </div>
+                          <p class="experience-description inter-normal-black-20px">${exp.description}</p>
+                          <button type="delete" class="delete experience-delete-btn">Delete</button>
+                      </div>`;
+
+                      // Delete button functionality
+                      expDiv.querySelector('.delete').addEventListener('click', function() {
+                          expDiv.remove();
+                      });
+
+                       experiencesContainer.appendChild(expDiv);
+                    });
+                }
             })
             .catch(error => {
               console.error('There has been a problem with your fetch operation:', error);
@@ -176,23 +187,22 @@
           var firstname = $('#firstname').val();
           var lastname = $('#lastname').val();
           var birthday = $('#birthday').val();
-
           var hintElement = document.getElementById("allhint");
           hintElement.style.color = 'red';
           if (!username) {
-              hintElement.innerHTML = 'Please fill out the username field.';
+              hintElement.innerHTML = 'Please fill out the username field.';return;
           } else if (!role) {
-              hintElement.innerHTML = 'Please fill out the role field.';
+              hintElement.innerHTML = 'Please fill out the role field.';return;
           } else if (!firstname) {
-              hintElement.innerHTML = 'Please fill out the firstname field.';
+              hintElement.innerHTML = 'Please fill out the firstname field.';return;
           } else if (!lastname) {
-              hintElement.innerHTML = 'Please fill out the lastname field.';
+              hintElement.innerHTML = 'Please fill out the lastname field.';return;
           } else if (!birthday) {
-              hintElement.innerHTML = 'Please fill out the birthday field.';
-          } else {
-              // All fields are filled out, continue with the rest of your function
-              return;
+              hintElement.innerHTML = 'Please fill out the birthday field.';return;
           }
+          // All fields are filled out, continue with the rest of your function
+          hintElement.innerHTML = ''
+
           // Gather experiences data
           var experiences = [];
           $('#experiences .experience-item').each(function() {
@@ -204,7 +214,7 @@
             };
             experiences.push(experience);
           });
-          alert(experience);
+
           // Gather links data
           var links = [];
           $('#links a').each(function() {
@@ -217,26 +227,29 @@
             lastname: $('#lastname').val(),
             birthday: $('#birthday').val(),
             username: $('#username').val(),
+            phone: $('#phone').val(),
             role: $('#role').val(),
             about_me: $('#about_me').val(),
             education: $('#education').val(),
             experiences: experiences,
-            links: links
+            other_links: links
           };
-
+          alert(JSON.stringify(formData));
           // Send AJAX request
           $.ajax({
             url: '/moreinfo',
             type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
             data: JSON.stringify(formData),
             contentType: 'application/json',  // Sending JSON
             success: function(response) {
-              // Handle success
-              console.log('Register successfully!');
+              localStorage.setItem('userId', response.userId);
+              console.log('AJAX success:', response);
+              window.location.href = response.redirect;
             },
             error: function(error) {
-              // Handle error
-              console.log(error);
+              console.log('AJAX error:', error);
             }
         });
       });

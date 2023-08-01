@@ -4,8 +4,8 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import relationship
 from flask import jsonify
-from sqlalchemy import ForeignKey, inspect, Date, UniqueConstraint
-from datetime import datetime
+from sqlalchemy import ForeignKey, inspect, Date, UniqueConstraint, func
+from datetime import datetime, date
 
 db = SQLAlchemy()
 
@@ -226,8 +226,27 @@ class Crud:
                 items = pagination.items
             else:
                 items = query.all()
+            # Convert datetime.date objects to 'YYYY-MM-DD' strings
+            for item in items:
+                for attr, value in item.__dict__.items():
+                    if isinstance(value, (datetime, date)):
+                        setattr(item, attr, value.strftime('%Y-%m-%d'))
 
             return items
+        except SQLAlchemyError as e:
+            return jsonify(error=str(e)), 400
+
+    @staticmethod
+    def count_distinct(model, column, filters=None):
+        try:
+            query = model.query
+
+            if filters:
+                for key, value in filters.items():
+                    query = query.filter(getattr(model, key) == value)
+            count = query.with_entities(func.count(column.distinct())).scalar()
+
+            return count
         except SQLAlchemyError as e:
             return jsonify(error=str(e)), 400
 

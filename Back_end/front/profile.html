@@ -1,6 +1,72 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        window.onload = function() {
+          // get userId from somewhere (e.g. localStorage, URL)
+          var userId = localStorage.getItem('userId');
+          fetch('/users/' + userId)
+            .then(response => response.json())
+            .then(data => {
+              // Populate form fields with user data
+              document.getElementById('username').textContent  = data.username || '';
+              document.getElementById('role').textContent  = data.role || '';
+              document.getElementById('email').textContent = data.email || '';
+              document.getElementById('about_me').textContent  = data.about_me || '';
+              document.getElementById('firstname').textContent  = data.firstname || '';
+              document.getElementById('lastname').textContent  = data.lastname || '';
+              document.getElementById('birthday').textContent  = data.birthday || '';
+              document.getElementById('phone').textContent  = data.phone || '';
+              document.getElementById('education').textContent  = data.education || '';
+              document.getElementById('followers').textContent  = data.followers || '0';
+              document.getElementById('following').textContent  = data.following || '0';
+              // Display user experiences
+              var experiencesContainer = document.getElementById('experiences');
+              if (data.experiences !== undefined && Array.isArray(data.experiences)) {
+                  data.experiences.forEach(function(exp) {
+                      var expDiv = document.createElement('div');
+                      expDiv.innerHTML = `<div class="experience-item">
+                          <h3 class="experience-title inter-normal-black-24px">${exp.title}</h3>
+                          <div class="experience-dates">
+                              <span class="experience-start-date">${exp.start_date}</span> -
+                              <span class="experience-end-date">${exp.end_date}</span>
+                          </div>
+                          <p class="experience-description inter-normal-black-24px">${exp.description}</p>
+                      </div>`;
+                       experiencesContainer.appendChild(expDiv);
+                    });
+                }
+            })
+            .catch(error => {
+              console.error('There has been a problem with your fetch operation:', error);
+            });
+          };
+          document.getElementById('update').addEventListener('click', function(e) {
+          e.preventDefault();
+
+          var data = {
+              userId: localStorage.getItem('userId'),
+              username: document.getElementById('username').textContent,
+          };
+          fetch('/moreinfo', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => {
+              window.location.href = '/moreinfo';  // redirect to /profile
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+        });
+      });
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="../static/img/web-img.png" />
@@ -15,9 +81,9 @@
     <div class="container-center-horizontal">
       <div class="profile screen">
         <header class="header">
-          <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-20px">
+          <p class="high-lytr-home-explore-resources-connect valign-text-middle montserrat-bold-christine-24px">
               <span>
-              <a href="home"><span class="span0 montserrat-bold-christine-20px">HighLytr</span></a>
+              <a href="home"><span class="span0 montserrat-bold-christine-24px">HighLytr</span></a>
               <span class="span1 montserrat-normal-christine-14px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="home"><span class="span1 montserrat-normal-christine-14px">Home</span></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="explore"><span class="span1 montserrat-normal-christine-14px">Explore</span></a>
@@ -26,7 +92,7 @@
               </span>
             </span>
             </p>
-            <a href="login-1.html" onclick="window.event.stopPropagation()" class="align-self-flex-end">
+            <a href="login" onclick="window.event.stopPropagation()" class="align-self-flex-end">
               <div class="button">
                 <img class="svg" src="../static/img/svg-1.svg" alt="SVG" />
                 <div class="sign-in valign-text-middle montserrat-normal-christine-16px">Sign In</div>
@@ -37,134 +103,76 @@
               <div class="number inter-normal-blue-16-6px">0</div>
             </div>
         </header>
-        <div class="component">
-          <div class="overlap-group">
-            <div class="component-12 component">
-              <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
-              <h1 class="name valign-text-middle montserrat-normal-white-36px">John Doe</h1>
-            </div>
-            <div class="followers-10-following-23 valign-text-middle montserrat-normal-white-24px">
-              Followers 10 Following 23
-            </div>
-          </div>
-        </div>
-        <div class="experience experience-2">
-          <div class="experience-1 valign-text-middle experience-2 roboto-semi-bold-black-36px">Experience</div>
-          <div class="high-school-basketba">
-            <div class="flex-container inter-normal-saddle-32px">
-              <div class="text text-2">
-                <span class="inter-normal-saddle-32px">High School Basketball Player (2019-2023):</span>
-              </div>
-              <div class="text text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Led the team to consecutive state championships, averaging 30 points per game.</span
-                >
-              </div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Showcased exceptional telepathic coordination, enabling unprecedented teamwork and defensive
-                  strategies.</span
-                >
-              </div>
-              <div class="text text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Received multiple accolades, including MVP of the state tournament.</span
-                >
-              </div>
-              <div class="text text-2"><span class="inter-normal-saddle-32px"></span></div>
-              <div class="text text-2">
-                <span class="inter-normal-saddle-32px">National Basketball Tournaments:</span>
-              </div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Participated in renowned tournaments, consistently demonstrating superior skills and
-                  leadership.</span
-                >
-              </div>
-              <div class="text text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Led team to victory in the prestigious City Cup, earning the title of Tournament MVP.</span
-                >
-              </div>
-              <div class="text text-2"><span class="inter-normal-saddle-32px"></span></div>
-            </div>
-          </div>
-        </div>
-        <div class="education">
-          <div class="education-1 valign-text-middle roboto-semi-bold-black-36px">Education</div>
-          <div class="high-school-diploma">
-            <div class="flex-container-1 inter-normal-saddle-32px">
-              <div class="text text-2">
-                <span class="inter-normal-saddle-32px">High School Diploma (Expected 2023):</span>
-              </div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Maintained a stellar academic record, balancing athletic commitments and rigorous coursework.</span
-                >
-              </div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Excelled in advanced mathematics and science, displaying a passion for analytical
-                  problem-solving.</span
-                >
-              </div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Active member of the Student Athlete Association, promoting the importance of education and
-                  athletics.</span
-                >
-              </div>
-              <div class="text text-2"><span class="inter-normal-saddle-32px">Leadership and Training:</span></div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Attended leadership workshops and sports clinics, honing teamwork and communication skills.</span
-                >
-              </div>
-              <div class="text-2">
-                <span class="inter-normal-saddle-32px"
-                  >Mentored younger athletes, instilling the values of hard work, dedication, and sportsmanship.</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="private-infor">
-          <div class="flex-row">
+        <div class="overlap-group">
+          <div class="component-12">
             <div class="flex-col">
-              <div class="private-info valign-text-middle roboto-semi-bold-black-36px">Private info</div>
-              <div class="first-name valign-text-middle montserrat-normal-black-24px">First Name</div>
-              <div class="zhimin inter-normal-black-30px">Zhimin</div>
-              <div class="email valign-text-middle montserrat-normal-black-24px">Email</div>
-              <a href="mailto:johndoe@example.com" target="_blank" class="align-self-flex-end"
-                ><div class="johndoeexamplecom inter-normal-black-30px">johndoe@example.com</div>
-              </a>
-              <div class="display-name valign-text-middle montserrat-normal-black-24px">Display name</div>
-              <div class="name-1 inter-normal-black-30px">John Doe</div>
-              <div class="other-links valign-text-middle montserrat-semi-bold-black-36px">Other links</div>
+              <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
             </div>
-            <div class="flex-col-1">
-              <div class="last-name valign-text-middle montserrat-normal-black-24px">Last Name</div>
-              <div class="meng inter-normal-black-30px">Meng</div>
-              <div class="phone valign-text-middle montserrat-normal-black-24px">Phone</div>
-              <div class="phone-1 inter-normal-black-30px">6678991325</div>
-              <div class="title valign-text-middle montserrat-normal-black-24px">Title</div>
-              <div class="athlete inter-normal-black-30px">Athlete</div>
-            </div>
-          </div>
-          <a href="https://www.linkedin.com/in/zhimin-meng/" target="_blank"
-            ><div class="httpswwwlinkedin inter-normal-black-30px">https://www.linkedin.com/in/zhimin-meng/5</div>
-          </a>
-        </div>
-        <div class="about">
-          <div class="about-1 montserrat-bold-black-36px">About</div>
-          <div class="the-star-quarterback">
-            <p class="the-star-quarterback-1 inter-normal-saddle-32px">
-              The star quarterback of XYZ High School, has an astonishing private stat: he once completed 100% of his
-              passes blindfolded, showcasing his remarkable intuitive skills and uncanny accuracy.
-            </p>
+            <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px" id="username"></h1><br>
+            <h3 class="montserrat-normal-white-24px">followers:&nbsp;<span id="followers"></span>&nbsp;&nbsp;following:&nbsp;<span id="following"></span></h3>
           </div>
         </div>
-        <div class="button-1"><div class="next valign-text-middle">UPDATE</div></div>
+        <form id="profile-form" class="account-form">
+          <div class="account-section">
+            <span class="section-title">My Account</span>
+            <p class="section-description">Your Login email:&nbsp;<span id="email"></span></p><br>
+            <br>
+            <div class="form-row">
+              <div class="input-group">
+                <label for="role" class="input-label">Role:&nbsp;</label>
+                <span class="inter-normal-black-24px" id="role"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label for="firstname" class="input-label">First Name:&nbsp;</label>
+                <span class="inter-normal-black-24px" id="firstname"></span>
+              </div>
+
+              <div class="input-group">
+                <label for="lastname" class="input-label">Last Name:&nbsp;</label>
+                <span class="inter-normal-black-24px" id="lastname"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="birthday" class="input-label">Birthday:&nbsp;</label>
+                <span class="inter-normal-black-24px" id="birthday"></span>
+              </div>
+
+              <div class="input-group">
+                <label for="phone" class="input-label">Phone:&nbsp;</label>
+                <span class="inter-normal-black-24px" id="phone"></span>
+              </div>
+            </div>
+            <label class="input-label">About me</label><br>
+            <textarea class="text-field inter-normal-black-20px" id="about_me" readonly></textarea>
+          </div>
+          <div class="account-section">
+            <span class="section-title">Education</span>
+            <textarea class="text-field inter-normal-black-20px" id="education" readonly></textarea>
+          </div>
+          <div class="account-section">
+            <span class="section-title">Experiences</span>
+              <div class="form-row">
+                <div id="experiences">
+
+                </div>
+              </div>
+          </div>
+          <div class="account-section">
+            <span class="section-title">Other links</span>
+            <div class="form-row">
+                <div id="links"></div>
+            </div>
+          </div>
+          <div class="account-section">
+            <div class="button-wrapper">
+              <button id="update" type="button" class="submit-button">UPDATE</button>
+            </div>
+          </div>
+        </form>
         <div class="footer footer-2">
           <div class="footer-1 footer-2 montserrat-normal-black-16px">
             <div class="copyright valign-text-middle">© 2023 HighLytr</div>

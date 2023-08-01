@@ -368,21 +368,22 @@
 }
 
 .more-info .experience-delete-btn {
-    background-color: #f44336; /* Red */
-    border: none;
+     background-color: #FF8080;
     color: white;
-    padding: 15px 32px;
+    border-radius: 5px;
+    border: none;
+    height: 28px;
+    min-width: 117px;
+    letter-spacing: 0.96px;
+    line-height: normal;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 2px;
-    cursor: pointer;
-    transition-duration: 0.4s;
+    white-space: nowrap;
+    font-weight: 600;
+    font-family: Montserrat;
 }
 
 .more-info .experience-delete-btn:hover {
-    background-color: #da190b; /* Darker red */
+    background-color: red;
     color: white;
 }
 .more-info .hidden {

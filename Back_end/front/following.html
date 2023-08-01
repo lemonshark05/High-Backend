@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-      var userId = 31;
+      var userId = 10;
       function getRelationship(){
        $.ajax({
           url: '/followers/' + userId,
@@ -23,14 +23,12 @@
               '</div>'+
               '<div class="component-container component">'+
                   '<article class="component-23 component">'+
-              '<div class="message valign-text-middle roboto-black-cod-gray-24px">MESSAGE</div>'+
+              '<div class="add valign-text-middle roboto-black-coffee-20px"> MESSAGE </div>'+
               '</article>'+
               '</div>'+
-                  '<div class="component-container-1 component-container-3">'+
-                       '<article class="component-21 component">'+
-                           '<div class="valign-text-middle roboto-black-cod-gray-24px">— CANCEL</div>'+
-                       '</article>'+
-                  '</div>'+
+               '<article class="component">'+
+                    '<div class="cancel valign-text-middle roboto-black-coffee-20px">— CANCEL</div>'+
+               '</article>'+
               '</div>';
               $('#connectList').append(userData);
             });
@@ -48,15 +46,15 @@
                   '<div class="'+(user.role.toLowerCase() === 'coach' ? 'coach' : 'athlete')+' valign-text-middle sourcesanspro-bold-christine-20px">'+user.role+'</div>'+
               '</div>'+
               '<div class="button-container">' +
-                  '<article class="button">' +
-                       '<div class="valign-text-middle roboto-black-coffee-24px">+ ADD</div>' +
-                  '</article>' +
+                  '<article class="button">'+
+                    '<div class="add valign-text-middle roboto-black-coffee-20px"> + ADD </div>'+
+               '</article>'+
               '</div>'+
-                  '<div class="component-container-1 component-container-3">'+
-                       '<article class="component-21 component">'+
-                           '<div class="delete-1 valign-text-middle delete-2 roboto-black-cod-gray-24px">— CANCEL</div>'+
-                       '</article>'+
-                  '</div>'+
+               '<div class="button-container">' +
+                '<article class="button">'+
+                    '<div class="cancel valign-text-middle roboto-black-coffee-20px"> - CANCEL </div>'+
+               '</article>'+
+               '</div>'+
               '</div>';
             '</div>';
             $('#followingList').append(userData);
@@ -74,10 +72,11 @@
               '<div class="flex-col flex">'+
                   '<div class="'+(user.role.toLowerCase() === 'coach' ? 'coach' : 'athlete')+' valign-text-middle sourcesanspro-bold-christine-20px">'+user.role+'</div>'+
               '</div>'+
-              '<div class="button-container">' +
-                  '<article class="button">' +
-                       '<div class="valign-text-middle roboto-black-coffee-24px">+ ADD</div>' +
-                  '</article>' +
+               '<div class="button-container">' +
+                  '<article class="button">'+
+                    '<div class="add valign-text-middle roboto-black-coffee-20px"> + ADD </div>'+
+               '</article>'+
+              '</div>'+
               '</div>'+
               '</div>';
             '</div>';

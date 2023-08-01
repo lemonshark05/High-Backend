@@ -274,7 +274,7 @@
   flex-flow: row wrap; /* Make the flex container wrap items */
   justify-content: space-between; /* Distribute items evenly in the container */
   background-color: #ffffff;
-  min-width: 1440px;
+  min-width: 1200px;
   height: auto; /* Use auto to fit the contents */
 }
 
