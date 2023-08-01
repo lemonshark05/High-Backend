@@ -38,6 +38,17 @@
                        experiencesContainer.appendChild(expDiv);
                     });
                 }
+                // Display user links
+              var linksContainer = document.getElementById('links');
+              if (data.other_links !== undefined && Array.isArray(data.other_links)) {
+                data.other_links.forEach(function(link) {
+                  var linkDiv = document.createElement('div');
+                  linkDiv.style = 'margin: 15px 15px';
+                  linkDiv.innerHTML = `<a href="${link}" target="_blank" class="inter-normal-black-24px" style="text-decoration: underline; font-style: italic; color: blue;">${link}</a>`;
+
+                  linksContainer.appendChild(linkDiv);
+                });
+              }
             })
             .catch(error => {
               console.error('There has been a problem with your fetch operation:', error);
@@ -109,7 +120,9 @@
               <div class="user-icon"><div class="u valign-text-middle montserrat-bold-white-128px">U</div></div>
             </div>
             <h1 class="name valign-text-middle name-3 montserrat-normal-white-36px" id="username"></h1><br>
-            <h3 class="montserrat-normal-white-24px">followers:&nbsp;<span id="followers"></span>&nbsp;&nbsp;following:&nbsp;<span id="following"></span></h3>
+            <a id="followLink" href="/following">
+              <h3 class="montserrat-normal-white-24px">followers:&nbsp;<span id="followers"></span>&nbsp;&nbsp;following:&nbsp;<span id="following"></span></h3>
+            </a>
           </div>
         </div>
         <form id="profile-form" class="account-form">

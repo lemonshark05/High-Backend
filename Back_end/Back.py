@@ -142,7 +142,7 @@ def register_moreinfo():
     data = request.get_json(force=True)
     print(data)
     # Check if user already exists
-    existing_user = Crud.read(User, filters={"id": {"op": "$ne", "val": data['userId']}})
+    existing_user = Crud.read(User, filters={"id": {"op": "$ne", "val": data['userId']}, "username": data['username']})
     if existing_user:
         print('This username already in use')
         print(existing_user[0])

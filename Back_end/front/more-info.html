@@ -47,6 +47,28 @@
                        experiencesContainer.appendChild(expDiv);
                     });
                 }
+              // Display user links
+              var linksContainer = document.getElementById('links');
+              if (data.other_links !== undefined && Array.isArray(data.other_links)) {
+                data.other_links.forEach(function(link) {
+                  var linkDiv = document.createElement('div');
+                  linkDiv.style = 'margin: 15px 15px';
+                  linkDiv.innerHTML = `<a href="${link}" target="_blank" class="inter-normal-black-24px" style="text-decoration: underline; font-style: italic; color: blue;">${link}</a>
+                          <button type="button" class="delete-link experience-delete-btn">Delete</button>`;
+
+                  // Delete button functionality
+                  linkDiv.querySelector('.delete-link').addEventListener('click', function() {
+                    // Remove this link from the links array
+                    var index = links.indexOf(link);
+                    if (index > -1) {
+                       links.splice(index, 1);
+                    }
+                    linkDiv.remove();
+                  });
+
+                  linksContainer.appendChild(linkDiv);
+                });
+              }
             })
             .catch(error => {
               console.error('There has been a problem with your fetch operation:', error);
@@ -129,8 +151,9 @@
           links.push(link);
           // Create a new div for the link and the delete button
           var linkDiv = document.createElement('div');
+          linkDiv.style = 'margin: 15px 15px';
           linkDiv.innerHTML = `
-              <a href="${newLink}" target="_blank" class="inter-normal-black-24px">${newLink}</a>
+              <a href="${newLink}" target="_blank" class="inter-normal-black-24px" style="text-decoration: underline; font-style: italic; color: blue;">${newLink}</a>
               <button type="delete" class="delete-link experience-delete-btn">Delete</button>
           `;
 
@@ -234,7 +257,6 @@
             experiences: experiences,
             other_links: links
           };
-          alert(JSON.stringify(formData));
           // Send AJAX request
           $.ajax({
             url: '/moreinfo',
