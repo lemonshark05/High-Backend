@@ -198,7 +198,7 @@
 .more-info .section-title {
     font-size: 48px;
     font-family: Montserrat;
-    font-weight: SemiBold;
+    /*font-weight: SemiBold;*/
     font-size: 36px;
     opacity: 1;
     text-align: left;
@@ -341,7 +341,7 @@
     margin: 15px;
     margin-bottom: 30px;
     min-width: 1120px;
-    width: 80%
+    width: 80%;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
