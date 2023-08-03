@@ -174,33 +174,7 @@
           // Clear the input field and hide it
           document.getElementById('newLink').value = '';
           document.getElementById('linkInput').classList.add('hidden');
-      });
-<!--        $('#image-upload').on('change', function() {-->
-<!--            var file = this.files[0];-->
-<!--            if (file) {-->
-<!--                var formData = new FormData();-->
-<!--                formData.append('file', file);-->
-
-<!--                $.ajax({-->
-<!--                    url: '/upload_image',-->
-<!--                    type: 'POST',-->
-<!--                    data: formData,-->
-<!--                    processData: false,  // Important!-->
-<!--                    contentType: false,  // Important!-->
-<!--                    success: function(response) {-->
-<!--                        if (response.error) {-->
-<!--                            alert(response.error);-->
-<!--                        } else {-->
-<!--                            // Do something with the uploaded image URL-->
-<!--                            $('.user-icon').html('<img src="' + response.file_url + '" alt="User Icon">');-->
-<!--                        }-->
-<!--                    },-->
-<!--                    error: function(error) {-->
-<!--                        console.log(error);-->
-<!--                    }-->
-<!--                });-->
-<!--            }-->
-<!--        });-->
+        });
 
         $('#more-info-form').on('submit', function(e) {
           e.preventDefault();
