@@ -13,14 +13,6 @@
 ### XMind
 <img width="1065" alt="01" src="https://github.com/lemonshark05/High-Backend/assets/100770743/2e0bdb60-9505-4702-8ca1-e192eb7a0420">
 
-
-### App Evaluation
-- **Category:** 
-- **Story:** 
-- **Market:**  
-- **Habit:**  
-- **Scope:**
-
 ## Prototype
 
 ### Draw
@@ -28,26 +20,20 @@
 <img width="746" alt="Screenshot 2023-06-16 at 11 17 52" src="https://github.com/lemonshark05/High-Backend/assets/100770743/3bf1acbc-f830-4b8b-ad56-cc113a9284f7">
 
 
-### Kap
+### Video
 
 https://github.com/lemonshark05/High-Backend/assets/100770743/2e4a37d7-41e9-4c9e-a489-b399b1ae5c06
 
 https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b-bdc7-d0f6663877b3
 
-## Product Spec
+## Website Spec
 
 ### 1. User Profile
 
 * `UserRoles`: Defines the various roles within the application such as "Athlete", "Coach", and "Administrator".
 * `Users`: Contains the user's basic profile data, including username, email, phone number, role, profile image, community page URL, profile visibility, timezone, display name, title, personal info, and visibility to all members. It also contains a user's LinkedIn-style bio, past experiences, and other relevant information.
 * `Followers`: Allows for tracking follower relationships between users, similar to LinkedIn's connection system.
-* `BlockedMembers`: Tracks any blocked members for a particular user.
 * `Subscriptions`: Contains any subscription details related to the user.
-* `Orders`: Tracks any orders placed by the user.
-* `Addresses`: Stores user's address details.
-* `Wallet`: Holds information about the user's virtual wallet balance.
-* `Bookings`: Contains any bookings made by the user.
-* `UserUniversity`: Stores the association between users and their universities.
 
 ### 2. Screen Archetypes
 
@@ -65,13 +51,6 @@ https://github.com/lemonshark05/High-Backend/assets/100770743/a02d372e-76fb-466b
     * Users can endorse or recommend a coach
 * Community Page
     * Users can interact with the community by viewing shared content, commenting, and liking posts
-* Messaging 
-    * Users can send and receive messages, allowing communication between coaches and athletes
-* Connections
-    * Users can send, accept, or decline connection requests
-* Scholarship Opportunities
-    * Users can view and apply for scholarship opportunities
-    * Coaches can post scholarship opportunities
 
 ### 3. Navigation
 
@@ -247,12 +226,6 @@ https://dbdiagram.io/d/649a3f9a02bd1c4a5e1ae74c
 | content      | TEXT                     | Content of the message                     |
 | created_at   | TIMESTAMP DEFAULT now()  | Time when the message was created          |
 
-###  Digital Wireframes & Mockups
-
-
-###  Interactive Prototype
-
-
 ## Postman
 https://grey-sunset-457798.postman.co/workspace/Team-Workspace~9f18450a-889f-46e8-8c86-4725b41b6a4d/overview
 <img width="749" alt="Screenshot 2023-07-05 at 15 49 59" src="https://github.com/lemonshark05/High-Backend/assets/100770743/6700df95-36ea-427b-a001-0df6b23b64aa">
@@ -274,5 +247,3 @@ Here's a table with http status codes and descriptions:
 | 502 | Bad Gateway: The server received an invalid response from the upstream server. |
 | 503 | Service Unavailable: The server is currently unavailable (because it is overloaded or down for maintenance). |
 | 504 | Gateway Timeout: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server. |
-
-
